@@ -82,7 +82,7 @@ function toArray(raw: unknown): unknown[] | null {
 export function parsePortfolioTiles(raw: unknown): PortfolioTile[] {
   const entries = toArray(raw);
   if (entries === null) {
-    console.warn("portfolio-widget: Das Feld \"Kacheln\" enthält kein gültiges JSON-Array.");
+    console.warn("portfolio-widget: Das Feld \u201EKacheln\u201C enthält kein gültiges JSON-Array.");
     return [];
   }
 

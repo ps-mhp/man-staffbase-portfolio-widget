@@ -20,11 +20,16 @@
  * Komponentenprüfung merkt davon etwas, weil jsdom kein fremdes Stylesheet
  * kennt und Aussehen ohnehin nicht prüfbar ist.
  *
- * Was sich prüfen lässt, ist die Abwehr selbst: dass Kachel, Titel und
- * Beschreibung ihre Regeln mit erhöhter Spezifität durchsetzen und dass der
+ * Was sich prüfen lässt, ist die Abwehr selbst: dass Liste, Eintrag, Kachel,
+ * Titel und Beschreibung ihre Regeln mit erhöhter Spezifität durchsetzen, dass
+ * das Markenquadrat vor jedem Eintrag unterdrückt bleibt und dass der
  * Hover-Farbwechsel über eine eigene CSS-Variable läuft statt über ein
  * Spezifitäts-Wettrüsten, das die eigene Grundregel sonst gegen die eigene
  * Hover-Regel verlieren würde.
+ *
+ * Geprüft wird jeweils der Inhalt der Regel, nicht nur ihr Vorhandensein:
+ * ein fehlendes `!important` ist genau der Rückfall, den diese Datei fangen
+ * soll.
  */
 
 import portfolioStyles from "./styles/portfolio.scss";
@@ -53,6 +58,16 @@ function outshinePseudoRule(css: string, className: string, pseudoClass: string)
   return new RegExp(`${selector}${pseudoClass}[^{]*\\{[^}]*\\}`);
 }
 
+/**
+ * Der fünffache Selektor mit angehängtem Pseudoelement. `outshineRule` kann
+ * diese Regel bauartbedingt nicht treffen, weil sie unmittelbar hinter dem
+ * fünften Selektorteil ein `{` verlangt.
+ */
+function outshineBeforeRule(className: string): RegExp {
+  const selector = `\\.${className.replace(/-/g, "\\-")}`.repeat(5);
+  return new RegExp(`${selector}::before\\s*\\{[^}]*\\}`);
+}
+
 describe("Stylesheet", () => {
   it.each([
     "man-portfolio__tile",
@@ -62,6 +77,26 @@ describe("Stylesheet", () => {
     "man-portfolio__item",
   ])("setzt %s gegen die Regeln der Wirtsseite durch", (className) => {
     expect(portfolioStyles).toMatch(outshineRule(portfolioStyles, className));
+  });
+
+  it.each(["man-portfolio__list", "man-portfolio__item"])(
+    "raeumt in %s Aussenabstand, Einzug und Aufzaehlungszeichen mit Nachdruck weg",
+    (className) => {
+      const rule = portfolioStyles.match(outshineRule(portfolioStyles, className))?.[0] ?? "";
+      expect(rule).toMatch(/margin:\s*0\s*!important/);
+      expect(rule).toMatch(/padding:\s*0\s*!important/);
+      expect(rule).toMatch(/list-style:\s*none\s*!important/);
+    },
+  );
+
+  it("unterdrückt das Markenquadrat, das die Wirtsseite vor jeden Eintrag hängt", () => {
+    const rule = portfolioStyles.match(outshineBeforeRule("man-portfolio__item"))?.[0] ?? "";
+    expect(rule).toMatch(/content:\s*none\s*!important/);
+  });
+
+  it("hält den eigenen Übergang der Kachel gegen die Kurzform der Wirtsseite", () => {
+    const rule = portfolioStyles.match(outshineRule(portfolioStyles, "man-portfolio__tile"))?.[0] ?? "";
+    expect(rule).toMatch(/transition:\s*border-color[^;]*!important/);
   });
 
   it("nimmt der Kachel den Unterstrich mit Nachdruck, auch bei Hover und Fokus", () => {

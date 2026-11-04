@@ -47,7 +47,7 @@
  * einen Einzug ein und haengt per `::before` ein rotes Markenquadrat vor jeden
  * Eintrag. Bei `box-sizing: border-box` schrumpft dadurch die Kachel, und der
  * `gap`-Rhythmus der Reihe geht verloren. `margin`, `padding` und `list-style`
- * muessen deshalb gehaertet werden -- `display`, `flex-wrap` und `gap` bleiben
+ * muessen deshalb gehaertet werden — `display`, `flex-wrap` und `gap` bleiben
  * aussen vor, weil daran nichts mit Gewicht ruettelt und sie unveraendert
  * durchgereicht werden sollen. */
 .man-portfolio__list {
@@ -94,7 +94,6 @@
   border-radius: man("radius");
   background: man("surface");
   box-shadow: man("elevation-rest");
-  transition: border-color man("duration") man("ease");
   // Die Grundfarbe des Titels liegt in einer eigenen Variable statt direkt in
   // `.man-portfolio__title`: eine fremde `!important`-Farbregel der Wirtsseite
   // trifft nur Eigenschaften, keine Custom Properties, und die Vererbung loest
@@ -105,6 +104,12 @@
   @include man-outshine-host {
     color: inherit !important;
     text-decoration: none !important;
+
+    // `transition` gehoert mit in die Haertung: die Verweis-Regel der
+    // Wirtsseite setzt die Kurzform `transition: color …` und wuerde den
+    // eigenen Wert dabei vollstaendig ersetzen — die Kante spraenge beim
+    // Ueberfahren hart statt weich.
+    transition: border-color man("duration") man("ease") !important;
 
     &:hover,
     &:focus,

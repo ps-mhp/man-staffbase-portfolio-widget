@@ -42,21 +42,48 @@
   }
 }
 
+/* `man-theme` gestaltet Listen im Inhaltsbereich selbst: eine eigene Regel mit
+ * Gewicht raeumt `list-style-type` weg, zieht aber ueber `padding-left` wieder
+ * einen Einzug ein und haengt per `::before` ein rotes Markenquadrat vor jeden
+ * Eintrag. Bei `box-sizing: border-box` schrumpft dadurch die Kachel, und der
+ * `gap`-Rhythmus der Reihe geht verloren. `margin`, `padding` und `list-style`
+ * muessen deshalb gehaertet werden -- `display`, `flex-wrap` und `gap` bleiben
+ * aussen vor, weil daran nichts mit Gewicht ruettelt und sie unveraendert
+ * durchgereicht werden sollen. */
 .man-portfolio__list {
   display: flex;
   flex-wrap: wrap;
   gap: man("space-4");
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+  @include man-outshine-host {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
 }
 
 /* Feste Breite mit Umbruch statt einer Spaltenzahl — wie das native Widget.
-   `max-width: 100%` haelt die Kachel auf schmalen Schirmen im Rahmen. */
+   `max-width: 100%` haelt die Kachel auf schmalen Schirmen im Rahmen.
+   `flex`, `max-width` und `min-width` bleiben ausserhalb der Haertung: keine
+   Regel der Wirtsseite hat an diesen Eigenschaften Gewicht, sie betreffen
+   allein das Flex-Layout dieses Widgets. Gehaertet werden nur `margin`,
+   `padding` und `list-style` sowie `::before`, denn genau dort setzt
+   `man-theme` mit `!important` an und zeichnet pro Eintrag ein rotes
+   Markenquadrat, das sonst vor jeder Kachel steht. */
 .man-portfolio__item {
   flex: 0 0 280px;
   max-width: 100%;
   min-width: 0;
+
+  @include man-outshine-host {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+
+    &::before {
+      content: none !important;
+    }
+  }
 }
 
 .man-portfolio__tile {

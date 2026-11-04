@@ -108,7 +108,7 @@ describe("parsePortfolioTiles", () => {
   });
 
   it("loest die Kollision einer gepflegten id mit einer vergebenen auf", () => {
-    // Die erste Kachel bekommt die vergebene id "tile-1" aus ihrer Stelle;
+    // Die erste Kachel bekommt die vergebene id "tile-0" aus ihrer Stelle;
     // die zweite pflegt zufaellig genau diese Zeichenkette.
     const raw = JSON.stringify([{ title: "Eins" }, { title: "Zwei", id: "tile-0" }]);
     const ids = parsePortfolioTiles(raw).map((tile) => tile.id);

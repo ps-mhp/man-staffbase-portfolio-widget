@@ -40,17 +40,39 @@ function outshineRule(css: string, className: string): RegExp {
   return new RegExp(`${selector}\\s*\\{[^}]*\\}`);
 }
 
+/**
+ * Der fünffache Selektor, aber mit einer Pseudoklasse davor dem öffnenden
+ * `{` — anders als `outshineRule` verlangt dieser Ausdruck den
+ * Pseudoklassen-Teil des Selektors ausdrücklich. `outshineRule` selbst
+ * träfe hier auch zu, weil `[^}]*` großzügig bis zur ersten `}` liest: das
+ * matcht bereits den Grundblock ohne Hover/Fokus und bliebe grün, selbst
+ * wenn der `&:hover, &:focus, &:active`-Block verschwände.
+ */
+function outshinePseudoRule(css: string, className: string, pseudoClass: string): RegExp {
+  const selector = `\\.${className.replace(/-/g, "\\-")}`.repeat(5);
+  return new RegExp(`${selector}${pseudoClass}[^{]*\\{[^}]*\\}`);
+}
+
 describe("Stylesheet", () => {
-  it.each(["man-portfolio__tile", "man-portfolio__title", "man-portfolio__description"])(
-    "setzt %s gegen die Regeln der Wirtsseite durch",
-    (className) => {
-      expect(portfolioStyles).toMatch(outshineRule(portfolioStyles, className));
-    },
-  );
+  it.each([
+    "man-portfolio__tile",
+    "man-portfolio__title",
+    "man-portfolio__description",
+    "man-portfolio__list",
+    "man-portfolio__item",
+  ])("setzt %s gegen die Regeln der Wirtsseite durch", (className) => {
+    expect(portfolioStyles).toMatch(outshineRule(portfolioStyles, className));
+  });
 
   it("nimmt der Kachel den Unterstrich mit Nachdruck, auch bei Hover und Fokus", () => {
-    const rule = portfolioStyles.match(outshineRule(portfolioStyles, "man-portfolio__tile"))?.[0] ?? "";
+    const rule = portfolioStyles.match(outshinePseudoRule(portfolioStyles, "man-portfolio__tile", ":hover"))?.[0] ?? "";
     expect(rule).toContain("text-decoration: none !important");
+  });
+
+  it("setzt die Grundfarben von Titel und Chevron an der Kachel, bevor Hover sie uebersteuert", () => {
+    const rule = portfolioStyles.match(/\.man-portfolio__tile\s*\{[^}]*\}/)?.[0] ?? "";
+    expect(rule).toMatch(/--man-portfolio-title-color:\s*var\(--man-text,/);
+    expect(rule).toMatch(/--man-portfolio-chevron-color:\s*var\(--man-slate,/);
   });
 
   it("holt die Titelfarbe aus einer eigenen Variable statt aus Spezifität", () => {

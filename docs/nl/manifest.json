@@ -1,0 +1,43 @@
+{
+  "title": "Portfolio",
+  "summary": "Een reeks tegels met afbeelding, titel en link — de hele tegel is aanklikbaar.",
+  "icon": "🗂️",
+  "pages": [
+    {
+      "id": "overview",
+      "title": "Overzicht",
+      "file": "overview.md"
+    },
+    {
+      "id": "usage",
+      "title": "Stap voor stap",
+      "file": "usage.md"
+    },
+    {
+      "id": "settings",
+      "title": "Instellingen",
+      "file": "settings.md"
+    },
+    {
+      "id": "faq",
+      "title": "Veelgestelde vragen",
+      "file": "faq.md"
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tegels met afbeelding en titel",
+      "attributes": {
+        "tiles": "[{\"title\":\"Lkw\",\"image\":\"https://picsum.photos/seed/lkw/480/270\",\"link\":\"#lkw\"},{\"title\":\"Bus\",\"image\":\"https://picsum.photos/seed/bus/480/270\",\"link\":\"#bus\"},{\"title\":\"Van\",\"image\":\"https://picsum.photos/seed/van/480/270\",\"link\":\"#van\"}]",
+        "show-chevron": true
+      }
+    },
+    {
+      "title": "Met etiket en beschrijving",
+      "attributes": {
+        "tiles": "[{\"title\":\"Lkw\",\"badge\":\"Fahrzeuge\",\"description\":\"Die schwere Reihe für den Fernverkehr.\",\"image\":\"https://picsum.photos/seed/lkw/480/270\",\"link\":\"#lkw\"},{\"title\":\"Service\",\"badge\":\"Leistungen\",\"description\":\"Wartung, Ersatzteile und Beratung.\",\"image\":\"https://picsum.photos/seed/service/480/270\",\"link\":\"#service\",\"newTab\":true}]",
+        "show-chevron": true
+      }
+    }
+  ]
+}

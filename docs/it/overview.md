@@ -1,0 +1,28 @@
+# Portfolio
+
+Il widget Portfolio presenta una serie di riquadri affiancati. Ogni riquadro
+contiene un’immagine, un titolo e, quando viene cliccato, rimanda a una pagina — all’interno
+dell’app o all’esterno. È adatto ovunque debbano coesistere più
+: linee di prodotti, reparti, punti di contatto.
+
+Staffbase include un widget di questo tipo, ma solo nell’editor classico. Questo
+widget ne è la replica per l’editor Studio. Ha lo stesso aspetto e può
+inoltre mostrare un’etichetta di categoria sopra il titolo.
+
+## Cosa vedono i lettori
+
+Una serie di riquadri di uguale larghezza, che su schermi stretti va a capo. Ogni
+riquadro presenta in alto un’immagine, sotto la quale — a seconda della configurazione — una piccola
+etichetta di categoria, il titolo e una breve descrizione. In alto a destra è presente una
+freccia, purché il riquadro abbia una destinazione.
+
+Passandoci sopra con il mouse, il bordo diventa più marcato e il titolo e la freccia
+diventano rossi. L’intero riquadro è il link, non solo il titolo.
+
+## Cosa vedete nell’editor CMS
+
+Nell’editor le tessere appaiono esattamente come sulla pagina. I collegamenti, tuttavia,
+non sono utilizzabili in quella sede: per verificare le destinazioni, aprite l’anteprima.
+
+Attualmente le tessere vengono gestite come elenco JSON in un campo di testo. È in programma la realizzazione di un
+editor dedicato alle tessere; il formato rimarrà invariato.

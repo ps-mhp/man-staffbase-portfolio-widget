@@ -1,5 +1,5 @@
 /*!
- * Copyright 2026, Staffbase SE and contributors.
+ * Copyright 2026, MHP Management und IT-Beratung GmbH and contributors.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,28 +12,52 @@
  */
 
 import { setPublicPathFromBundle } from "@shared/public-path";
-
-// Must run before any dynamic `import()`, so that lazily loaded chunks come
-// from the CDN the bundle was served from and not from the hosting page.
+// Muss vor jedem dynamischen `import()` laufen, damit nachgeladene Teile von
+// dem CDN kommen, von dem das Bundle stammt, und nicht von der Wirtsseite.
 setPublicPathFromBundle("portfolio-widget.js");
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { BlockFactory, BlockDefinition, ExternalBlockDefinition, BaseBlock } from "widget-sdk";
-import { configurationSchema, uiSchema } from "./configuration-schema";
+import { startWidget } from "@shared/dev-mode/start-widget";
+import {
+  SHOW_CHEVRON_ATTRIBUTE,
+  TILES_ATTRIBUTE,
+  configurationSchema,
+  readShowChevron,
+  uiSchema,
+} from "./configuration-schema";
+import { parsePortfolioTiles } from "./portfolio-tiles";
+import { Portfolio } from "./portfolio";
 import icon from "../resources/portfolio-widget.svg";
 import pkg from "../package.json";
 
-/** Attributes handled by the widget; mirrored in the configuration schema. */
-const widgetAttributes: string[] = [];
+/** Die Attribute des Widgets; gespiegelt im Konfigurationsschema. */
+const widgetAttributes: string[] = [TILES_ATTRIBUTE, SHOW_CHEVRON_ATTRIBUTE];
 
 const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
+  /**
+   * <portfolio-widget tiles='[{"title":"Lkw","link":"/lkw"}]'></portfolio-widget>
+   */
   return class PortfolioWidgetBlock extends BaseBlockClass implements BaseBlock {
     private _root: ReactDOM.Root | null = null;
 
     public renderBlock(container: HTMLElement): void {
+      const attrs = this.parseAttributes<Record<string, unknown>>();
+
       this._root ??= ReactDOM.createRoot(container);
-      this._root.render(<div />);
+      this._root.render(
+        <Portfolio
+          tiles={parsePortfolioTiles(attrs[TILES_ATTRIBUTE])}
+          showChevron={readShowChevron(attrs[SHOW_CHEVRON_ATTRIBUTE])}
+        />,
+      );
+    }
+
+    public unmountBlock(_container: HTMLElement): void {
+      this._root?.unmount();
+      this._root = null;
     }
 
     public static get observedAttributes(): string[] {
@@ -53,7 +77,7 @@ const blockDefinition: BlockDefinition = {
   blockLevel: "block",
   configurationSchema: configurationSchema,
   uiSchema: uiSchema,
-  label: "PortfolioWidget",
+  label: "Portfolio",
   iconUrl: icon,
 };
 
@@ -63,4 +87,24 @@ const externalBlockDefinition: ExternalBlockDefinition = {
   version: pkg.version,
 };
 
-window.defineBlock(externalBlockDefinition);
+/**
+ * Meldet den Baustein bei der Wirtsseite an.
+ *
+ * `startWidget` fragt zuerst, ob ein lokaler Entwicklungsserver dieses Widget
+ * ausliefert. In fast jedem Browser lautet die Antwort nein, und es wird
+ * sofort angemeldet; auf dem Rechner der Entwicklung uebernimmt das lokale
+ * Bundle und meldet an seiner Stelle an. Immer nur eines von beiden — ein
+ * Bausteinname laesst sich nicht zweimal belegen.
+ *
+ * Die Abfrage davor laesst das Modul in Jest laden, wo es keine Wirtsseite
+ * gibt: ohne sie braeche schon der blosse Import der Datei jeden Test.
+ */
+if (typeof window.defineBlock === "function") {
+  void startWidget({
+    name: "portfolio-widget",
+    version: pkg.version,
+    register: () => {
+      window.defineBlock(externalBlockDefinition);
+    },
+  });
+}

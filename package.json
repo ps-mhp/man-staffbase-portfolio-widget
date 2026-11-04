@@ -1,0 +1,11 @@
+{
+  "name": "@man/portfolio-widget",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "staffbase": {
+    "element": "portfolio-widget",
+    "bundle": "dist/portfolio-widget.js"
+  }
+}

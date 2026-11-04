@@ -18,7 +18,17 @@
  * man-theme/src/03-elements/portfolio/_app.scss. Hier stehen dieselben
  * Aussagen noch einmal, damit das Widget auch auf einer Instanz ohne
  * man-theme richtig steht: eckig, Haarlinie, kein Schatten; beim Ueberfahren
- * wird die Kante kraeftig und der Titel rot. */
+ * wird die Kante kraeftig und der Titel rot.
+ *
+ * Auf einer Instanz MIT man-theme beansprucht `man-theme/src/02-typography/
+ * _app.scss` dieselben Eigenschaften mit Gewicht: Ueberschriften, Absaetze
+ * und Verweise im Inhaltsbereich tragen dort eigene Regeln mit `!important`,
+ * teils hoeherer Spezifitaet als unsere einfache Klasse. Ohne Gegenwehr
+ * verliert `.man-portfolio__title` seine Stufe und Hover-Farbe, die
+ * Beschreibung ihre Groesse, und `.man-portfolio__tile` seinen Verweis ohne
+ * Unterstrich. `man-outshine-host` (fuenffach wiederholter Klassenselektor,
+ * siehe `_man-tokens.scss`) haertet genau diese Stellen mit `!important` ab;
+ * alles andere bleibt unangetastet. */
 
 .man-portfolio {
   box-sizing: border-box;
@@ -57,12 +67,27 @@
   border-radius: man("radius");
   background: man("surface");
   box-shadow: man("elevation-rest");
-  color: inherit;
-  text-decoration: none;
   transition: border-color man("duration") man("ease");
+  // Die Grundfarbe des Titels liegt in einer eigenen Variable statt direkt in
+  // `.man-portfolio__title`: eine fremde `!important`-Farbregel der Wirtsseite
+  // trifft nur Eigenschaften, keine Custom Properties, und die Vererbung loest
+  // den Hover-Fall unten ohne weiteres Spezifitaets-Wettruesten.
+  --man-portfolio-title-color: #{man("text")};
+  --man-portfolio-chevron-color: #{man("slate")};
 
-  &:focus-visible {
-    @include man-focus-ring;
+  @include man-outshine-host {
+    color: inherit !important;
+    text-decoration: none !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none !important;
+    }
+
+    &:focus-visible {
+      @include man-focus-ring($important: true);
+    }
   }
 }
 
@@ -94,16 +119,23 @@
 }
 
 .man-portfolio__title {
-  margin: 0;
-  color: man("text");
   transition: color man("duration") man("ease");
-  @include man-type("h4");
+
+  @include man-outshine-host {
+    @include man-type("h4", $important: true);
+
+    margin: 0 !important;
+    color: var(--man-portfolio-title-color) !important;
+  }
 }
 
 .man-portfolio__description {
-  margin: man("space-2") 0 0;
-  color: man("text-muted");
-  @include man-type("body-s");
+  @include man-outshine-host {
+    @include man-type("body-s", $important: true);
+
+    margin: man("space-2") 0 0 !important;
+    color: man("text-muted") !important;
+  }
 }
 
 /* Der Chevron ist gestrichen, nicht gefuellt; `color` steuert ihn ueber
@@ -112,7 +144,7 @@
   position: absolute;
   top: man("space-4");
   right: man("space-4");
-  color: man("slate");
+  color: var(--man-portfolio-chevron-color);
   transition: color man("duration") man("ease");
 }
 
@@ -122,13 +154,7 @@
 @media (hover: hover) {
   .man-portfolio__tile:hover {
     border-color: man("border-strong");
-  }
-
-  .man-portfolio__tile:hover .man-portfolio__title {
-    color: man("red");
-  }
-
-  .man-portfolio__tile:hover .man-portfolio__chevron {
-    color: man("red");
+    --man-portfolio-title-color: #{man("red")};
+    --man-portfolio-chevron-color: #{man("red")};
   }
 }

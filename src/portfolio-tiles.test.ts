@@ -107,6 +107,27 @@ describe("parsePortfolioTiles", () => {
     expect(new Set(ids).size).toBe(3);
   });
 
+  it("loest die Kollision einer gepflegten id mit einer vergebenen auf", () => {
+    // Die erste Kachel bekommt die vergebene id "tile-1" aus ihrer Stelle;
+    // die zweite pflegt zufaellig genau diese Zeichenkette.
+    const raw = JSON.stringify([{ title: "Eins" }, { title: "Zwei", id: "tile-0" }]);
+    const ids = parsePortfolioTiles(raw).map((tile) => tile.id);
+    expect(ids[0]).toBe("tile-0");
+    expect(ids[1]).not.toBe("tile-0");
+    expect(new Set(ids).size).toBe(2);
+  });
+
+  it("loest zwei gepflegte Kacheln mit derselben id auf", () => {
+    const raw = JSON.stringify([
+      { title: "Eins", id: "kopie" },
+      { title: "Zwei", id: "kopie" },
+    ]);
+    const ids = parsePortfolioTiles(raw).map((tile) => tile.id);
+    expect(ids[0]).toBe("kopie");
+    expect(ids[1]).not.toBe("kopie");
+    expect(new Set(ids).size).toBe(2);
+  });
+
   it("liest newTab aus Wahrheitswert und Zeichenkette", () => {
     const raw = JSON.stringify([
       { title: "A", newTab: true },

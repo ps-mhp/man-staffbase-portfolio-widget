@@ -36,6 +36,29 @@ export interface PortfolioTile {
   newTab: boolean;
 }
 
+/**
+ * Macht `candidate` eindeutig innerhalb von `used`.
+ *
+ * Ein Rohtext-JSON-Feld wird kopiert und angepasst — zwei Kacheln mit
+ * derselben gepflegten `id`, oder eine gepflegte `id`, die zufaellig auf eine
+ * vergebene (`tile-<Index>`) trifft, sind der Normalfall, kein Ausnahmefall.
+ * Der Index innerhalb eines Durchlaufs ist einmalig: angehaengt an den
+ * Kandidaten ergibt er einen stabilen, nachvollziehbaren Ersatz. Traf auch
+ * der schon zu — etwa weil eine spaetere Kachel genau diese Zeichenkette
+ * gepflegt hat —, haengt eine laufende Nummer an, bis der Schluessel frei ist.
+ */
+function uniqueId(candidate: string, index: number, used: Set<string>): string {
+  if (!used.has(candidate)) return candidate;
+
+  let fallback = `${candidate}-${index}`;
+  let suffix = 0;
+  while (used.has(fallback)) {
+    suffix += 1;
+    fallback = `${candidate}-${index}-${suffix}`;
+  }
+  return fallback;
+}
+
 /** Leerraum weg; nur was danach uebrig bleibt, zaehlt als gesetzt. */
 function text(value: unknown): string | undefined {
   if (typeof value !== "string") return undefined;
@@ -87,6 +110,7 @@ export function parsePortfolioTiles(raw: unknown): PortfolioTile[] {
   }
 
   const tiles: PortfolioTile[] = [];
+  const usedIds = new Set<string>();
   entries.forEach((entry, index) => {
     if (typeof entry !== "object" || entry === null) return;
 
@@ -94,8 +118,11 @@ export function parsePortfolioTiles(raw: unknown): PortfolioTile[] {
     const title = text(source.title);
     if (title === undefined) return;
 
+    const id = uniqueId(text(source.id) ?? `tile-${index}`, index, usedIds);
+    usedIds.add(id);
+
     const tile: PortfolioTile = {
-      id: text(source.id) ?? `tile-${index}`,
+      id,
       title,
       newTab: flag(source.newTab),
     };

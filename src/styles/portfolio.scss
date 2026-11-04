@@ -1,0 +1,134 @@
+/*!
+ * Copyright 2026, MHP Management und IT-Beratung GmbH and contributors.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@use "@shared/stylings/man-tokens" as *;
+@use "@shared/stylings/man-craft" as *;
+
+/* Das native Portfolio-Widget bekommt seine MAN-Form in
+ * man-theme/src/03-elements/portfolio/_app.scss. Hier stehen dieselben
+ * Aussagen noch einmal, damit das Widget auch auf einer Instanz ohne
+ * man-theme richtig steht: eckig, Haarlinie, kein Schatten; beim Ueberfahren
+ * wird die Kante kraeftig und der Titel rot. */
+
+.man-portfolio {
+  box-sizing: border-box;
+  color: man("text");
+  @include man-type("body");
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+.man-portfolio__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: man("space-4");
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Feste Breite mit Umbruch statt einer Spaltenzahl — wie das native Widget.
+   `max-width: 100%` haelt die Kachel auf schmalen Schirmen im Rahmen. */
+.man-portfolio__item {
+  flex: 0 0 280px;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.man-portfolio__tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: man("border-width") solid man("border");
+  border-radius: man("radius");
+  background: man("surface");
+  box-shadow: man("elevation-rest");
+  color: inherit;
+  text-decoration: none;
+  transition: border-color man("duration") man("ease");
+
+  &:focus-visible {
+    @include man-focus-ring;
+  }
+}
+
+/* 16:9 mit `cover`: eine Reihe ungleich beschnittener Motive steht trotzdem buendig. */
+.man-portfolio__media {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.man-portfolio__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Rechts mehr Polsterung: dort sitzt der Chevron. */
+.man-portfolio__body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: man("space-4") man("space-7") man("space-4") man("space-4");
+}
+
+.man-portfolio__badge {
+  display: block;
+  margin-bottom: man("space-1");
+  color: man("text-muted");
+  @include man-type("eyebrow");
+}
+
+.man-portfolio__title {
+  margin: 0;
+  color: man("text");
+  transition: color man("duration") man("ease");
+  @include man-type("h4");
+}
+
+.man-portfolio__description {
+  margin: man("space-2") 0 0;
+  color: man("text-muted");
+  @include man-type("body-s");
+}
+
+/* Der Chevron ist gestrichen, nicht gefuellt; `color` steuert ihn ueber
+   `stroke="currentColor"` im SVG. */
+.man-portfolio__chevron {
+  position: absolute;
+  top: man("space-4");
+  right: man("space-4");
+  color: man("slate");
+  transition: color man("duration") man("ease");
+}
+
+/* Nur fuer Zeigegeraete mit echtem Hover. Das man-theme haengt diese Regeln
+   an `html.mouse`; diese Klasse setzt das Theme, und das Widget soll ohne es
+   auskommen. */
+@media (hover: hover) {
+  .man-portfolio__tile:hover {
+    border-color: man("border-strong");
+  }
+
+  .man-portfolio__tile:hover .man-portfolio__title {
+    color: man("red");
+  }
+
+  .man-portfolio__tile:hover .man-portfolio__chevron {
+    color: man("red");
+  }
+}

@@ -30,7 +30,7 @@
  */
 
 import * as React from "react";
-import { ReactElement, useMemo, useRef, useState } from "react";
+import { ReactElement, useEffect, useMemo, useRef, useState } from "react";
 
 import { useHotStyle } from "@shared/hot-style";
 import { MediaClient, createMediaClient } from "@shared/media/media-client";
@@ -117,6 +117,27 @@ export function TileEditor({
     onChange(value.map((tile, i) => (i === index ? { ...tile, ...changes } : tile)));
   };
 
+  const clearDrag = (): void => {
+    dragFrom.current = null;
+    setDragIndex(null);
+  };
+
+  /**
+   * Alle Aufräumwege des Ziehens hängen am Griff. Fällt das Loslassen
+   * ausserhalb des Fensters und war die Erfassung nie aktiv, erreicht den
+   * Griff nichts mehr — die Zeile bliebe als „in Bewegung“ markiert stehen.
+   * Deshalb horcht das Fenster mit, solange gezogen wird.
+   */
+  useEffect(() => {
+    if (dragIndex === null) return undefined;
+    window.addEventListener("pointerup", clearDrag);
+    window.addEventListener("pointercancel", clearDrag);
+    return () => {
+      window.removeEventListener("pointerup", clearDrag);
+      window.removeEventListener("pointercancel", clearDrag);
+    };
+  }, [dragIndex]);
+
   const move = (from: number, to: number): boolean => {
     const next = reorder(tiles.current, from, to);
     if (next === null) return false;
@@ -160,8 +181,7 @@ export function TileEditor({
     if (typeof handle.hasPointerCapture === "function" && handle.hasPointerCapture(event.pointerId)) {
       handle.releasePointerCapture(event.pointerId);
     }
-    dragFrom.current = null;
-    setDragIndex(null);
+    clearDrag();
   };
 
   const handlePointerDown = (index: number) => (event: React.PointerEvent<HTMLButtonElement>): void => {
@@ -230,7 +250,7 @@ export function TileEditor({
         <div className="man-pe__list" role="list" data-testid="tile-list">
           {value.map((tile, index) => {
             const open = expanded.has(tile.id);
-            const extraId = `man-pe-extra-${tile.id}`;
+            const extraId = `man-pe-extra-${index}-${tile.id.replace(/[^A-Za-z0-9_-]/g, "-")}`;
             const untitled = tile.title.trim() === "";
             return (
               <div
@@ -339,7 +359,7 @@ export function TileEditor({
                       data-testid={`tile-more-${tile.id}`}
                       aria-expanded={open}
                       aria-controls={extraId}
-                      aria-label={`Weitere Felder der Kachel ${index + 1}`}
+                      aria-label={`${open ? "Weniger" : "Mehr"} — Kachel ${index + 1}`}
                       onClick={() => toggle(tile.id)}
                     >
                       {open ? "Weniger" : "Mehr"}

@@ -251,14 +251,31 @@ describe("TileEditor", () => {
       setup([tile("a"), tile("b")]);
       const more = screen.getByTestId("tile-more-b");
 
-      expect(more).toHaveAttribute("aria-label", "Weitere Felder der Kachel 2");
-      expect(more).toHaveAttribute("aria-controls", "man-pe-extra-b");
+      // Der sichtbare Text muss im Namen stehen bleiben (WCAG 2.5.3): wer per
+      // Sprache „Klick Mehr“ sagt, muss diesen Knopf treffen.
+      expect(more).toHaveAttribute("aria-label", "Mehr — Kachel 2");
+      expect(more).toHaveAttribute("aria-controls", "man-pe-extra-1-b");
       expect(more).toHaveAttribute("aria-expanded", "false");
 
       fireEvent.click(more);
 
-      expect(screen.getByTestId("tile-extra-b")).toHaveAttribute("id", "man-pe-extra-b");
+      expect(screen.getByTestId("tile-extra-b")).toHaveAttribute("id", "man-pe-extra-1-b");
+      expect(more).toHaveAttribute("aria-label", "Weniger — Kachel 2");
       expect(more).toHaveAttribute("aria-expanded", "true");
+    });
+
+    it("macht aus einer gepflegten Kennung mit Leerzeichen eine gueltige HTML-Kennung", () => {
+      // `id` kommt aus dem JSON-Feld und wird nur beschnitten. Ein Leerzeichen
+      // zerlegte `aria-controls` — es ist eine Liste von Verweisen — in zwei
+      // Verweise, von denen keiner zielt.
+      setup([{ ...tile("a"), id: "meine kachel" }]);
+      const more = screen.getByTestId("tile-more-meine kachel");
+
+      expect(more).toHaveAttribute("aria-controls", "man-pe-extra-0-meine-kachel");
+
+      fireEvent.click(more);
+
+      expect(screen.getByTestId("tile-extra-meine kachel")).toHaveAttribute("id", "man-pe-extra-0-meine-kachel");
     });
 
     it("meldet Aenderungen der Zusatzfelder", () => {
@@ -423,6 +440,21 @@ describe("TileEditor", () => {
       });
 
       expect(h.onChange).not.toHaveBeenCalled();
+    });
+
+    it("raeumt auf, wenn das Loslassen ausserhalb des Fensters faellt", () => {
+      // Alle Aufräumwege hängen sonst am Griff. Faellt der Loslass-Klick
+      // neben das Fenster und war die Erfassung nie aktiv, erreicht ihn
+      // nichts mehr — die Zeile bliebe als „in Bewegung“ markiert stehen.
+      setup([tile("a"), tile("b")], { controlled: true });
+      const handle = screen.getByTestId("tile-handle-a");
+
+      fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
+      expect(screen.getByTestId("tile-row-a").className).toContain("man-pe__row--dragging");
+
+      fireEvent.pointerUp(window, { pointerId: 1 });
+
+      expect(screen.getByTestId("tile-row-a").className).not.toContain("man-pe__row--dragging");
     });
 
     it("laesst ein abgebrochenes Ziehen keinen Zustand zurueck", () => {

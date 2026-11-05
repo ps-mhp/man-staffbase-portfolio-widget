@@ -25,8 +25,9 @@ Aufklapper **Mehr** am Ende der Zeile:
 - **Beschreibung** — ein kurzer Text unter dem Titel.
 - **Alternativtext des Bildes** — was ein Screenreader statt des Bildes
   vorliest. Leer lassen, wenn das Bild nur schmückt. Beim Wählen eines Bildes
-  trägt der Editor den Dateinamen ein, solange das Feld noch unberührt ist;
-  ein selbst getippter Text bleibt stehen.
+  übernimmt der Editor einen Alternativtext aus der Mediathek, solange das
+  Feld noch unberührt ist — einen blossen Dateinamen wie „lkw.png“ aber
+  nicht; ein selbst getippter Text bleibt stehen.
 - **In neuem Tab öffnen** — öffnet das Ziel in einem neuen Browser-Tab.
 
 Mit **Weniger** klappt der Bereich wieder zu. Jede Zeile hat ihren eigenen

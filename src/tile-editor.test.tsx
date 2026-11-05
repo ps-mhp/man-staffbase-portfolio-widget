@@ -23,7 +23,7 @@ import * as React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MediaClient, MediaItem } from "@shared/media/media-client";
 import { PortfolioTile } from "./portfolio-tiles";
-import { TileEditor } from "./tile-editor";
+import { TileEditor, altFromPick } from "./tile-editor";
 
 const mediaItem = (id: string): MediaItem => ({
   id,
@@ -135,6 +135,47 @@ const stubRowGeometry = (): jest.SpyInstance => {
     });
 };
 
+/**
+ * jsdom kennt die Zeigererfassung nicht: `setPointerCapture` und Geschwister
+ * sind schlicht `undefined`, und die Zweige, die sie nehmen und wieder
+ * freigeben, liefen in keinem Test. Hier stehen sie als Platzhalter auf dem
+ * Prototyp und merken sich je Element die gehaltenen Zeiger. Der Rückgabewert
+ * raeumt sie wieder ab.
+ */
+const stubPointerCapture = (): (() => void) => {
+  const held = new WeakMap<Element, Set<number>>();
+  const proto = Element.prototype as unknown as Record<string, unknown>;
+  const had = {
+    set: proto["setPointerCapture"],
+    release: proto["releasePointerCapture"],
+    has: proto["hasPointerCapture"],
+  };
+
+  const ids = function (element: Element): Set<number> {
+    const existing = held.get(element);
+    if (existing !== undefined) return existing;
+    const fresh = new Set<number>();
+    held.set(element, fresh);
+    return fresh;
+  };
+
+  proto["setPointerCapture"] = function (this: Element, pointerId: number): void {
+    ids(this).add(pointerId);
+  };
+  proto["releasePointerCapture"] = function (this: Element, pointerId: number): void {
+    ids(this).delete(pointerId);
+  };
+  proto["hasPointerCapture"] = function (this: Element, pointerId: number): boolean {
+    return ids(this).has(pointerId);
+  };
+
+  return () => {
+    proto["setPointerCapture"] = had.set;
+    proto["releasePointerCapture"] = had.release;
+    proto["hasPointerCapture"] = had.has;
+  };
+};
+
 /** Die Mitte der Zeile an Stelle `index` in der gestapelten Ersatzgeometrie. */
 const middleOf = (index: number): number => index * ROW_HEIGHT + ROW_HEIGHT / 2;
 
@@ -206,6 +247,20 @@ describe("TileEditor", () => {
       expect(screen.getByTestId("tile-more-a")).toHaveTextContent("Weniger");
     });
 
+    it("benennt den Aufklapper je Kachel und verknuepft ihn mit dem Bereich", () => {
+      setup([tile("a"), tile("b")]);
+      const more = screen.getByTestId("tile-more-b");
+
+      expect(more).toHaveAttribute("aria-label", "Weitere Felder der Kachel 2");
+      expect(more).toHaveAttribute("aria-controls", "man-pe-extra-b");
+      expect(more).toHaveAttribute("aria-expanded", "false");
+
+      fireEvent.click(more);
+
+      expect(screen.getByTestId("tile-extra-b")).toHaveAttribute("id", "man-pe-extra-b");
+      expect(more).toHaveAttribute("aria-expanded", "true");
+    });
+
     it("meldet Aenderungen der Zusatzfelder", () => {
       const h = setup([tile("a")]);
       fireEvent.click(screen.getByTestId("tile-more-a"));
@@ -233,7 +288,16 @@ describe("TileEditor", () => {
 
       await waitFor(() => expect(h.onChange).toHaveBeenCalled());
       expect(h.latest()[0]!.image).toBe("https://cdn.example.test/a.png");
-      expect(h.latest()[0]!.imageAlt).toBe("a.png");
+      // Die Mediathek reicht als Alternativtext den Dateinamen durch; er
+      // bleibt draussen, statt im Screenreader als „a.png“ aufzutauchen.
+      expect(h.latest()[0]!.imageAlt).toBeUndefined();
+    });
+
+    it("uebernimmt einen echten Alternativtext, einen Dateinamen nicht", () => {
+      expect(altFromPick(undefined, { alt: "Ein Lkw", fileName: "lkw.png" })).toBe("Ein Lkw");
+      expect(altFromPick(undefined, { alt: "lkw.png", fileName: "lkw.png" })).toBeUndefined();
+      expect(altFromPick("", { alt: "Ein Lkw", fileName: "lkw.png" })).toBeUndefined();
+      expect(altFromPick("Schon getippt", { alt: "Ein Lkw", fileName: "lkw.png" })).toBeUndefined();
     });
 
     it("laesst einen bereits getippten Alternativtext stehen", async () => {
@@ -296,13 +360,16 @@ describe("TileEditor", () => {
 
   describe("Sortieren mit dem Zeiger", () => {
     let rects: jest.SpyInstance;
+    let capture: () => void;
 
     beforeEach(() => {
       rects = stubRowGeometry();
+      capture = stubPointerCapture();
     });
 
     afterEach(() => {
       rects.mockRestore();
+      capture();
     });
 
     it("ordnet beim Ziehen nach unten um", () => {
@@ -310,7 +377,7 @@ describe("TileEditor", () => {
       const handle = screen.getByTestId("tile-handle-a");
 
       fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
-      fireEvent.pointerMove(handle, { pointerId: 1, clientY: middleOf(1) + 10 });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(1) + 10 });
 
       expect(h.latest().map((entry) => entry.id)).toEqual(["b", "a", "c"]);
       expect(orderInDom()).toEqual(["b", "a", "c"]);
@@ -323,7 +390,7 @@ describe("TileEditor", () => {
       const handle = screen.getByTestId("tile-handle-c");
 
       fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(2) });
-      fireEvent.pointerMove(handle, { pointerId: 1, clientY: middleOf(1) - 10 });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(1) - 10 });
 
       expect(h.latest().map((entry) => entry.id)).toEqual(["a", "c", "b"]);
     });
@@ -333,7 +400,7 @@ describe("TileEditor", () => {
       const handle = screen.getByTestId("tile-handle-a");
 
       fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
-      fireEvent.pointerMove(handle, { pointerId: 1, clientY: middleOf(2) + 10 });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(2) + 10 });
 
       expect(orderInDom()).toEqual(["b", "c", "a"]);
     });
@@ -343,7 +410,7 @@ describe("TileEditor", () => {
       const handle = screen.getByTestId("tile-handle-a");
 
       fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
-      fireEvent.pointerMove(handle, { pointerId: 1, clientY: middleOf(0) + 10 });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(0) + 10 });
 
       expect(h.onChange).not.toHaveBeenCalled();
     });
@@ -369,8 +436,52 @@ describe("TileEditor", () => {
 
       expect(screen.getByTestId("tile-row-a").className).not.toContain("man-pe__row--dragging");
       // Nach dem Abbruch bewegt ein weiterer Zug ohne neues Aufsetzen nichts.
-      fireEvent.pointerMove(handle, { pointerId: 1, clientY: middleOf(2) + 10 });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(2) + 10 });
       expect(h.onChange).not.toHaveBeenCalled();
+    });
+
+    it("beendet das Ziehen, wenn der Zeiger losgelassen ankommt", () => {
+      const h = setup([tile("a"), tile("b"), tile("c")], { controlled: true });
+      const handle = screen.getByTestId("tile-handle-a");
+
+      fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
+      // Kein `pointerup`: die Erfassung ging unterwegs verloren. Der naechste
+      // Zug meldet eine leere Tastenmaske — und darf nichts mehr umordnen.
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 0, clientY: middleOf(2) + 10 });
+
+      expect(h.onChange).not.toHaveBeenCalled();
+      expect(orderInDom()).toEqual(["a", "b", "c"]);
+      expect(screen.getByTestId("tile-row-a").className).not.toContain("man-pe__row--dragging");
+      expect(handle.hasPointerCapture(1)).toBe(false);
+    });
+
+    it("beendet das Ziehen mit der verlorenen Erfassung", () => {
+      const h = setup([tile("a"), tile("b"), tile("c")], { controlled: true });
+      const handle = screen.getByTestId("tile-handle-a");
+
+      fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
+      fireEvent.lostPointerCapture(handle, { pointerId: 1 });
+
+      expect(screen.getByTestId("tile-row-a").className).not.toContain("man-pe__row--dragging");
+
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(2) + 10 });
+
+      expect(h.onChange).not.toHaveBeenCalled();
+      expect(orderInDom()).toEqual(["a", "b", "c"]);
+    });
+
+    it("ordnet zwei Zuege hintereinander um, auch ohne Rueckspiegelung", () => {
+      // Ohne `controlled` bleibt der Wert in den Props stehen. Das Ziehen
+      // muss trotzdem auf der Liste weiterarbeiten, die es selbst gemeldet
+      // hat — sonst wandert beim zweiten Zug die falsche Kachel.
+      const h = setup([tile("a"), tile("b"), tile("c")]);
+      const handle = screen.getByTestId("tile-handle-a");
+
+      fireEvent.pointerDown(handle, { pointerId: 1, button: 0, clientY: middleOf(0) });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(1) + 10 });
+      fireEvent.pointerMove(handle, { pointerId: 1, buttons: 1, clientY: middleOf(2) + 10 });
+
+      expect(h.latest().map((entry) => entry.id)).toEqual(["b", "c", "a"]);
     });
   });
 

@@ -48,6 +48,25 @@ export interface TileEditorProps {
   mediaClient?: MediaClient;
 }
 
+/**
+ * Der Alternativtext, den ein gewähltes Bild beisteuert — oder `undefined`.
+ *
+ * Die Mediathek reicht als `alt` den Dateinamen durch. Ein Dateiname ist
+ * kein Alternativtext: „lkw.png“ liest ein Screenreader vor, ohne etwas zu
+ * erklären. Übernommen wird er deshalb nur, wenn er vom Dateinamen abweicht
+ * — und nie über einen bereits getippten Text hinweg, auch nicht über einen
+ * leeren: „schmückend“ ist eine Aussage, keine fehlende Angabe.
+ */
+export function altFromPick(
+  current: string | undefined,
+  picked: Pick<PickedMedia, "alt" | "fileName">,
+): string | undefined {
+  if (current !== undefined) return undefined;
+  if (picked.alt === undefined || picked.alt === "") return undefined;
+  if (picked.alt === picked.fileName) return undefined;
+  return picked.alt;
+}
+
 /** Verschiebt den Eintrag an `from` auf die Stelle `to`; am Rand passiert nichts. */
 function reorder(tiles: PortfolioTile[], from: number, to: number): PortfolioTile[] | null {
   if (to < 0 || to >= tiles.length || from === to) return null;
@@ -81,14 +100,27 @@ export function TileEditor({
   // je Bild und braucht die Stelle, an der die Kachel jetzt steht, nicht die
   // aus dem letzten Rendern.
   const dragFrom = useRef<number | null>(null);
+  // Die Liste, auf der das Ziehen arbeitet. Sie wird bei jeder Umordnung
+  // mitgeführt, denn zwei `pointermove` können eintreffen, bevor der
+  // Elternteil die erste Änderung zurückgespiegelt hat; der zweite Aufruf
+  // würde sonst mit dem neuen Index im alten Array wühlen und die falsche
+  // Kachel wandern lassen. Ändert sich `value` von aussen, gilt wieder das,
+  // was von aussen kommt — das Ref veraltet nicht.
+  const tiles = useRef(value);
+  const lastValue = useRef(value);
+  if (lastValue.current !== value) {
+    lastValue.current = value;
+    tiles.current = value;
+  }
 
   const patch = (index: number, changes: Partial<PortfolioTile>): void => {
     onChange(value.map((tile, i) => (i === index ? { ...tile, ...changes } : tile)));
   };
 
   const move = (from: number, to: number): boolean => {
-    const next = reorder(value, from, to);
+    const next = reorder(tiles.current, from, to);
     if (next === null) return false;
+    tiles.current = next;
     onChange(next);
     return true;
   };
@@ -118,10 +150,8 @@ export function TileEditor({
     if (tile === undefined) return;
 
     const changes: Partial<PortfolioTile> = { image: picked.url };
-    // Der Alternativtext der Mediathek füllt nur eine Lücke. Ein bereits
-    // getippter Text bleibt stehen — auch ein leerer: „schmückend“ ist eine
-    // Aussage, keine fehlende Angabe.
-    if (tile.imageAlt === undefined && picked.alt !== undefined) changes.imageAlt = picked.alt;
+    const alt = altFromPick(tile.imageAlt, picked);
+    if (alt !== undefined) changes.imageAlt = alt;
     patch(index, changes);
   };
 
@@ -144,6 +174,15 @@ export function TileEditor({
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>): void => {
+    // Die Erfassung geht verloren, sobald der Browser das erfassende Element
+    // aus dem Dokument nimmt — und genau das tut React bei jeder Umordnung
+    // der geschlüsselten Zeilen. Ohne diese Prüfung bliebe das Ziehen hängen
+    // und das blosse Überfahren des Griffs ordnete die Liste um.
+    if (event.buttons === 0) {
+      endDrag(event);
+      return;
+    }
+
     const from = dragFrom.current;
     if (from === null) return;
 
@@ -191,6 +230,7 @@ export function TileEditor({
         <div className="man-pe__list" role="list" data-testid="tile-list">
           {value.map((tile, index) => {
             const open = expanded.has(tile.id);
+            const extraId = `man-pe-extra-${tile.id}`;
             const untitled = tile.title.trim() === "";
             return (
               <div
@@ -212,6 +252,7 @@ export function TileEditor({
                     onPointerMove={handlePointerMove}
                     onPointerUp={endDrag}
                     onPointerCancel={endDrag}
+                    onLostPointerCapture={endDrag}
                     onKeyDown={handleKeyDown(index)}
                   >
                     <span aria-hidden="true">⠿</span>
@@ -297,6 +338,8 @@ export function TileEditor({
                       className="man-pe__more"
                       data-testid={`tile-more-${tile.id}`}
                       aria-expanded={open}
+                      aria-controls={extraId}
+                      aria-label={`Weitere Felder der Kachel ${index + 1}`}
                       onClick={() => toggle(tile.id)}
                     >
                       {open ? "Weniger" : "Mehr"}
@@ -315,7 +358,7 @@ export function TileEditor({
                 </div>
 
                 {open && (
-                  <div className="man-pe__extra" data-testid={`tile-extra-${tile.id}`}>
+                  <div className="man-pe__extra" id={extraId} data-testid={`tile-extra-${tile.id}`}>
                     <label className="man-pe__field">
                       <span className="man-pe__label">Etikett</span>
                       <input

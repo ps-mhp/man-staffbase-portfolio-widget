@@ -1,6 +1,6 @@
 {
   "name": "@man/portfolio-widget",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0-rc.2",
   "description": "Kachelreihe mit Bild, Titel und Verweis — der Studio-Nachbau des nativen Portfolio-Widgets.",
   "author": "MHP Management und IT-Beratung GmbH",
   "license": "ISC",

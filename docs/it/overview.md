@@ -17,12 +17,15 @@ etichetta di categoria, il titolo e una breve descrizione. In alto a destra è p
 freccia, purché il riquadro abbia una destinazione.
 
 Passandoci sopra con il mouse, il bordo diventa più marcato e il titolo e la freccia
-diventano rossi. L’intero riquadro è il link, non solo il titolo.
+diventano rossi. L’intero riquadro funge da collegamento, non solo il titolo.
 
 ## Cosa vedete nell’editor CMS
 
 Nell’editor le tessere appaiono esattamente come sulla pagina. I collegamenti, tuttavia,
-non sono utilizzabili in quella sede: per verificare le destinazioni, aprite l’anteprima.
+non sono cliccabili in quella sede: per verificare le destinazioni, aprite l’anteprima.
 
-Attualmente le tessere vengono gestite come elenco JSON in un campo di testo. È in programma la realizzazione di un
-editor dedicato alle tessere; il formato rimarrà invariato.
+Le tessere vengono gestite nell’apposito editor delle tessere: una riga per ogni tessera con
+immagine, titolo e link, mentre i campi meno frequenti sono nascosti dietro un menu a tendina. L’
+ordine può essere modificato trascinando la maniglia a sinistra. Viene inoltre salvato un
+elenco JSON nel campo **Tessere**; questo rimane la soluzione di ripiego nel caso in cui l’editor
+non venisse visualizzato.

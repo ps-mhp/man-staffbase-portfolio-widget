@@ -21,8 +21,11 @@ ficam a vermelho. Todo o mosaico é o link, não apenas o título.
 
 ## O que vê no editor do CMS
 
-No editor, os mosaicos aparecem exatamente como na página. No entanto, as ligações
-não estão ativas — para verificar os destinos, abra a pré-visualização.
+No editor, os mosaicos aparecem exatamente como na página. No entanto, os links
+não estão ativos — para verificar os destinos, abra a pré-visualização.
 
-Atualmente, os blocos são geridos como uma lista JSON num campo de texto. Está
-previsto um editor de blocos específico; o formato permanecerá inalterado.
+Os mosaicos são geridos no próprio editor de mosaicos: uma linha por mosaico com
+imagem, título e link, com os campos menos frequentes atrás de um menu suspenso. A
+ordem pode ser alterada arrastando a alça à esquerda. Continua a ser guardada uma
+lista JSON no campo **Blocos**; esta serve como alternativa, caso o editor
+não apareça.

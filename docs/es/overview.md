@@ -2,7 +2,7 @@
 
 El widget de portafolio muestra una serie de mosaicos uno al lado del otro. Cada mosaico
 contiene una imagen y un título, y al hacer clic en él se accede a una página, ya sea dentro
-de la aplicación o externa. Es ideal para cualquier situación en la que deban aparecer varios
+de la aplicación o fuera de ella. Es ideal para cualquier situación en la que deban aparecer varios
 : gamas de productos, departamentos, puntos de contacto.
 
 Staffbase incluye un widget de este tipo, pero solo en el editor clásico. Este
@@ -24,5 +24,8 @@ se vuelven rojos. Todo el mosaico es el enlace, no solo el título.
 En el editor, los mosaicos aparecen exactamente igual que en la página. Sin embargo, los enlaces
 no son funcionales allí; para comprobar los destinos, abre la vista previa.
 
-Actualmente, los mosaicos se gestionan como una lista JSON en un campo de texto. Está
-previsto crear un editor de mosaicos propio; el formato se mantendrá sin cambios.
+Los mosaicos se gestionan en su propio editor de mosaicos: una línea por mosaico con
+imagen, título y enlace, y los campos menos habituales se ocultan tras un menú desplegable. El
+orden se puede modificar arrastrando el controlador situado a la izquierda. Además, se guarda una
+lista JSON en el campo **Mosaicos**; esta sigue siendo la opción de reserva en caso de que el editor
+no se muestre.

@@ -11,8 +11,8 @@ dodatkowo wyświetlać etykietę kategorii nad tytułem.
 
 ## Co widzą czytelnicy
 
-Szereg kafelków o tej samej szerokości, które na wąskich ekranach są dzielone na kolumny. Każdy
-kafelek ma u góry obrazek, a poniżej — w zależności od konfiguracji — małą
+Rząd kafelków o tej samej szerokości, który na wąskich ekranach jest dzielony na kolumny. Każdy
+kafelek ma u góry obrazek, a poniżej — w zależności od ustawień — małą
 etykietę kategorii, tytuł i krótki opis. W prawym górnym rogu znajduje się
 strzałka, o ile kafelka ma link.
 
@@ -22,7 +22,10 @@ zmieniają kolor na czerwony. Cała kafelka stanowi link, a nie tylko tytuł.
 ## Co widać w edytorze CMS
 
 W edytorze kafelki wyglądają dokładnie tak samo jak na stronie. Linki
-nie działają tam jednak — aby sprawdzić adresy docelowe, należy otworzyć podgląd.
+nie są tam jednak aktywne — aby sprawdzić adresy docelowe, należy otworzyć podgląd.
 
-Kafelki są obecnie zarządzane jako lista JSON w polu tekstowym. Planowane jest
-stworzenie osobnego edytora kafelków; format pozostanie przy tym niezmieniony.
+Kafelki są edytowane w osobnym edytorze kafelków: jeden wiersz na kafelek z
+obrazkiem, tytułem i linkiem, a rzadziej używane pola znajdują się za rozwijanym menu.
+Kolejność można zmieniać, przeciągając uchwyt po lewej stronie. Dodatkowo zapisywana jest
+lista JSON w polu **Kafelki**; stanowi ona rozwiązanie awaryjne na wypadek, gdyby edytor
+kiedyś się nie wyświetlił.

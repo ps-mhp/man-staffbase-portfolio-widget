@@ -10,7 +10,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { PortfolioTile, parsePortfolioTiles } from "./portfolio-tiles";
+import {
+  PortfolioTile,
+  newTileId,
+  parsePortfolioTiles,
+  serializePortfolioTiles,
+} from "./portfolio-tiles";
 
 let warnSpy: jest.SpyInstance;
 
@@ -152,5 +157,92 @@ describe("parsePortfolioTiles", () => {
 
   it("nimmt ein bereits geparstes Array entgegen", () => {
     expect(parsePortfolioTiles([{ title: "Lkw" }]).map((tile) => tile.title)).toEqual(["Lkw"]);
+  });
+});
+
+describe("parsePortfolioTiles mit keepUntitled", () => {
+  it("behaelt eine titellose Kachel mit leerem Titel", () => {
+    const raw = JSON.stringify([{ title: "A" }, { id: "neu" }]);
+    const tiles = parsePortfolioTiles(raw, { keepUntitled: true });
+    expect(tiles.map((tile) => [tile.id, tile.title])).toEqual([
+      ["tile-0", "A"],
+      ["neu", ""],
+    ]);
+  });
+
+  it("wirft titellose Kacheln ohne die Option weiterhin heraus", () => {
+    const raw = JSON.stringify([{ title: "A" }, { id: "neu" }, { title: "   " }]);
+    expect(parsePortfolioTiles(raw).map((tile) => tile.title)).toEqual(["A"]);
+    expect(parsePortfolioTiles(raw, { keepUntitled: false }).map((tile) => tile.title)).toEqual(["A"]);
+  });
+
+  it("vergibt auch titellosen Kacheln eindeutige Schluessel", () => {
+    const tiles = parsePortfolioTiles([{}, {}], { keepUntitled: true });
+    expect(new Set(tiles.map((tile) => tile.id)).size).toBe(2);
+  });
+});
+
+describe("serializePortfolioTiles", () => {
+  it("laesst leere optionale Felder und newTab: false weg", () => {
+    const json = serializePortfolioTiles([
+      { id: "a", title: "Lkw", description: "", badge: undefined, newTab: false },
+    ]);
+    expect(JSON.parse(json)).toEqual([{ id: "a", title: "Lkw" }]);
+  });
+
+  it("schreibt newTab nur, wenn es gesetzt ist", () => {
+    const json = serializePortfolioTiles([{ id: "a", title: "Lkw", newTab: true }]);
+    expect(JSON.parse(json)).toEqual([{ id: "a", title: "Lkw", newTab: true }]);
+  });
+
+  it("haelt die Feldreihenfolge stabil", () => {
+    const tile: PortfolioTile = {
+      id: "a",
+      title: "Lkw",
+      badge: "Fahrzeuge",
+      description: "Die schwere Reihe.",
+      image: "https://cdn.example.test/lkw.png",
+      imageAlt: "Ein Lkw",
+      link: "/lkw",
+      newTab: true,
+    };
+    expect(serializePortfolioTiles([tile])).toBe(
+      '[{"id":"a","title":"Lkw","badge":"Fahrzeuge","description":"Die schwere Reihe.",' +
+        '"image":"https://cdn.example.test/lkw.png","imageAlt":"Ein Lkw","link":"/lkw","newTab":true}]',
+    );
+  });
+
+  it("ueberlebt den Weg durch den Parser unveraendert", () => {
+    const tiles: PortfolioTile[] = [
+      { id: "a", title: "Lkw", badge: "Fahrzeuge", link: "/lkw", newTab: true },
+      { id: "b", title: "Bus", image: "https://cdn.example.test/bus.png", newTab: false },
+    ];
+    expect(parsePortfolioTiles(serializePortfolioTiles(tiles))).toEqual(tiles);
+  });
+
+  it("haelt auch titellose Kacheln durch, solange sie behalten werden", () => {
+    const tiles: PortfolioTile[] = [{ id: "a", title: "", newTab: false }];
+    expect(parsePortfolioTiles(serializePortfolioTiles(tiles), { keepUntitled: true })).toEqual(tiles);
+  });
+
+  it("liefert fuer eine leere Liste das leere Array", () => {
+    expect(serializePortfolioTiles([])).toBe("[]");
+  });
+});
+
+describe("newTileId", () => {
+  it("vergibt bei jedem Aufruf eine andere Kennung", () => {
+    const ids = new Set(Array.from({ length: 50 }, () => newTileId()));
+    expect(ids.size).toBe(50);
+  });
+
+  it("kommt ohne die Web-Crypto-API aus", () => {
+    const original = Object.getOwnPropertyDescriptor(globalThis, "crypto");
+    Object.defineProperty(globalThis, "crypto", { value: undefined, configurable: true });
+    try {
+      expect(newTileId()).toMatch(/^t-/);
+    } finally {
+      if (original) Object.defineProperty(globalThis, "crypto", original);
+    }
   });
 });

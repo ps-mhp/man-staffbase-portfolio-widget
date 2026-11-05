@@ -22,10 +22,10 @@ export const SHOW_CHEVRON_ATTRIBUTE = "show-chevron";
  *
  * `tiles` steht als gewoehnliches Textfeld, obwohl es niemand gern von Hand
  * ausfuellt: Staffbase rendert den Dialog selbst und kennt nur die Feldtypen
- * von RJSF. Dasselbe Muster tragen `points` (Bild mit Punkten) und `slides`
- * (Hero-Slider). Die naechste Ausbaustufe haengt einen eigenen Kachel-Editor
- * per `@shared/config-field-injector` an dieses Feld; das Datenformat bleibt
- * dabei unveraendert, bestehende Inhalte wandern nicht.
+ * von RJSF. An seine Stelle setzt `tile-editor-injector.ts` den eigenen
+ * Kachel-Editor — eine Zeile je Kachel statt JSON-Rohtext. Das Datenformat
+ * bleibt dabei unveraendert: der Editor liest und schreibt dieselbe Liste.
+ * Erscheint er einmal nicht, bleibt das Textfeld als Rueckfallweg stehen.
  *
  * @see https://rjsf-team.github.io/react-jsonschema-form/docs/
  */
@@ -51,9 +51,10 @@ export const uiSchema: UiSchema = {
   [TILES_ATTRIBUTE]: {
     "ui:widget": "textarea",
     "ui:help":
-      "Die Kacheln als JSON-Liste. Je Kachel sind möglich: " +
-      "title (Pflicht), description, badge, image, imageAlt, link, newTab. " +
-      'Beispiel: [{"title":"Lkw","image":"…","link":"…"}]',
+      "Normalerweise steht hier der Kachel-Editor. Erscheint er nicht, " +
+      "lassen sich die Kacheln als JSON-Liste pflegen. Je Kachel sind " +
+      "möglich: title (Pflicht), description, badge, image, imageAlt, " +
+      'link, newTab. Beispiel: [{"title":"Lkw","image":"…","link":"…"}]',
   },
   [SHOW_CHEVRON_ATTRIBUTE]: {
     "ui:help":

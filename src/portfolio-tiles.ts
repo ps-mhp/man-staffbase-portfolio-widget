@@ -94,15 +94,33 @@ function toArray(raw: unknown): unknown[] | null {
   return Array.isArray(parsed) ? parsed : null;
 }
 
+/** Stellschrauben des Lesens; die Vorgabe ist das strenge Verhalten. */
+export interface ParsePortfolioTilesOptions {
+  /**
+   * Behaelt Kacheln ohne Titel mit `title: ""`.
+   *
+   * Die Darstellung ueberspringt eine titellose Kachel — das ist richtig und
+   * bleibt so. Im Editor ist eine frisch hinzugefuegte Kachel aber genau das:
+   * titellos. Liefe sie durch den strengen Parser, verschwaende sie beim
+   * naechsten Oeffnen des Dialogs spurlos.
+   */
+  keepUntitled?: boolean;
+}
+
 /**
  * Liest das Attribut `tiles`.
  *
  * @param raw die Zeichenkette aus dem Attribut; ein bereits geparstes Array
  *   wird ebenso angenommen, damit Aufrufer nicht erst serialisieren muessen.
+ * @param options siehe `ParsePortfolioTilesOptions`; ohne sie bleibt es beim
+ *   strengen Verhalten.
  * @returns die gueltigen Kacheln in ihrer Reihenfolge; eine leere Liste,
  *   wenn nichts gesetzt oder das Ganze unlesbar ist.
  */
-export function parsePortfolioTiles(raw: unknown): PortfolioTile[] {
+export function parsePortfolioTiles(
+  raw: unknown,
+  options?: ParsePortfolioTilesOptions,
+): PortfolioTile[] {
   const entries = toArray(raw);
   if (entries === null) {
     console.warn("portfolio-widget: Das Feld „Kacheln“ enthält kein gültiges JSON-Array.");
@@ -116,14 +134,14 @@ export function parsePortfolioTiles(raw: unknown): PortfolioTile[] {
 
     const source = entry as Record<string, unknown>;
     const title = text(source.title);
-    if (title === undefined) return;
+    if (title === undefined && options?.keepUntitled !== true) return;
 
     const id = uniqueId(text(source.id) ?? `tile-${index}`, index, usedIds);
     usedIds.add(id);
 
     const tile: PortfolioTile = {
       id,
-      title,
+      title: title ?? "",
       newTab: flag(source.newTab),
     };
 
@@ -142,4 +160,50 @@ export function parsePortfolioTiles(raw: unknown): PortfolioTile[] {
   });
 
   return tiles;
+}
+
+/**
+ * Schreibt die Kacheln zurueck in die Form des Attributs.
+ *
+ * Gegenstueck zu `parsePortfolioTiles`: was leer ist, faellt weg, statt als
+ * `"description": ""` im Attribut zu stehen — das Attribut soll lesbar
+ * bleiben und nur enthalten, was gepflegt wurde. `newTab` erscheint nur,
+ * wenn es gesetzt ist; `false` ist die Vorgabe und braucht keine Zeile.
+ * Die Feldreihenfolge liegt fest, damit zwei Durchlaeufe ueber denselben
+ * Inhalt dieselbe Zeichenkette ergeben.
+ */
+export function serializePortfolioTiles(tiles: PortfolioTile[]): string {
+  const entries = tiles.map((tile) => {
+    const entry: Record<string, unknown> = { id: tile.id, title: tile.title };
+    const optional: Array<[string, string | undefined]> = [
+      ["badge", tile.badge],
+      ["description", tile.description],
+      ["image", tile.image],
+      ["imageAlt", tile.imageAlt],
+      ["link", tile.link],
+    ];
+    optional.forEach(([key, value]) => {
+      if (value !== undefined && value.trim() !== "") entry[key] = value;
+    });
+    if (tile.newTab) entry.newTab = true;
+    return entry;
+  });
+
+  return JSON.stringify(entries);
+}
+
+/**
+ * Erzeugt eine Kennung, die auch dann eindeutig ist, wenn `crypto.randomUUID`
+ * fehlt — der Konfigurationsdialog laeuft in fremden Seiten, und in einem
+ * unsicheren Kontext (http) stellt der Browser die Web-Crypto-API nicht.
+ */
+export function newTileId(): string {
+  const uuid = globalThis.crypto?.randomUUID;
+  if (typeof uuid === "function") return uuid.call(globalThis.crypto);
+  return `t-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+/** Eine leere Kachel, wie sie der Editor beim Hinzufuegen einsetzt. */
+export function emptyPortfolioTile(): PortfolioTile {
+  return { id: newTileId(), title: "", newTab: false };
 }

@@ -30,11 +30,26 @@ import {
 } from "./configuration-schema";
 import { parsePortfolioTiles } from "./portfolio-tiles";
 import { Portfolio } from "./portfolio";
+import { startTileEditorInjector } from "./tile-editor-injector";
 import icon from "../resources/portfolio-widget.svg";
 import pkg from "../package.json";
 
 /** Die Attribute des Widgets; gespiegelt im Konfigurationsschema. */
 const widgetAttributes: string[] = [TILES_ATTRIBUTE, SHOW_CHEVRON_ATTRIBUTE];
+
+let stopInjector: (() => void) | null = null;
+
+/**
+ * Beendet die Beobachtung des Konfigurationsdialogs.
+ *
+ * Nur offengelegt, damit Tests sie beim Aufraeumen wieder abbauen koennen —
+ * jsdom baut sein `window` zwischen Testdateien ab, und ein danach noch
+ * feuernder Beobachter wuerde werfen.
+ */
+export function stopTileEditorInjector(): void {
+  stopInjector?.();
+  stopInjector = null;
+}
 
 const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
   /**
@@ -104,6 +119,13 @@ if (typeof window.defineBlock === "function") {
     name: "portfolio-widget",
     version: pkg.version,
     register: () => {
+      // Der Editor haengt am Anmelden, nicht am Laden. Auf Modulebene
+      // gestartet belegte der Beobachter des installierten Bundles das
+      // `tiles`-Feld, bevor es ueberhaupt fragte, ob ein lokaler Server
+      // uebernimmt — der Entwicklungsmodus lieferte dann die Ansicht, aber
+      // den Editor der veroeffentlichten Fassung. Der Hero-Slider hat das am
+      // 02.09.2026 live nachgewiesen.
+      stopInjector = startTileEditorInjector();
       window.defineBlock(externalBlockDefinition);
     },
   });

@@ -20,22 +20,19 @@ import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import Form from "@rjsf/mui";
 import validator from "@rjsf/validator-ajv8";
-import { queryInModal, settleModal } from "@shared/ui/config-modal.testing";
+import { queryInModal, settleEditor } from "@shared/ui/config-modal.testing";
 
 import { configurationSchema, uiSchema } from "./configuration-schema";
 import { readPortfolioConfig } from "./portfolio-config";
 import { tileEditorShell, startTileEditorInjector } from "./tile-editor-injector";
 
+const EDITOR_SELECTOR = '[data-testid="tile-editor"]';
+const EDITOR_ROUNDS = 6;
+
 interface FormData {
   "portfolio-config"?: string;
   tiles?: string;
   "show-chevron"?: boolean;
-}
-
-async function settleEditor(): Promise<void> {
-  for (let round = 0; round < 6 && queryInModal('[data-testid="tile-editor"]') === null; round += 1) {
-    await settleModal();
-  }
 }
 
 async function open(formData?: FormData) {
@@ -47,7 +44,7 @@ async function open(formData?: FormData) {
   await act(async () => {
     stop = startTileEditorInjector(container);
   });
-  await settleEditor();
+  await settleEditor(EDITOR_SELECTOR, EDITOR_ROUNDS);
   return { container, stop, onSubmit };
 }
 

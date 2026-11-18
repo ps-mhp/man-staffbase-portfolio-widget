@@ -2,42 +2,44 @@
 
 | Einstellung | Beschreibung |
 | --- | --- |
-| **Kacheln** | Die Kacheln der Reihe. Gepflegt wird sie im Kachel-Editor, der sich über **Kacheln bearbeiten** öffnet. Voreingestellt ist keine Kachel. |
-| **Pfeil anzeigen** | Zeigt rechts oben auf jeder verlinkten Kachel einen Pfeil. Voreingestellt angeschaltet. |
+| **Kacheln** | Die Kacheln der Reihe. Gepflegt werden sie im Fenster **Kacheln bearbeiten**, das sich im Konfigurationsdialog öffnet. Voreingestellt ist keine Kachel. |
+| **Pfeil anzeigen** | Zeigt rechts oben auf jeder verlinkten Kachel einen Pfeil. Voreingestellt angeschaltet. Im Fenster rechts unter **Gestaltung**. |
 
 Der Pfeil wird für alle Kacheln gemeinsam geschaltet, nicht je Kachel: eine
 Reihe, in der mal ein Pfeil steht und mal nicht, wirkt wie ein Fehler. Auf
 Kacheln ohne Ziel erscheint er grundsätzlich nicht — dort gibt es nichts
 anzuklicken.
 
-## Der Kachel-Editor
+## Das Fenster „Kacheln bearbeiten“
 
-Der Editor zeigt eine Zeile je Kachel, alle untereinander. In der Zeile
-stehen:
+Das Fenster füllt den ganzen Bildschirm. Oben stehen **Übernehmen**,
+**Abbrechen**, **Rückgängig**, **Wiederholen**, die Hilfe und der Umschalter für
+die Vorschau (Editor, Desktop, Tablet, Mobil). Darunter drei Spalten:
 
-| Element | Bedeutung |
+| Bereich | Bedeutung |
 | --- | --- |
-| **Griff** (links) | Zieht die Kachel an eine andere Stelle. Mit der Tastatur verschieben ihn **Pfeil nach oben** und **Pfeil nach unten** um je eine Stelle. |
-| **Bild** | Die Vorschau. Der Stift öffnet die Mediathek, der Papierkorb auf der Vorschau entfernt nur das Bild, nicht die Kachel. Ohne Bild steht dort eine gestrichelte Fläche **Bild wählen**. |
-| **Titel** | Die Überschrift der Kachel. Pflicht. |
-| **Link** | Das Ziel der Kachel. |
-| **Mehr** / **Weniger** | Klappt die selteneren Felder auf: Etikett, Beschreibung, Alternativtext des Bildes und **In neuem Tab öffnen**. |
-| **Papierkorb** (rechts) | Entfernt die ganze Kachel. |
+| **Kacheln** (links) | Alle Kacheln in Reihenfolge, mit Vorschaubild, Titel und Link. Ziehen am Griff oder die Tastatur ordnen sie neu; **Neue Kachel** hängt eine ans Ende an. |
+| **Kachel x von y** (Mitte) | Die Felder der gewählten Kachel: **Inhalt** (Titel, Link), **Bild** (Mediathek, Adresse, Entfernen) und **Mehr** (Etikett, Beschreibung, Alternativtext, neuer Tab). Darüber verschieben, duplizieren und löschen die Aktionen die Kachel. |
+| **Gestaltung** (rechts) | Der Schalter **Pfeil anzeigen**; er gilt für alle Kacheln. |
 
-Unter der Liste steht **Kachel hinzufügen**; die neue Kachel hängt sich ans
-Ende. **Übernehmen** schreibt die Liste in das Widget, **Abbrechen** verwirft
-sie — bei ungesicherten Änderungen wird vorher gefragt.
+**Übernehmen** schreibt Kacheln und Pfeil in das Widget, **Abbrechen** verwirft
+sie — bei ungesicherten Änderungen wird vorher gefragt. Der Status oben nennt,
+was sich geändert hat, etwa „1 Kachel geändert“.
 
-Eine Kachel ohne Titel trägt im Editor den Hinweis „Ohne Titel wird diese
-Kachel nicht angezeigt“. Sie bleibt in der Liste und geht beim Speichern nicht
-verloren; auf der Seite erscheint sie erst, sobald sie einen Titel hat.
+Eine Kachel ohne Titel trägt im Feld **Titel** den Hinweis „Ohne Titel erscheint
+die Kachel nicht“ und heißt in der Liste „Ohne Titel“. Sie bleibt dort stehen
+und geht beim Speichern nicht verloren; auf der Seite erscheint sie erst,
+sobald sie einen Titel hat.
 
 ## Felder einer Kachel
 
-Die Kacheln werden als JSON-Liste gespeichert. Das ist nur dann zu sehen, wenn
-der Editor einmal nicht erscheint — dann bleibt das Textfeld als Rückfallweg.
+Kacheln und Pfeil werden gemeinsam im Attribut `portfolio-config` gespeichert
+(`{"tiles":[…],"showChevron":true}`, kodiert). Ältere Widgets tragen die Kacheln
+noch als JSON-Liste im Feld `tiles` und den Pfeil in `show-chevron`; beide
+werden weiter gelesen, solange `portfolio-config` den jeweiligen Wert nicht
+setzt. Das Format der Kacheln ist in beiden Fällen dasselbe:
 
-| Feld | Editor | Pflicht | Bedeutung |
+| Feld | Fenster | Pflicht | Bedeutung |
 | --- | --- | --- | --- |
 | `title` | Titel | ja | Die Überschrift der Kachel. Fehlt sie, wird die Kachel übersprungen. |
 | `description` | Beschreibung (unter „Mehr“) | nein | Ein kurzer Text unter dem Titel. |

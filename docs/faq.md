@@ -22,25 +22,26 @@ erscheint nur erst mit einem Titel auf der Seite.
 
 **Frage:** Wie kommt ein Bild auf eine Kachel?
 
-Antwort: Über die gestrichelte Fläche **Bild wählen** in der Zeile, bei einem
-vorhandenen Bild über den Stift darauf. Beides öffnet die Mediathek; dort
-lässt sich das Bild auch direkt hochladen. Ein Bild von einer fremden Website
-funktioniert ebenfalls — dafür tragen Sie seine Adresse im JSON-Feld `image`
-ein, solange es öffentlich erreichbar ist.
+Antwort: Über **Aus Mediathek wählen** im Abschnitt **Bild**. Die Mediathek
+öffnet sich rechts als Leiste; dort lässt sich das Bild auch direkt hochladen
+oder per Ziehen auf das Bildfeld legen. Ein Bild von einer fremden Website
+funktioniert ebenfalls — dafür tragen Sie unter **Adresse einfügen** seine
+https-Adresse ein, solange es öffentlich erreichbar ist.
 
 **Frage:** Ich wollte nur das Bild tauschen und habe versehentlich die ganze
 Kachel gelöscht.
 
-Antwort: Es gibt zwei Papierkörbe. Der auf der Bildvorschau entfernt nur das
-Bild, der am rechten Rand der Zeile die ganze Kachel. Solange Sie noch nicht
-auf **Übernehmen** geklickt haben, verwerfen Sie das Versehen mit
-**Abbrechen**.
+Antwort: **Entfernen** im Abschnitt **Bild** nimmt nur das Bild weg,
+**Kachel löschen** über den Feldern die ganze Kachel. Solange Sie noch nicht auf
+**Übernehmen** geklickt haben, nimmt **Rückgängig** das Versehen zurück, und
+**Abbrechen** verwirft alle Änderungen.
 
 **Frage:** Wie ändere ich die Reihenfolge?
 
-Antwort: Ziehen Sie die Kachel am Griff ganz links an ihre neue Stelle. Ohne
-Maus geht es auch: Griff mit der Tabulatortaste anwählen, dann mit **Pfeil
-nach oben** und **Pfeil nach unten** verschieben.
+Antwort: Ziehen Sie die Kachel in der Liste links am Griff an ihre neue Stelle.
+Ohne Maus geht es auch: Kachel wählen, Leertaste, mit **Pfeil nach oben** und
+**Pfeil nach unten** verschieben, Leertaste. Über den Feldern verschieben
+**Kachel nach oben** und **Kachel nach unten** um je eine Stelle.
 
 **Frage:** Warum hat eine meiner Kacheln keinen Pfeil, obwohl „Pfeil anzeigen“
 angeschaltet ist?
@@ -60,10 +61,16 @@ Verhältnis 16:9.
 Antwort: Nein. Die Kacheln haben eine feste Breite und brechen um, sobald der
 Platz nicht mehr reicht — genauso wie beim Staffbase-eigenen Portfolio-Widget.
 
-**Frage:** Statt des Editors sehe ich nur ein Textfeld mit JSON.
+**Frage:** Statt des Fensters sehe ich nur ein Textfeld.
 
-Antwort: Der Editor setzt sich an die Stelle des Feldes **Kacheln**, sobald
-der Konfigurationsdialog offen ist. Gelingt ihm das einmal nicht, bleibt das
-Textfeld als Rückfallweg stehen; das Format ist dasselbe, und die Felder einer
-Kachel stehen in den Einstellungen. Ein erneutes Öffnen des Dialogs holt den
-Editor in der Regel zurück.
+Antwort: Das Fenster setzt sich an die Stelle des Feldes, sobald der
+Konfigurationsdialog offen ist. Gelingt ihm das einmal nicht, bleibt das
+Textfeld als Rückfallweg stehen; es enthält die Rohfassung der Konfiguration.
+Ein erneutes Öffnen des Dialogs holt das Fenster in der Regel zurück.
+
+**Frage:** Ich habe das Widget schon vor dem Umbau angelegt. Geht etwas
+verloren?
+
+Antwort: Nein. Das Widget zeigt weiter seine bisherigen Kacheln und seinen
+Pfeil. Das Fenster übernimmt beim Öffnen diese Werte; erst wenn Sie etwas
+ändern und **Übernehmen** wählen, wird die neue Fassung gespeichert.

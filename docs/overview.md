@@ -24,8 +24,8 @@ werden rot. Die ganze Kachel ist der Verweis, nicht nur der Titel.
 Im Editor erscheinen die Kacheln genauso wie auf der Seite. Die Verweise sind
 dort allerdings nicht benutzbar — zum Prüfen der Ziele die Vorschau öffnen.
 
-Die Kacheln werden im eigenen Kachel-Editor gepflegt: eine Zeile je Kachel mit
-Bild, Titel und Link, die selteneren Felder hinter einem Aufklapper. Die
-Reihenfolge lässt sich am Griff links ziehen. Gespeichert wird weiterhin eine
-JSON-Liste im Feld **Kacheln**; sie bleibt der Rückfallweg, falls der Editor
-einmal nicht erscheint.
+Die Kacheln werden im Vollbild-Fenster **Kacheln bearbeiten** gepflegt: links
+die Liste der Kacheln, in der Mitte die Felder der gewählten, rechts die
+Gestaltung (der Pfeil). Die Reihenfolge lässt sich in der Liste ziehen, und eine
+Vorschau zeigt die Reihe in Desktop-, Tablet- und Mobilbreite. Gespeichert wird
+alles in einem Attribut; Widgets aus früheren Fassungen werden weiter gelesen.

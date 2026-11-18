@@ -3,93 +3,94 @@
 ## Grundfall einrichten
 
 1. Platzieren Sie das Widget **Portfolio** an der gewünschten Stelle der Seite.
-2. Öffnen Sie die Einstellungen des Widgets und klicken Sie auf
-   **Kacheln bearbeiten**. Der Kachel-Editor öffnet sich.
-3. Klicken Sie auf **Kachel hinzufügen**. Es erscheint eine neue, leere Zeile
-   am Ende der Liste.
-4. Füllen Sie **Titel** und **Link** aus.
-5. Klicken Sie auf die gestrichelte Fläche **Bild wählen** und suchen Sie das
-   Bild in der Mediathek. Es lässt sich dort auch direkt hochladen.
+2. Öffnen Sie die Einstellungen des Widgets. Das Fenster **Kacheln bearbeiten**
+   öffnet sich im Vollbild; klappt es nicht von selbst auf, klicken Sie auf
+   **Kacheln bearbeiten**.
+3. Klicken Sie links auf **Neue Kachel**. Die neue, leere Kachel hängt am Ende
+   der Liste und ist gleich ausgewählt.
+4. Füllen Sie in der Mitte **Titel** und **Link** aus.
+5. Wählen Sie unter **Bild** die Schaltfläche **Aus Mediathek wählen**. Die
+   Mediathek öffnet sich rechts als Leiste; sie lässt auch das Hochladen zu.
 6. Wiederholen Sie die Schritte 3 bis 5 für jede weitere Kachel.
-7. Klicken Sie auf **Übernehmen** und speichern Sie die Seite.
-8. Lassen Sie **Pfeil anzeigen** angeschaltet, wenn rechts oben auf jeder
-   Kachel ein Pfeil stehen soll.
+7. Lassen Sie rechts unter **Gestaltung** den Schalter **Pfeil anzeigen**
+   angeschaltet, wenn oben rechts auf jeder verlinkten Kachel ein Pfeil stehen
+   soll.
+8. Klicken Sie oben auf **Übernehmen** und speichern Sie die Seite.
 9. Prüfen Sie das Ergebnis in der Vorschau.
 
 ## Eine Kachel vollständig ausfüllen
 
-Titel, Link und Bild stehen in der Zeile. Alles Weitere steht hinter dem
-Aufklapper **Mehr** am Ende der Zeile:
+Titel, Link und Bild stehen in den Abschnitten **Inhalt** und **Bild**. Alles
+Weitere steht im Abschnitt **Mehr**, der sich auf- und zuklappen lässt:
 
 - **Etikett** — ein kurzes Kategoriewort über dem Titel, etwa „Fahrzeuge“.
 - **Beschreibung** — ein kurzer Text unter dem Titel.
 - **Alternativtext des Bildes** — was ein Screenreader statt des Bildes
   vorliest. Leer lassen, wenn das Bild nur schmückt. Beim Wählen eines Bildes
   übernimmt der Editor einen Alternativtext aus der Mediathek, solange das
-  Feld noch unberührt ist — einen blossen Dateinamen wie „lkw.png“ aber
+  Feld noch unberührt ist — einen bloßen Dateinamen wie „lkw.png“ aber
   nicht; ein selbst getippter Text bleibt stehen.
 - **In neuem Tab öffnen** — öffnet das Ziel in einem neuen Browser-Tab.
-
-Mit **Weniger** klappt der Bereich wieder zu. Jede Zeile hat ihren eigenen
-Aufklapper.
 
 Pflicht ist nur der Titel. Alles andere darf fehlen.
 
 ## Reihenfolge ändern
 
-Die Reihenfolge der Kacheln auf der Seite ist die Reihenfolge in der Liste.
+Die Reihenfolge der Kacheln auf der Seite ist die Reihenfolge in der Liste
+links.
 
-- **Mit der Maus:** Fassen Sie die Kachel am Griff ganz links an und ziehen Sie
-  sie nach oben oder unten. Sobald sie eine Nachbarzeile zur Hälfte überdeckt,
-  tauschen die beiden die Plätze.
-- **Mit der Tastatur:** Wählen Sie den Griff mit der Tabulatortaste an und
-  verschieben Sie die Kachel mit **Pfeil nach oben** und **Pfeil nach unten**
-  um je eine Stelle.
+- **Mit der Maus:** Fassen Sie die Kachel am Griff links in der Liste an und
+  ziehen Sie sie nach oben oder unten.
+- **Mit der Tastatur:** Wählen Sie die Kachel in der Liste, drücken Sie die
+  Leertaste, verschieben Sie sie mit **Pfeil nach oben** und **Pfeil nach
+  unten** und setzen Sie sie mit der Leertaste ab.
+- **Mit den Aktionen über den Feldern:** **Kachel nach oben** und **Kachel nach
+  unten** verschieben die ausgewählte Kachel um je eine Stelle.
+
+Daneben stehen **Kachel duplizieren** und **Kachel löschen**.
 
 ## Bild wechseln oder entfernen
 
-Auf der Bildvorschau liegen zwei kleine Knöpfe:
+Unter **Bild** stehen drei Wege:
 
-- Der **Stift** öffnet die Mediathek und ersetzt das Bild.
-- Der **Papierkorb** entfernt nur das Bild. Die Kachel bleibt bestehen und wird
-  ohne Bildbereich gezeigt.
+- **Aus Mediathek wählen** öffnet die Mediathek und ersetzt das Bild. Ein Bild
+  aus der Leiste lässt sich auch direkt auf das Bildfeld ziehen.
+- **Adresse einfügen** nimmt die Adresse eines Bildes (https://… oder ein Pfad
+  mit / am Anfang) statt eines Bildes aus der Mediathek.
+- **Entfernen** nimmt nur das Bild weg. Die Kachel bleibt bestehen und wird ohne
+  Bildbereich gezeigt.
 
-Der **Papierkorb am rechten Rand der Zeile** entfernt dagegen die ganze Kachel.
+**Kachel löschen** über den Feldern entfernt dagegen die ganze Kachel.
+
+## Vorschau
+
+Oben im Fenster schaltet der Umschalter zwischen **Editor**, **Desktop**,
+**Tablet** und **Mobil**. Die Vorschau zeigt die Kachelreihe so, wie die Seite
+sie ausgibt — mit dem Pfeil, wie er rechts eingestellt ist.
 
 ## Nachträglich ändern
 
 1. Klicken Sie das Widget an und öffnen Sie seine Einstellungen.
-2. Klicken Sie auf **Kacheln bearbeiten**.
-3. Ändern Sie, was zu ändern ist, und klicken Sie auf **Übernehmen**.
+2. Klicken Sie auf **Kacheln bearbeiten**, falls das Fenster nicht von selbst
+   aufgeht.
+3. Ändern Sie, was zu ändern ist, und klicken Sie oben auf **Übernehmen**.
 4. Speichern und in der Vorschau prüfen.
 
+**Rückgängig** und **Wiederholen** oben nehmen einzelne Schritte zurück.
 **Abbrechen** verwirft die Änderungen; stehen welche an, fragt der Editor
-vorher nach.
+vorher nach. Das **?** oben zeigt eine kurze Hilfe zum Fenster.
+
+Widgets, die vor dem Umbau angelegt wurden, behalten ihre Einstellungen: beim
+ersten Öffnen übernimmt das Fenster Kacheln und Pfeil, und die Seite sieht
+sich erst nach **Übernehmen** anders an, wenn Sie etwas geändert haben.
 
 ## Wenn etwas nicht funktioniert
 
 1. Fehlt eine Kachel auf der Seite, fehlt ihr vermutlich der Titel. Der Editor
-   schreibt an eine solche Zeile „Ohne Titel wird diese Kachel nicht
-   angezeigt“ — die Kachel bleibt dort erhalten, sie wird nur nicht gezeigt.
+   schreibt dazu „Ohne Titel erscheint die Kachel nicht“ — die Kachel bleibt
+   dort erhalten, sie wird nur nicht gezeigt.
 2. Bleibt eine Kachel ohne Bild, prüfen Sie die Adresse: sie muss sich im
    Browser direkt öffnen lassen. Bilder aus der Mediathek erfüllen das immer.
-3. Erscheint statt des Editors nur ein Textfeld mit JSON, pflegen Sie die
-   Kacheln ausnahmsweise dort weiter — das Format ist dasselbe:
-
-   ```json
-   [
-     {
-       "title": "Lkw",
-       "badge": "Fahrzeuge",
-       "description": "Die schwere Reihe für den Fernverkehr.",
-       "image": "https://…/lkw.png",
-       "imageAlt": "Ein Lkw auf der Autobahn",
-       "link": "/content/page/lkw",
-       "newTab": true
-     }
-   ]
-   ```
-
-   Erscheint danach gar nichts mehr, ist meist das JSON kaputt: ein Komma
-   hinter der letzten Kachel oder eine fehlende schließende Klammer. Prüfen Sie
-   den Text in einem JSON-Prüfer.
+3. Erscheint statt des Fensters nur ein Textfeld, ist es die Rohfassung der
+   Konfiguration (kodiert). Öffnen Sie den Dialog erneut; das Fenster setzt
+   sich in der Regel an die Stelle des Feldes.

@@ -173,7 +173,12 @@ export function parsePortfolioTiles(
  * Inhalt dieselbe Zeichenkette ergeben.
  */
 export function serializePortfolioTiles(tiles: PortfolioTile[]): string {
-  const entries = tiles.map((tile) => {
+  return JSON.stringify(portfolioTileEntries(tiles));
+}
+
+/** Die Kacheln als schlichte Einträge für JSON; Grundlage von `serializePortfolioTiles` und `portfolio-config.ts`. */
+export function portfolioTileEntries(tiles: readonly PortfolioTile[]): Array<Record<string, unknown>> {
+  return tiles.map((tile) => {
     const entry: Record<string, unknown> = { id: tile.id, title: tile.title };
     const optional: Array<[string, string | undefined]> = [
       ["badge", tile.badge],
@@ -188,8 +193,6 @@ export function serializePortfolioTiles(tiles: PortfolioTile[]): string {
     if (tile.newTab) entry.newTab = true;
     return entry;
   });
-
-  return JSON.stringify(entries);
 }
 
 /**

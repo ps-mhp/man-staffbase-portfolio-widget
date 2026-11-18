@@ -12,6 +12,8 @@
  */
 
 import {
+  ALL_ATTRIBUTES,
+  PORTFOLIO_CONFIG_ATTRIBUTE,
   SHOW_CHEVRON_ATTRIBUTE,
   TILES_ATTRIBUTE,
   configurationSchema,
@@ -19,8 +21,10 @@ import {
 } from "./configuration-schema";
 
 describe("configurationSchema", () => {
-  it("fuehrt genau die beiden Attribute des Widgets", () => {
+  it("fuehrt das neue Attribut zuerst, die beiden alten dahinter", () => {
+    expect(ALL_ATTRIBUTES).toEqual(["portfolio-config", "tiles", "show-chevron"]);
     expect(Object.keys(configurationSchema.properties ?? {})).toEqual([
+      PORTFOLIO_CONFIG_ATTRIBUTE,
       TILES_ATTRIBUTE,
       SHOW_CHEVRON_ATTRIBUTE,
     ]);

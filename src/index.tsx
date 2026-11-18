@@ -21,21 +21,15 @@ import ReactDOM from "react-dom/client";
 
 import { BlockFactory, BlockDefinition, ExternalBlockDefinition, BaseBlock } from "widget-sdk";
 import { startWidget } from "@shared/dev-mode/start-widget";
-import {
-  SHOW_CHEVRON_ATTRIBUTE,
-  TILES_ATTRIBUTE,
-  configurationSchema,
-  readShowChevron,
-  uiSchema,
-} from "./configuration-schema";
-import { parsePortfolioTiles } from "./portfolio-tiles";
+import { ALL_ATTRIBUTES, configurationSchema, uiSchema } from "./configuration-schema";
+import { resolvePortfolio } from "./portfolio-config";
 import { Portfolio } from "./portfolio";
 import { startTileEditorInjector } from "./tile-editor-injector";
 import icon from "../resources/portfolio-widget.svg";
 import pkg from "../package.json";
 
 /** Die Attribute des Widgets; gespiegelt im Konfigurationsschema. */
-const widgetAttributes: string[] = [TILES_ATTRIBUTE, SHOW_CHEVRON_ATTRIBUTE];
+const widgetAttributes: string[] = ALL_ATTRIBUTES;
 
 let stopInjector: (() => void) | null = null;
 
@@ -54,6 +48,7 @@ export function stopTileEditorInjector(): void {
 const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
   /**
    * <portfolio-widget tiles='[{"title":"Lkw","link":"/lkw"}]'></portfolio-widget>
+   * (ältere Form; neu steht alles in `portfolio-config`)
    */
   return class PortfolioWidgetBlock extends BaseBlockClass implements BaseBlock {
     private _root: ReactDOM.Root | null = null;
@@ -62,12 +57,10 @@ const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
       const attrs = this.parseAttributes<Record<string, unknown>>();
 
       this._root ??= ReactDOM.createRoot(container);
-      this._root.render(
-        <Portfolio
-          tiles={parsePortfolioTiles(attrs[TILES_ATTRIBUTE])}
-          showChevron={readShowChevron(attrs[SHOW_CHEVRON_ATTRIBUTE])}
-        />,
-      );
+      // Je Schlüssel: `portfolio-config`, sonst die Altattribute, sonst die
+      // Vorgabe — ältere Blöcke ohne das neue Attribut rendern wie bisher.
+      const { tiles, showChevron } = resolvePortfolio(attrs);
+      this._root.render(<Portfolio tiles={tiles} showChevron={showChevron} />);
     }
 
     public unmountBlock(_container: HTMLElement): void {
@@ -121,7 +114,7 @@ if (typeof window.defineBlock === "function") {
     register: () => {
       // Der Editor haengt am Anmelden, nicht am Laden. Auf Modulebene
       // gestartet belegte der Beobachter des installierten Bundles das
-      // `tiles`-Feld, bevor es ueberhaupt fragte, ob ein lokaler Server
+      // `portfolio-config`-Feld, bevor es ueberhaupt fragte, ob ein lokaler Server
       // uebernimmt — der Entwicklungsmodus lieferte dann die Ansicht, aber
       // den Editor der veroeffentlichten Fassung. Der Hero-Slider hat das am
       // 02.09.2026 live nachgewiesen.

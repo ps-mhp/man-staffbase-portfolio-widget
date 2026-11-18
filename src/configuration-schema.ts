@@ -22,7 +22,7 @@ export const SHOW_CHEVRON_ATTRIBUTE = "show-chevron";
 /**
  * Die einzelnen Felder bis 0.1.0-rc.3. Sie stehen weiter im Schema, damit der
  * Dialog ihre Werte führt; im eigenen Dialog sind sie nicht mehr zu sehen
- * (`legacy-fields.ts`).
+ * (`@shared/legacy-fields`).
  */
 export const LEGACY_ATTRIBUTES = [TILES_ATTRIBUTE, SHOW_CHEVRON_ATTRIBUTE] as const;
 

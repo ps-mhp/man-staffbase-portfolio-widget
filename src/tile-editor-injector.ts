@@ -15,11 +15,24 @@ import * as React from "react";
 import { LayoutGrid } from "lucide-react";
 
 import { FieldModalShellOptions, startFieldModalInjector } from "@shared/config-modal";
-import { PORTFOLIO_CONFIG_ATTRIBUTE } from "./configuration-schema";
-import { readLegacyFromDialog, startHiddenFields } from "./legacy-fields";
-import { editorConfigFrom, serializePortfolioConfig } from "./portfolio-config";
+import { legacyFieldsFromSchema, readLegacyFields, startHiddenFields } from "@shared/legacy-fields";
+import {
+  LEGACY_ATTRIBUTES,
+  PORTFOLIO_CONFIG_ATTRIBUTE,
+  SHOW_CHEVRON_ATTRIBUTE,
+  configurationSchema,
+} from "./configuration-schema";
+import { LegacyPortfolioAttributes, editorConfigFrom, serializePortfolioConfig } from "./portfolio-config";
 import type { EditorConfig } from "./tile-editor";
 import { tileChangesStatus } from "./tile-list-ops";
+
+const LEGACY_FIELDS = legacyFieldsFromSchema(LEGACY_ATTRIBUTES, configurationSchema, {
+  [SHOW_CHEVRON_ATTRIBUTE]: { kind: "boolean" },
+});
+
+/** Die alten Felder, wie der eigene Dialog sie gerade führt. */
+const readLegacyFromDialog = (root: ParentNode): LegacyPortfolioAttributes =>
+  readLegacyFields(LEGACY_FIELDS, PORTFOLIO_CONFIG_ATTRIBUTE, root).values;
 
 /**
  * Der Editor kommt erst, wenn ein Dialog ihn zeigt: er baut auf
@@ -81,7 +94,7 @@ export function startTileEditorInjector(root: ParentNode = document): () => void
         React.createElement(LazyTileEditor, { value, onChange }),
       ),
   });
-  const stopHiding = startHiddenFields(root);
+  const stopHiding = startHiddenFields(LEGACY_ATTRIBUTES, PORTFOLIO_CONFIG_ATTRIBUTE, root);
   return () => {
     stopModal();
     stopHiding();

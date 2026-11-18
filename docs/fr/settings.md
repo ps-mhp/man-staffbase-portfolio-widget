@@ -2,42 +2,44 @@
 
 | Paramètre | Description |
 | --- | --- |
-| **Vignettes** | Les vignettes de la ligne. Elles sont gérées dans l'éditeur de vignettes, accessible via **Modifier les vignettes**. Par défaut, aucune vignette n'est sélectionnée. |
-| **Afficher la flèche** | Affiche une flèche en haut à droite de chaque vignette liée. Activé par défaut. |
+| **Vignettes** | Les vignettes de la ligne. Elles sont gérées dans la fenêtre **Modifier les vignettes**, qui s'ouvre dans la boîte de dialogue de configuration. Par défaut, aucune vignette n'est affichée. |
+| **Afficher la flèche** | Affiche une flèche en haut à droite de chaque vignette liée. Activé par défaut. Dans la fenêtre, en bas à droite sous **Mise en page**. |
 
-La flèche est activée de manière globale pour toutes les vignettes, et non individuellement : une
-série où la flèche apparaît tantôt et tantôt non donne l’impression d’une erreur. Elle
-n’apparaît en principe pas sur les vignettes sans destination — il n’y a rien
-à cliquer à cet endroit.
+L’activation de la flèche s’applique à l’ensemble des vignettes, et non individuellement : une
+série où la flèche apparaît tantôt et tantôt non donne l’impression d’une erreur. Sur les
+vignettes sans destination, elle n’apparaît en principe pas — il n’y a rien
+à cliquer.
 
-## L'éditeur de vignettes
+## La fenêtre « Modifier les vignettes »
 
-L'éditeur affiche une ligne par vignette, toutes les unes en dessous des autres. Dans chaque ligne
-figurent :
+La fenêtre occupe tout l’écran. En haut se trouvent **Appliquer**,
+**Annuler**, **Annuler la dernière action**, **Rétablir**, l’aide et le bouton de basculement pour
+l’aperçu (éditeur, bureau, tablette, mobile). En dessous, trois colonnes :
 
-| Élément | Signification |
+| Zone | Signification |
 | --- | --- |
-| **Poignée** (à gauche) | Déplace la vignette vers un autre emplacement. Avec le clavier, les touches **flèche vers le haut** et **flèche vers le bas** permettent de le déplacer d’une position à chaque fois. |
-| **Image** | L’aperçu. Le crayon ouvre la médiathèque, la corbeille sur l’aperçu supprime uniquement l’image, pas la tuile. En l'absence d'image, une zone en pointillés **Sélectionner une image** s'affiche à cet endroit. |
-| **Titre** | Le titre de la vignette. Champ obligatoire. |
-| **Lien** | La destination de la vignette. |
-| **Plus** / **Moins** | Déplie les champs moins courants : étiquette, description, texte alternatif de l’image et **Ouvrir dans un nouvel onglet**. |
-| **Corbeille** (à droite) | Supprime l’ensemble de la vignette. |
+| **Vignettes** (à gauche) | Toutes les vignettes classées par ordre, avec une vignette d’aperçu, un titre et un lien. Vous pouvez les réorganiser en les faisant glisser par la poignée ou à l’aide du clavier ; **Nouvelle vignette** en ajoute une à la fin. |
+| **Vignette x sur y** (au centre) | Les champs de la vignette sélectionnée : **Contenu** (titre, lien), **Image** (bibliothèque, adresse, supprimer) et **Plus** (étiquette, description, texte alternatif, nouvel onglet). Au-dessus, les actions **Déplacer**, **Dupliquer** et **Supprimer** permettent de manipuler la vignette. |
+| **Mise en page** (à droite) | Le bouton **Afficher la flèche** ; il s'applique à toutes les vignettes. |
 
-Sous la liste se trouve **Ajouter une vignette** ; la nouvelle vignette s’ajoute à la
-fin. **Appliquer** enregistre la liste dans le widget, **Annuler** la rejette
-— si des modifications n’ont pas été enregistrées, le système demande confirmation au préalable.
+**Appliquer** enregistre les vignettes et la flèche dans le widget, **Annuler** les rejette
+— en cas de modifications non enregistrées, le système demande confirmation au préalable. Le statut en haut indique
+ce qui a été modifié, par exemple « 1 vignette modifiée ».
 
-Une vignette sans titre affiche dans l’éditeur la mention « Sans titre, cette
-vignette ne s’affiche pas ». Elle reste dans la liste et n’est pas
-perdue lors de l’enregistrement ; elle n’apparaît sur la page que dès qu’elle a un titre.
+Une vignette sans titre affiche dans le champ **Titre** la remarque « Sans titre,
+la vignette n’apparaît pas » et s’intitule « Sans titre » dans la liste. Elle y reste
+et n’est pas perdue lors de l’enregistrement ; elle n’apparaît sur la page que
+dès qu’elle a un titre.
 
-## Champs d’une vignette
+## Champs d’une tuile
 
-Les vignettes sont enregistrées sous forme de liste JSON. Cela n’est visible que lorsque
-l’éditeur ne s’affiche pas — dans ce cas, le champ de texte sert de solution de secours.
+Les tuiles et la flèche sont enregistrées ensemble dans l’attribut `portfolio-config`
+(`{"tiles":[…],"showChevron":true}`, encodé). Les anciens widgets contiennent encore les vignettes
+sous forme de liste JSON dans le champ `tiles` et la flèche dans `show-chevron` ; les deux
+continuent d’être pris en compte tant que `portfolio-config` ne définit pas la valeur correspondante
+. Le format des vignettes est le même dans les deux cas :
 
-| Champ | Éditeur | Obligatoire | Signification |
+| Champ | Fenêtre | Obligatoire | Signification |
 | --- | --- | --- | --- |
 | `title` | Titre | oui | Le titre de la vignette. S’il manque, la vignette est ignorée. |
 | `description` | Description (sous « Plus ») | non | Un court texte sous le titre. |
@@ -48,6 +50,6 @@ l’éditeur ne s’affiche pas — dans ce cas, le champ de texte sert de solut
 | `newTab` | Ouvrir dans un nouvel onglet (sous « Plus ») | non | `true` ouvre la destination dans un nouvel onglet. Valeur par défaut : `false`. |
 | `id` | — | non | Clé unique de la vignette. Attribuée automatiquement si elle est manquante. |
 
-Les images sont recadrées au format 16:9 et remplissent
-entièrement la vignette. Fournissez des visuels pour lesquels un recadrage sur les bords
+Les images sont recadrées au format 16:9 et remplissent entièrement la vignette.
+Fournissez des visuels pour lesquels un recadrage sur les bords
 ne pose pas de problème.

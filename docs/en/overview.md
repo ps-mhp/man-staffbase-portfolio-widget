@@ -2,7 +2,7 @@
 
 The Portfolio widget displays a series of tiles side by side. Each tile
 contains an image and a title, and when clicked, leads to a page—either within
-the app or externally. It’s ideal for any situation where multiple goals of equal importance
+the app or externally. It’s ideal for any situation where multiple objectives of equal importance
 destinations: product areas, departments, contact points.
 
 Staffbase includes a widget like this, but only in the Classic Editor. This
@@ -22,10 +22,10 @@ turn red. The entire tile is the link, not just the title.
 ## What You See in the CMS Editor
 
 In the editor, the tiles appear exactly as they do on the page. However, the links
-are not clickable there—open the preview to check the destinations.
+are not functional there—open the preview to check the destinations.
 
-The tiles are managed in a dedicated tile editor: one row per tile with
-image, title, and link, with the less frequently used fields hidden behind a drop-down menu. The
-order can be adjusted by dragging the handle on the left. A
-JSON list is also saved in the **Tiles** field; this serves as a fallback in case the editor
-fails to load.
+The tiles are managed in the full-screen **Edit Tiles** window: on the left
+is the list of tiles, in the middle are the fields for the selected tile, and on the right is the
+design (the arrow). You can drag tiles to reorder them in the list, and a
+preview shows the row at desktop, tablet, and mobile widths. Everything is saved
+in a single attribute; widgets from earlier versions continue to be recognized.

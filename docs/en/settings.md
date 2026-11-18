@@ -2,46 +2,48 @@
 
 | Setting | Description |
 | --- | --- |
-| **Tiles** | The tiles in the row. This is managed in the Tile Editor, which opens via **Edit Tiles**. By default, there are no tiles. |
-| **Show Arrow** | Displays an arrow in the upper-right corner of each linked tile. Enabled by default. |
+| **Tiles** | The tiles in the row. They are managed in the **Edit Tiles** window, which opens in the configuration dialog. By default, no tile is selected. |
+| **Show Arrow** | Displays an arrow in the upper-right corner of each linked tile. Enabled by default. Located in the window on the right under **Design**. |
 
-The arrow is toggled for all tiles collectively, not on a per-tile basis: a
-row where the arrow appears in some tiles but not others looks like an error. It
-never appears on tiles without a destination—there is nothing
-to click there.
+The arrow is toggled for all tiles collectively, not individually: a
+row where the arrow appears in some tiles but not others looks like an error. On
+tiles without a destination, it never appears—there is nothing
+to click on there.
 
-## The Tile Editor
+## The “Edit Tiles” Window
 
-The editor displays one row per tile, all stacked one below the other. The row
-contains:
+The window fills the entire screen. At the top are **Apply**,
+**Cancel**, **Undo**, **Redo**, Help, and the toggle for
+the preview (Editor, Desktop, Tablet, Mobile). Below that are three columns:
 
-| Element | Meaning |
+| Area | Description |
 | --- | --- |
-| **Handle** (left) | Moves the tile to a different location. Use the **Up Arrow** and **Down Arrow** keys to move it one position at a time. |
-| **Image** | The preview. The pencil opens the media library; the trash can icon on the preview removes only the image, not the tile. If there is no image, a dotted area labeled **Select Image** appears there. |
-| **Title** | The tile’s heading. Required. |
-| **Link** | The tile’s destination. |
-| **More** / **Less** | Expands the less frequently used fields: Label, Description, Image alt text, and **Open in a new tab**. |
-| **Trash can** (right) | Removes the entire tile. |
+| **Tiles** (left) | All tiles in order, with preview image, title, and link. Drag the handle or use the keyboard to rearrange them; **New Tile** adds one to the end. |
+| **Tile x of y** (center) | The fields for the selected tile: **Content** (title, link), **Image** (media library, address, remove), and **More** (label, description, alt text, new tab). Above that, the actions *Move*, *Duplicate*, and *Delete* affect the tile. |
+| **Layout** (right) | The **Show Arrow** toggle; it applies to all tiles. |
 
-Below the list is **Add Tile**; the new tile is appended to the
-end. **Apply** writes the list to the widget; **Cancel** discards
-it—you’ll be prompted if there are unsaved changes.
+**Apply** adds tiles and the arrow to the widget; **Cancel** discards
+them—you’ll be prompted first if there are unsaved changes. The status at the top indicates
+what has changed, such as “1 tile changed.”
 
-A tile without a title displays the message “Without a title, this
-tile will not be displayed” in the editor. It remains in the list and is not
-lost when saving; it only appears on the page once it has a title.
+A tile without a title displays the message “Without a title,
+the tile will not appear” in the **Title** field and is labeled “Untitled” in the list. It remains there
+and is not lost when you save; it will not appear on the page until
+it has a title.
 
-## Tile Fields
+## Fields of a Tile
 
-The tiles are stored as a JSON list. This is only visible if
-the editor does not appear for some reason—in that case, the text field serves as a fallback.
+Tiles and the arrow are stored together in the `portfolio-config` attribute
+(`{"tiles":[…],"showChevron":true}`, encoded). Older widgets still store the tiles
+as a JSON list in the `tiles` field and the chevron in `show-chevron`; both
+continue to be read as long as `portfolio-config` does not
+set the respective value. The format of the tiles is the same in both cases:
 
-| Field | Editor | Required | Meaning |
+| Field | Window | Required | Meaning |
 | --- | --- | --- | --- |
 | `title` | Title | yes | The tile’s heading. If missing, the tile is skipped. |
 | `description` | Description (under “More”) | no | A short text below the title. |
-| `badge` | Badge (under “More”) | no | A small category badge above the title. |
+| `badge` | Label (under “More”) | no | A small category label above the title. |
 | `image` | Image | no | Image URL. If missing, the tile will have no image area. |
 | `imageAlt` | Alternative text (under “More”) | no | Alternative text for screen readers. Leave blank if the image is purely decorative. |
 | `link` | Link | no | Destination of the tile. Without a destination, the tile is not clickable and does not display an arrow. |

@@ -12,7 +12,7 @@ dodatkowo wyświetlać etykietę kategorii nad tytułem.
 ## Co widzą czytelnicy
 
 Rząd kafelków o tej samej szerokości, który na wąskich ekranach jest dzielony na kolumny. Każdy
-kafelek ma u góry obrazek, a poniżej — w zależności od ustawień — małą
+kafelek ma u góry obrazek, a poniżej — w zależności od konfiguracji — małą
 etykietę kategorii, tytuł i krótki opis. W prawym górnym rogu znajduje się
 strzałka, o ile kafelka ma link.
 
@@ -24,8 +24,8 @@ zmieniają kolor na czerwony. Cała kafelka stanowi link, a nie tylko tytuł.
 W edytorze kafelki wyglądają dokładnie tak samo jak na stronie. Linki
 nie są tam jednak aktywne — aby sprawdzić adresy docelowe, należy otworzyć podgląd.
 
-Kafelki są edytowane w osobnym edytorze kafelków: jeden wiersz na kafelek z
-obrazkiem, tytułem i linkiem, a rzadziej używane pola znajdują się za rozwijanym menu.
-Kolejność można zmieniać, przeciągając uchwyt po lewej stronie. Dodatkowo zapisywana jest
-lista JSON w polu **Kafelki**; stanowi ona rozwiązanie awaryjne na wypadek, gdyby edytor
-kiedyś się nie wyświetlił.
+Kafelki są edytowane w oknie pełnoekranowym **Edytuj kafelki**: po lewej
+stronie znajduje się lista kafelków, pośrodku pola wybranego kafelka, a po prawej
+stronie jego wygląd (strzałka). Kolejność można zmieniać, przeciągając elementy na liście, a
+podgląd pokazuje układ w trybie komputerowym, tabletowym i mobilnym. Wszystko jest zapisywane
+w jednym atrybucie; widżety z poprzednich wersji są nadal odczytywane.

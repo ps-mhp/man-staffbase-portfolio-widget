@@ -5,7 +5,7 @@
 Réponse : En règle générale, aucune vignette n'a encore été créée — ouvrez les
 paramètres et cliquez sur **Modifier les vignettes**. Si, à titre exceptionnel, vous avez
 géré les vignettes dans le champ de texte JSON, il se peut que le contenu ne soit pas
-un JSON valide. Dans ce cas, le message suivant s'affiche dans la console de développement du navigateur :
+au format JSON valide. Dans ce cas, le message suivant s'affiche dans la console de développement du navigateur :
 « portfolio-widget : le champ « vignettes » ne contient pas de tableau JSON valide. »
 Causes les plus fréquentes : une virgule après la dernière vignette, une
 croche de fermeture manquante ou des guillemets typographiques («  ») au lieu de guillemets droits
@@ -20,50 +20,57 @@ Dans l’éditeur, une telle tuile reste affichée et porte la mention « Sans t
 cette tuile ne s’affiche pas » — vous ne la perdez donc pas, elle
 n’apparaîtra sur la page qu’une fois dotée d’un titre.
 
-**Question :** Comment ajouter une image à une tuile ?
+**Question :** Comment ajouter une image à une vignette ?
 
-Réponse : Via la zone en pointillés **Sélectionner une image** dans la ligne, ou, si une
-image existe déjà, via le crayon situé dessus. Ces deux options ouvrent la médiathèque ; vous
-pouvez également y télécharger directement l’image. Une image provenant d’un site web tiers
-fonctionne également — pour cela, saisissez son adresse dans le champ JSON `image`
-, à condition qu’elle soit accessible au public.
+Réponse : Via **Sélectionner dans la médiathèque** dans la section **Image**. La médiathèque
+s’ouvre sous forme de barre à droite ; vous pouvez y télécharger directement l’image
+ou la déposer dans le champ d’image par glisser-déposer. Une image provenant d’un site web tiers
+fonctionne également — pour cela, saisissez son
+adresse https sous **Insérer l’adresse**, à condition qu’elle soit accessible au public.
 
 **Question :** Je voulais simplement changer l’image et j’ai supprimé par inadvertance toute la
 tuile.
 
-Réponse : Il existe deux corbeilles. Celle située sur l’aperçu de l’image ne supprime que l’
-image, tandis que celle située à droite de la ligne supprime la tuile entière. Tant que vous n’avez pas encore
-cliqué sur **Appliquer**, vous pouvez annuler cette erreur en cliquant sur
-**Annuler**.
+Réponse : **Supprimer** dans la section **Image** ne supprime que l’image,
+tandis que **Supprimer la vignette**, situé au-dessus des champs, supprime la vignette entière. Tant que vous n’avez pas encore cliqué sur
+**Appliquer**, **Annuler** corrige cette erreur, et
+**Annuler** rejette toutes les modifications.
 
 **Question :** Comment modifier l'ordre ?
 
-Réponse : Faites glisser la vignette par la poignée située tout à gauche vers son nouvel emplacement. C'est également possible sans
-souris : sélectionnez la poignée à l’aide de la touche Tab, puis déplacez-la à l’aide des **flèches
-vers le haut** et **vers le bas**.
+Réponse : Faites glisser la vignette dans la liste de gauche à l'aide de la poignée vers son nouvel emplacement.
+Cela fonctionne également sans souris : sélectionnez la vignette, appuyez sur la barre d'espace, déplacez-la à l'aide des **flèches vers le haut** et
+**flèches vers le bas**, puis appuyez à nouveau sur la barre d'espace. Au-dessus des champs, utilisez
+**Déplacer la vignette vers le haut** et **Déplacer la vignette vers le bas** pour la déplacer d'une position vers le haut ou vers le bas.
 
-**Question :** Pourquoi l’une de mes vignettes n’a-t-elle pas de flèche, alors que l’option « Afficher la flèche »
+**Question :** Pourquoi l'une de mes vignettes n'affiche-t-elle pas de flèche, alors que l'option « Afficher la flèche »
 est activée ?
 
-Réponse : Il manque un lien à cette vignette. Sans destination, elle n’est pas cliquable, et une
-flèche suggérerait une action qui n’existe pas.
+Réponse : Il manque un lien à cette vignette. Sans destination, elle n'est pas cliquable, et une
+flèche suggérerait une action qui n'existe pas.
 
 **Question :** Les images sont recadrées à des hauteurs différentes.
 
 Réponse : Toutes les images sont mises au format 16:9 et remplissent
 entièrement la zone d’affichage. Lorsque les formats d’image divergent fortement, le
-recadrage varie. Fournissez si possible les visuels dès le départ au
+recadrage varie en conséquence. Fournissez si possible les visuels dès le départ au
 format 16:9.
 
 **Question :** Puis-je forcer les vignettes à s’afficher sur un nombre précis de colonnes ?
 
 Réponse : Non. Les vignettes ont une largeur fixe et s’ajustent dès que l’
-espace vient à manquer — exactement comme dans le widget Portfolio propre à Staffbase.
+espace ne suffit plus — exactement comme avec le widget Portfolio propre à Staffbase.
 
-**Question :** Au lieu de l'éditeur, je ne vois qu'un champ de texte contenant du JSON.
+**Question :** Au lieu de la fenêtre, je ne vois qu’un champ de texte.
 
-Réponse : L'éditeur remplace le champ **Vignettes** dès que
-la boîte de dialogue de configuration est ouverte. Si cela ne fonctionne pas, le
-champ de texte reste affiché par défaut ; le format est le même, et les champs d’une
-tuile se trouvent dans les paramètres. Réouvrir la boîte de dialogue permet généralement de
-récupérer l’éditeur.
+Réponse : La fenêtre remplace le champ dès que la
+boîte de dialogue de configuration est ouverte. Si cela ne fonctionne pas, le
+champ de texte reste affiché par défaut ; il contient la version brute de la configuration.
+Réouvrir la boîte de dialogue permet généralement de faire réapparaître la fenêtre.
+
+**Question :** J’ai créé le widget avant la refonte. Est-ce que quelque chose
+va être perdu ?
+
+Réponse : Non. Le widget continue d’afficher ses vignettes et sa
+flèche telles qu’elles étaient auparavant. La fenêtre reprend ces valeurs à son ouverture ; ce n’est que lorsque vous
+modifiez quelque chose et que vous sélectionnez **Appliquer** que la nouvelle version est enregistrée.

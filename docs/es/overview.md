@@ -12,7 +12,7 @@ mostrar una etiqueta de categoría encima del título.
 ## Lo que ven los lectores
 
 Una serie de mosaicos del mismo ancho que se ajustan en pantallas estrechas. Cada
-mosaico tiene una imagen en la parte superior y, debajo —dependiendo de cómo se configure—, una pequeña
+mosaico tiene una imagen en la parte superior y, debajo —dependiendo de cómo se haya configurado—, una pequeña
 etiqueta de categoría, el título y una breve descripción. En la esquina superior derecha aparece una
 flecha, siempre que el mosaico tenga un destino.
 
@@ -24,8 +24,8 @@ se vuelven rojos. Todo el mosaico es el enlace, no solo el título.
 En el editor, los mosaicos aparecen exactamente igual que en la página. Sin embargo, los enlaces
 no son funcionales allí; para comprobar los destinos, abre la vista previa.
 
-Los mosaicos se gestionan en su propio editor de mosaicos: una línea por mosaico con
-imagen, título y enlace, y los campos menos habituales se ocultan tras un menú desplegable. El
-orden se puede modificar arrastrando el controlador situado a la izquierda. Además, se guarda una
-lista JSON en el campo **Mosaicos**; esta sigue siendo la opción de reserva en caso de que el editor
-no se muestre.
+Los mosaicos se gestionan en la ventana a pantalla completa **Editar mosaicos**: a la izquierda
+la lista de mosaicos, en el centro los campos del mosaico seleccionado y a la derecha el
+diseño (la flecha). El orden se puede modificar arrastrando en la lista, y una
+vista previa muestra la fila en los anchos de pantalla de ordenador, tableta y móvil. Todo se guarda
+en un único atributo; los widgets de versiones anteriores siguen siendo compatibles.

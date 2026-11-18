@@ -3,93 +3,94 @@
 ## Configurazione di base
 
 1. Posizionate il widget **Portfolio** nel punto desiderato della pagina.
-2. Aprite le impostazioni del widget e cliccate su
-   **Modifica riquadri**. Si aprirà l’editor dei riquadri.
-3. Clicca su **Aggiungi riquadro**. Apparirà una nuova riga vuota
-   alla fine dell’elenco.
-4. Compila i campi **Titolo** e **Link**.
-5. Clicca sull’area tratteggiata **Scegli immagine** e cerca l’
-  immagine nella libreria multimediale. È possibile caricarla direttamente da lì.
-6. Ripeti i passaggi da 3 a 5 per ogni altro riquadro.
-7. Clicca su **Applica** e salva la pagina.
-8. Lascia attiva l’opzione **Mostra freccia** se desideri che in alto a destra su ogni
-   riquadro compaia una freccia.
-9. Controlla il risultato nell’anteprima.
+2. Aprite le impostazioni del widget. La finestra **Modifica riquadri**
+   si apre a schermo intero; se non si apre automaticamente, clicca su
+   **Modifica riquadri**.
+3. Clicca a sinistra su **Nuovo riquadro**. Il nuovo riquadro vuoto viene aggiunto alla fine
+   dell’elenco ed è immediatamente selezionato.
+4. Compilate i campi **Titolo** e **Link** al centro.
+5. Sotto **Immagine**, selezionate il pulsante **Scegli dalla libreria**. La
+   libreria si apre a destra sotto forma di barra; consente anche il caricamento.
+6. Ripetere i passaggi da 3 a 5 per ogni altro riquadro.
+7. A destra, sotto **Aspetto**, lasciare attivato l’interruttore **Mostra freccia**
+   se si desidera che in alto a destra su ogni riquadro collegato sia presente una freccia
+  .
+8. Clicchi in alto su **Applica** e salvi la pagina.
+9. Verifichi il risultato nell’anteprima.
 
 ## Compilare completamente un riquadro
 
-Titolo, link e immagine si trovano nella riga. Tutto il resto si trova dietro il
-menu a tendina **Altro** alla fine della riga:
+Titolo, link e immagine si trovano nelle sezioni **Contenuto** e **Immagine**. Tutto
+il resto si trova nella sezione **Altro**, che può essere espansa o compressa:
 
 - **Etichetta** — una breve parola di categoria sopra il titolo, ad esempio «Veicoli».
 - **Descrizione** — un breve testo sotto il titolo.
-- **Testo alternativo dell’immagine** — ciò che uno screen reader leggerà al posto dell’immagine
-  . Lasciare vuoto se l’immagine è solo decorativa. Quando si seleziona un’immagine,
+- **Testo alternativo dell’immagine** — ciò che uno screen reader legge
+  al posto dell’immagine. Lasciare vuoto se l’immagine è solo decorativa. Quando si seleziona un’immagine,
   l’editor riprende un testo alternativo dalla libreria multimediale, purché il
-  campo non sia stato modificato — ma non un semplice nome di file come «lkw.png»;
+  campo non sia stato modificato — ma non un semplice nome file come «lkw.png»;
   un testo digitato manualmente rimane invece invariato.
 - **Apri in una nuova scheda** — apre la pagina di destinazione in una nuova scheda del browser.
-
-Con **Chiudi** l’area si richiude. Ogni riga ha il proprio
-pulsante di espansione.
 
 L’unico campo obbligatorio è il titolo. Tutto il resto può essere omesso.
 
 ## Modificare l’ordine
 
-L’ordine delle tessere sulla pagina corrisponde all’ordine nell’elenco.
+L’ordine delle tessere sulla pagina corrisponde all’ordine nell’elenco
+a sinistra.
 
-- **Con il mouse:** afferrate la tessera dal maniglione all’estrema sinistra e trascinatela
-  verso l’alto o verso il basso. Non appena copre per metà una riga adiacente,
-  le due si scambiano di posto.
-- **Con la tastiera:** selezionate la maniglia con il tasto Tab e
-  spostate il riquadro con le **frecce su** e **giù**
-  di una posizione alla volta.
+- **Con il mouse:** selezionate la tessera dalla maniglia a sinistra nell’elenco e
+  trascinatela verso l’alto o verso il basso.
+- **Con la tastiera:** selezionare il riquadro nell’elenco, premere la
+  barra spaziatrice, spostarlo con **freccia su** e **freccia
+  giù** e rilasciarlo con la barra spaziatrice.
+- **Con le azioni sopra i campi:** **Sposta riquadro in alto** e **Sposta riquadro in
+  basso** spostano il riquadro selezionato di una posizione alla volta.
 
-## Cambiare o rimuovere l’immagine
+Accanto a queste opzioni si trovano **Duplica riquadro** e **Elimina riquadro**.
 
-Sull’anteprima dell’immagine sono presenti due piccoli pulsanti:
+## Cambiare o rimuovere un'immagine
 
-- La **matita** apre la libreria multimediale e sostituisce l’immagine.
-- Il **cestino** rimuove solo l’immagine. Il riquadro rimane e viene
-  visualizzato senza l’area dell’immagine.
+Sotto **Immagine** sono disponibili tre opzioni:
 
-Il **cestino sul bordo destro della riga**, invece, rimuove l’intero riquadro.
+- **Seleziona dalla libreria** apre la libreria e sostituisce l'immagine. È possibile
+  trascinare un'immagine dalla barra direttamente sul campo immagine.
+- **Inserisci indirizzo** utilizza l’indirizzo di un’immagine (https://… o un percorso
+  che inizia con /) al posto di un’immagine dalla libreria.
+- **Rimuovi** elimina solo l’immagine. Il riquadro rimane e viene visualizzato senza
+  area immagine.
+
+**Elimina riquadro** sopra i campi, invece, rimuove l’intero riquadro.
+
+## Anteprima
+
+Nella parte superiore della finestra, il pulsante di selezione permette di passare tra **Editor**, **Desktop**,
+**Tablet** e **Mobile**. L’anteprima mostra la riga di riquadri così come la pagina
+la visualizza — con la freccia impostata come nella parte destra.
 
 ## Modificare in un secondo momento
 
 1. Clicca sul widget e apri le sue impostazioni.
-2. Clicca su **Modifica riquadri**.
-3. Modifica ciò che desideri e clicca su **Applica**.
-4. Salva e controlla nell’anteprima.
+2. Clicchi su **Modifica riquadri**, se la finestra non si
+   apre automaticamente.
+3. Modifichi ciò che desidera e clicchi in alto su **Applica**.
+4. Salvi e controlli nell’anteprima.
 
-**Annulla** elimina le modifiche; se ce ne sono in sospeso, l’editor
-chiede conferma prima di procedere.
+**Annulla** e **Ripeti** in alto consentono di annullare i singoli passaggi.
+**Annulla tutto** elimina le modifiche; se ce ne sono in sospeso, l’editor
+chiede conferma prima di procedere. Il simbolo **?** in alto mostra una breve guida sulla finestra.
+
+I widget creati prima della modifica mantengono le loro impostazioni: alla
+prima apertura, la finestra riprende i riquadri e la freccia, e la pagina appare
+diversa solo dopo aver cliccato su **Applica**, se avete apportato delle modifiche.
 
 ## Se qualcosa non funziona
 
-1. Se una tessera manca dalla pagina, probabilmente è perché non ha un titolo. L’editor
-   scrive in una riga del genere «Senza titolo, questa tessera non
-   viene visualizzata» — la tessera rimane lì, semplicemente non viene mostrata.
-2. Se un riquadro rimane senza immagine, controllate l’indirizzo: deve
+1. Se manca un riquadro nella pagina, probabilmente manca il titolo. L’editor
+   segnala: «Senza titolo, il riquadro non viene visualizzato» — il riquadro rimane
+   al suo posto, semplicemente non viene mostrato.
+2. Se un riquadro rimane senza immagine, controllate l’indirizzo: deve aprire direttamente il
    aprirsi direttamente nel browser. Le immagini della libreria multimediale soddisfano sempre questo requisito.
-3. Se al posto dell’editor compare solo un campo di testo con JSON, modificate
-   tessere in quella sede — il formato è lo stesso:
-
-   ```json
-   [
-     {
-       "title": "Camion",
-       "badge": "Veicoli",
-       "description": "La serie pesante per il trasporto a lunga percorrenza.",
-       "image": "https://…/lkw.png",
-       "imageAlt": "Un camion in autostrada",
-       "link": "/content/page/lkw",
-       "newTab": true
-     }
-   ]
-   ```
-
-   Se dopo non compare più nulla, di solito il JSON è errato: una virgola
-   dopo l’ultimo elemento o una parentesi chiusa mancante. Controllate
-   il testo con un validatore JSON.
+3. Se al posto della finestra compare solo un campo di testo, si tratta della versione grezza della
+   configurazione (codificata). Riaprite la finestra di dialogo; la finestra
+   di solito sostituisce il campo.

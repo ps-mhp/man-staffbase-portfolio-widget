@@ -3,18 +3,18 @@
 ## Configuración básica
 
 1. Coloca el widget **Portafolio** en el lugar que desees de la página.
-2. Abre la configuración del widget. La ventana **Editar mosaicos**
-   se abre a pantalla completa; si no se abre automáticamente, haz clic en
+2. Abre la configuración del widget. Se abrirá la ventana **Editar mosaicos**
+   a pantalla completa; si no se abre automáticamente, haz clic en
    **Editar mosaicos**.
-3. Haz clic a la izquierda en **Nuevo mosaico**. El nuevo mosaico vacío aparece al final
+3. Haz clic a la izquierda en **Nuevo mosaico**. El nuevo mosaico, que está vacío, aparece al final
    de la lista y queda seleccionado automáticamente.
-4. Rellene los campos **Título** y **Enlace** en el centro.
+4. Rellena los campos **Título** y **Enlace** en el centro.
 5. En **Imagen**, seleccione el botón **Seleccionar de la biblioteca**. La
    biblioteca se abre a la derecha en forma de barra; también permite subir archivos.
-6. Repite los pasos del 3 al 5 para cada mosaico adicional.
-7. A la derecha, en **Diseño**, deja activado el botón **Mostrar flecha**
-   si quieres que aparezca una flecha en la esquina superior derecha de cada mosaico enlazado
-  .
+6. Repita los pasos del 3 al 5 para cada mosaico adicional.
+7. A la derecha, en **Diseño**, selecciona la **presentación** y el
+   **tamaño**, y deja activada la opción **Mostrar flecha** si quieres que aparezca una flecha en la esquina superior derecha
+   de cada mosaico enlazado.
 8. Haga clic en **Aplicar** en la parte superior y guarde la página.
 9. Compruebe el resultado en la vista previa.
 
@@ -29,10 +29,44 @@ lo demás se encuentra en la sección **Más**, que se puede desplegar y contrae
   lee en lugar de la imagen. Déjalo en blanco si la imagen es solo decorativa. Al seleccionar una imagen,
   el editor toma un texto alternativo de la biblioteca multimedia, siempre que el
   campo no se haya modificado aún; sin embargo, no tomará un simple nombre de archivo como «lkw.png»,
-  sino que se mantendrá el texto que hayas escrito tú mismo.
+  sino que se mantendrá el texto que haya escrito usted mismo.
 - **Abrir en una pestaña nueva**: abre el enlace en una nueva pestaña del navegador.
 
 Solo es obligatorio el título. El resto puede omitirse.
+
+## Crear recuadros con iconos
+
+Así se crean recuadros de colores con un icono y un nombre, por ejemplo, para aplicaciones o
+puntos de contacto:
+
+1. A la derecha, en **Diseño**, en **Presentación**, seleccione el
+   **recuadro con icono**. Los recuadros aparecen en rojo MAN con letra blanca.
+2. En **Tamaño**, seleccione **Compacto** si desea que quepan muchos recuadros en una misma fila
+  .
+3. En cada mosaico, en **Icono**, seleccione un símbolo de la biblioteca multimedia —
+   preferiblemente un SVG o PNG con fondo transparente en blanco. Se
+   ajustará, sin recortarse.
+4. Si es necesario, seleccione otro **tamaño** y **tipo de letra**. Si se deja el
+   tipo de letra en **Automático**, el widget elegirá el más legible entre oscuro
+   y blanco. Aparecerá un aviso si la combinación elegida resulta difícil
+   de leer.
+
+## Seleccionar tamaño y colores
+
+En **Diseño**, todo lo indicado se aplica a toda la fila:
+
+- **Tamaño**: **Compacto** muestra mosaicos estrechos, con más por fila (en el
+  teléfono, dos uno al lado del otro). **Normal** es el ancho habitual. **Grande**
+  coloca la imagen y el texto uno al lado del otro, como en una lista de noticias; en el
+  teléfono, la imagen vuelve a aparecer arriba.
+- **Fondo** — **Estándar** (blanco en el mosaico de la imagen, rojo MAN en el
+  recuadro del icono), uno de los colores de la identidad corporativa de MAN o, en **Color propio**, un
+  valor hexadecimal como `#E40045` (confirmar con Intro).
+- **Fuente** — **Automática**, un color de la identidad corporativa de MAN o un
+  valor hexadecimal propio. Se aplica al título, la etiqueta, la descripción y la flecha.
+
+El número de columnas se adapta al ancho disponible; en la vista previa
+(ordenador, tableta, móvil) podrá ver cuántos mosaicos aparecen uno al lado del otro.
 
 ## Cambiar el orden
 
@@ -41,9 +75,9 @@ de la izquierda.
 
 - **Con el ratón:** agarra el mosaico por el tirador situado a la izquierda de la lista y
   arrástralo hacia arriba o hacia abajo.
-- **Con el teclado:** Selecciona el mosaico en la lista, pulsa la
-  barra espaciadora, muévelo con las teclas **Flecha arriba** y **Flecha
-  abajo** y suéltalo con la barra espaciadora.
+- **Con el teclado:** Seleccione el mosaico en la lista, pulse la
+  barra espaciadora, desplácelo con las teclas **Flecha arriba** y **Flecha
+  abajo** y suéltelo con la barra espaciadora.
 - **Con las acciones situadas encima de los campos:** **Mover mosaico hacia arriba** y **Mover mosaico hacia
   abajo** desplazan el mosaico seleccionado una posición hacia arriba o hacia abajo, respectivamente.
 
@@ -58,7 +92,7 @@ En **Imagen** hay tres opciones:
 - **Insertar dirección** utiliza la dirección de una imagen (https://… o una ruta
   que comience por /) en lugar de una imagen de la biblioteca multimedia.
 - **Eliminar** solo elimina la imagen. El mosaico permanece y se muestra sin
-  área de imagen.
+  el área de la imagen.
 
 **Borrar mosaico**, situado encima de los campos, elimina, por el contrario, todo el mosaico.
 
@@ -66,19 +100,21 @@ En **Imagen** hay tres opciones:
 
 En la parte superior de la ventana, el botón de alternancia cambia entre **Editor**, **Escritorio**,
 **Tableta** y **Móvil**. La vista previa muestra la fila de mosaicos tal y como la página
-la muestra, con la flecha tal y como está configurada a la derecha.
+los muestra: con el diseño, el tamaño y los colores seleccionados, y con la
+flecha tal y como está configurada a la derecha. El número de columnas también es correcto: en tableta y
+móvil se muestran tantos mosaicos uno al lado del otro como permita el dispositivo.
 
 ## Modificar posteriormente
 
-1. Haga clic en el widget y abra su configuración.
-2. Haz clic en **Editar mosaicos**, si la ventana no se abre
+1. Haz clic en el widget y abre su configuración.
+2. Haga clic en **Editar mosaicos**, si la ventana no se abre
    automáticamente.
-3. Realiza los cambios necesarios y haz clic en **Aplicar**, en la parte superior.
-4. Guarda los cambios y compruébalos en la vista previa.
+3. Realice los cambios necesarios y haga clic en **Aplicar** en la parte superior.
+4. Guarde los cambios y compruébelos en la vista previa.
 
-**Deshacer** y **Rehacer**, en la parte superior, permiten deshacer pasos individuales.
-**Cancelar** descarta los cambios; si hay alguno pendiente, el editor
-te lo confirmará previamente. El **?** de la parte superior muestra una breve ayuda sobre la ventana.
+Las opciones **Deshacer** y **Rehacer** de la parte superior permiten deshacer pasos individuales.
+**Cancelar** descarta los cambios; si hay cambios pendientes, el editor
+te lo confirmará previamente. El símbolo **?** de la parte superior muestra una breve ayuda sobre la ventana.
 
 Los widgets creados antes de la remodelación conservan su configuración: al
 abrir la ventana por primera vez, esta adopta los mosaicos y la flecha, y la página

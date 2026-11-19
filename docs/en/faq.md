@@ -11,7 +11,7 @@ Most common causes: a comma after the last tile, a missing
 closing bracket, or typographic quotation marks (“ ”) instead of straight
 (")). Check the text in a JSON validator.
 
-**Question:** A single tile is missing, while the others are displayed.
+**Question:** A single tile is missing; the others are displayed.
 
 Answer: This tile is missing a title. Tiles without titles are
 skipped so that a typo in one tile doesn’t
@@ -23,7 +23,7 @@ will simply not appear on the page until you add a title.
 **Question:** How do I add an image to a tile?
 
 Answer: Use **Select from Media Library** in the **Image** section. The media library
-opens as a sidebar on the right; there, you can upload the image directly
+opens as a panel on the right; there, you can upload the image directly
 or drag and drop it onto the image field. An image from an external website
 also works—to do this, enter its
 https address under **Insert Address**, as long as it’s publicly accessible.
@@ -51,19 +51,33 @@ arrow would imply an action that doesn’t exist.
 
 **Question:** The images are cropped to different heights.
 
-Answer: All images are adjusted to a 16:9 aspect ratio and fill the image area
-completely. If the aspect ratios differ significantly, the
-cropping will vary. If possible, please submit the images in the
+Answer: In the image tile, all images are adjusted to a 16:9 aspect ratio and fill the image area
+completely. If the aspect ratios vary significantly, the
+cropping will differ. If possible, provide the images in
 16:9 aspect ratio.
 
-**Question:** Can I force the tiles to fit into a specific number of columns?
+**Question:** Can I force the tiles to a specific number of columns?
 
-Answer: No. The tiles have a fixed width and wrap to the next column as soon as there
-there isn’t enough space—just like with Staffbase’s own Portfolio widget.
+Answer: Not exactly, but you can use the **Size** setting: **Compact** places many small
+tiles side by side, **Normal** displays about four, and **Large** displays two. The exact number
+depends on the screen width—this ensures the row remains readable on tablets
+and phones.
+
+**Question:** My white icon is barely visible in the editor.
+
+Answer: In the image tile, it appears on a light background. Under
+**Design**, select the **Icon Box** view—then the list and image field
+will display the icon within the box.
+
+**Question:** Under “Colors,” it says “Contrast … hard to read.”
+
+Answer: The text and background are too close together; body text requires a
+ratio of at least 4.5:1. Set the **Font** to
+**Automatic** or choose a significantly lighter or darker color.
 
 **Question:** Instead of the window, I only see a text field.
 
-Answer: The window replaces the text field as soon as the
+Answer: The window appears in place of the field as soon as the
 configuration dialog is open. If it fails to do so, the
 text field remains as a fallback; it contains the raw version of the configuration.
 Reopening the dialog usually brings the window back.
@@ -71,6 +85,6 @@ Reopening the dialog usually brings the window back.
 **Question:** I created the widget before the redesign. Will anything
 be lost?
 
-Answer: No. The widget continues to display its existing tiles and its
+Answer: No. The widget will continue to display its existing tiles and its
 arrow. The window adopts these values when it opens; only when you make a
 change and select **Apply** will the new version be saved.

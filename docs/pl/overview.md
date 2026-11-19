@@ -11,13 +11,21 @@ dodatkowo wyświetlać etykietę kategorii nad tytułem.
 
 ## Co widzą czytelnicy
 
-Rząd kafelków o tej samej szerokości, który na wąskich ekranach jest dzielony na kolumny. Każdy
-kafelek ma u góry obrazek, a poniżej — w zależności od konfiguracji — małą
-etykietę kategorii, tytuł i krótki opis. W prawym górnym rogu znajduje się
-strzałka, o ile kafelka ma link.
+Siatka kafelków o jednakowej szerokości, dostosowująca się do szerokości ekranu
+. Do wyboru są dwa warianty wyświetlania:
 
-Po najechaniu myszką obramowanie staje się grubsze, a tytuł i strzałka
-zmieniają kolor na czerwony. Cała kafelka stanowi link, a nie tylko tytuł.
+- **Kafelek z obrazkiem** — u góry obrazek, a poniżej, w zależności od ustawień, mała
+  etykietę kategorii, tytuł i krótki opis.
+- **Pole z ikoną** — ikona i tytuł wyśrodkowane na kolorowym tle,
+  domyślnie w kolorze czerwonym MAN z białą czcionką.
+
+Oba warianty są dostępne w trzech rozmiarach: **Kompaktowy** (wiele małych kafelek w każdym rzędzie),
+**Normalny** i **Duży** (zdjęcie po lewej, tekst po prawej, jak lista wiadomości).
+Tło i czcionkę można dobrać spośród kolorów MAN-CI lub dowolnie.
+W prawym górnym rogu znajduje się strzałka, o ile kafelek ma adres docelowy.
+
+Po najechaniu myszką obramowanie staje się wyraźniejsze, a tytuł i strzałka
+zmieńają kolor na czerwony; na kolorowym tle obszar ten staje się natomiast nieco ciemniejszy. Cały kafelek stanowi odnośnik, a nie tylko tytuł.
 
 ## Co widać w edytorze CMS
 
@@ -26,6 +34,6 @@ nie są tam jednak aktywne — aby sprawdzić adresy docelowe, należy otworzyć
 
 Kafelki są edytowane w oknie pełnoekranowym **Edytuj kafelki**: po lewej
 stronie znajduje się lista kafelków, pośrodku pola wybranego kafelka, a po prawej
-stronie jego wygląd (strzałka). Kolejność można zmieniać, przeciągając elementy na liście, a
+stronie ustawienia (wygląd, rozmiar, kolory, strzałka). Kolejność można zmieniać, przeciągając elementy na liście, a
 podgląd pokazuje układ w trybie komputerowym, tabletowym i mobilnym. Wszystko jest zapisywane
 w jednym atrybucie; widżety z poprzednich wersji są nadal odczytywane.

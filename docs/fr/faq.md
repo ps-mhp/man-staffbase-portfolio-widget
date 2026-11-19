@@ -5,7 +5,7 @@
 Réponse : En règle générale, aucune vignette n'a encore été créée — ouvrez les
 paramètres et cliquez sur **Modifier les vignettes**. Si, à titre exceptionnel, vous avez
 géré les vignettes dans le champ de texte JSON, il se peut que le contenu ne soit pas
-au format JSON valide. Dans ce cas, le message suivant s'affiche dans la console de développement du navigateur :
+un JSON valide. Dans ce cas, le message suivant s'affiche dans la console de développement du navigateur :
 « portfolio-widget : le champ « vignettes » ne contient pas de tableau JSON valide. »
 Causes les plus fréquentes : une virgule après la dernière vignette, une
 croche de fermeture manquante ou des guillemets typographiques («  ») au lieu de guillemets droits
@@ -51,26 +51,40 @@ flèche suggérerait une action qui n'existe pas.
 
 **Question :** Les images sont recadrées à des hauteurs différentes.
 
-Réponse : Toutes les images sont mises au format 16:9 et remplissent
-entièrement la zone d’affichage. Lorsque les formats d’image divergent fortement, le
-recadrage varie en conséquence. Fournissez si possible les visuels dès le départ au
+Réponse : Dans la vignette d’image, toutes les images sont mises au format 16:9 et remplissent
+entièrement la zone d’image. Lorsque les formats d’image divergent fortement, le
+recadrage varie. Fournissez si possible les visuels dès le départ au
 format 16:9.
 
 **Question :** Puis-je forcer les vignettes à s’afficher sur un nombre précis de colonnes ?
 
-Réponse : Non. Les vignettes ont une largeur fixe et s’ajustent dès que l’
-espace ne suffit plus — exactement comme avec le widget Portfolio propre à Staffbase.
+Réponse : Pas exactement, mais via la **taille** : **Compact** affiche de nombreuses petites
+vignettes côte à côte, **Normal** en affiche environ quatre, **Grand** deux. Leur nombre exact
+dépend de la largeur de l’écran — cela permet de garantir la lisibilité de la ligne sur tablette
+et sur téléphone.
 
-**Question :** Au lieu de la fenêtre, je ne vois qu’un champ de texte.
+**Question :** Mon icône blanche est à peine visible dans l’éditeur.
 
-Réponse : La fenêtre remplace le champ dès que la
+Réponse : Dans la vignette, elle apparaît sur un fond clair. Sous
+**Mise en page**, sélectionnez l’affichage **Boîte d’icône** — la liste et la zone d’image
+afficheront alors l’icône sur la surface de la boîte.
+
+**Question :** Sous les couleurs, il est indiqué « Contraste… difficilement lisible ».
+
+Réponse : La police et le fond sont trop proches l’un de l’autre ; le texte courant nécessite un
+rapport d’au moins 4,5 : 1. Réglez la **police** sur
+**Automatique** ou choisissez une couleur nettement plus claire ou plus foncée.
+
+**Question :** À la place de la fenêtre, je ne vois qu’un champ de texte.
+
+Réponse : La fenêtre s’affiche à la place du champ dès que la
 boîte de dialogue de configuration est ouverte. Si cela ne fonctionne pas, le
-champ de texte reste affiché par défaut ; il contient la version brute de la configuration.
-Réouvrir la boîte de dialogue permet généralement de faire réapparaître la fenêtre.
+champ de texte reste affiché à titre de solution de secours ; il contient la version brute de la configuration.
+En règle générale, il suffit de rouvrir la boîte de dialogue pour que la fenêtre réapparaisse.
 
-**Question :** J’ai créé le widget avant la refonte. Est-ce que quelque chose
-va être perdu ?
+**Question :** J’ai créé le widget avant la mise à jour. Y a-t-il des
+pertes de données ?
 
 Réponse : Non. Le widget continue d’afficher ses vignettes et sa
-flèche telles qu’elles étaient auparavant. La fenêtre reprend ces valeurs à son ouverture ; ce n’est que lorsque vous
+flèche. La fenêtre reprend ces valeurs à son ouverture ; ce n’est que lorsque vous
 modifiez quelque chose et que vous sélectionnez **Appliquer** que la nouvelle version est enregistrée.

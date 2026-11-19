@@ -52,26 +52,40 @@ flecha sugeriría una acción que no existe.
 
 **Pregunta:** Las imágenes están recortadas a diferentes alturas.
 
-Respuesta: Todas las imágenes se ajustan a 16:9 y ocupan
+Respuesta: En el mosaico de imágenes, todas las imágenes se ajustan a 16:9 y ocupan
 por completo el área de la imagen. Cuando las relaciones de aspecto difieren mucho, el
-recorte varía. Si es posible, envía las imágenes ya en la
+recorte varía. Si es posible, envía las imágenes ya en
 proporción 16:9.
 
 **Pregunta:** ¿Puedo forzar que los mosaicos se ajusten a un número concreto de columnas?
 
-Respuesta: No. Los mosaicos tienen un ancho fijo y se ajustan en cuanto
-espacio ya no sea suficiente, igual que ocurre con el widget de portafolio propio de Staffbase.
+Respuesta: No exactamente, pero sí a través del **tamaño**: **Compacto** coloca muchos mosaicos pequeños
+uno al lado del otro, **Normal** muestra unas cuatro, **Grande** dos. El número exacto
+depende del ancho de la pantalla; así, la fila sigue siendo legible en tabletas
+y teléfonos.
+
+**Pregunta:** Mi icono blanco apenas se ve en el editor.
+
+Respuesta: En el mosaico de la imagen aparece sobre un fondo claro. Seleccione en
+**Diseño** la opción **Cuadro de iconos**; así, tanto la lista como el campo de imagen
+mostrarán el icono dentro del área del cuadro.
+
+**Pregunta:** En la sección de colores aparece «Contraste… difícil de leer».
+
+Respuesta: La fuente y el fondo están demasiado juntos; el texto continuo necesita una
+relación de al menos 4,5 : 1. Configura la **fuente** en
+**Automático** o elige un color claramente más claro o más oscuro.
 
 **Pregunta:** En lugar de la ventana, solo veo un campo de texto.
 
 Respuesta: La ventana se coloca en el lugar del campo en cuanto se
 abre el cuadro de diálogo de configuración. Si en alguna ocasión no lo consigue, el
 campo de texto permanece como alternativa; contiene la versión preliminar de la configuración.
-Al volver a abrir el cuadro de diálogo, la ventana suele reaparecer.
+Por lo general, al volver a abrir el cuadro de diálogo, la ventana vuelve a aparecer.
 
-**Pregunta:** Ya había creado el widget antes de la modificación. ¿Se pierde algo
+**Pregunta:** Ya había creado el widget antes de la modificación. ¿Se perderá algo
 ?
 
 Respuesta: No. El widget sigue mostrando sus mosaicos anteriores y su
-flecha. La ventana adopta estos valores al abrirse; solo cuando modifique algo
-y seleccione **Aplicar**, se guardará la nueva versión.
+flecha. La ventana adopta estos valores al abrirse; solo cuando se realiza algún
+cambio y se selecciona **Aplicar**, se guarda la nueva versión.

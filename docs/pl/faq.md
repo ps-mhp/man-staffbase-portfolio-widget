@@ -51,24 +51,38 @@ strzałka sugerowałaby działanie, które nie istnieje.
 
 **Pytanie:** Obrazy są przycięte na różną wysokość.
 
-Odpowiedź: Wszystkie obrazy są dostosowywane do proporcji 16:9 i całkowicie wypełniają obszar obrazu.
+Odpowiedź: W kafelku obrazu wszystkie zdjęcia są skalowane do formatu 16:9 i całkowicie wypełniają obszar obrazu.
 W przypadku znacznie odbiegających proporcji przycięcie
-będzie wyglądało różnie. W miarę możliwości dostarczajcie motywy już w
+będzie wyglądało różnie. W miarę możliwości dostarczaj motywy już w
 proporcjach 16:9.
 
 **Pytanie:** Czy mogę wymusić wyświetlanie kafelek w określonej liczbie kolumn?
 
-Odpowiedź: Nie. Kafelki mają stałą szerokość i przechodzą na następną linię, gdy tylko
-miejsca — tak samo jak w przypadku własnego widżetu portfolio Staffbase.
+Odpowiedź: Nie dokładnie, ale poprzez ustawienie **rozmiaru**: opcja **Kompaktowa** wyświetla wiele małych
+kafelków obok siebie, **Normalny** około czterech, **Duży** dwa. Dokładna liczba
+zależy od szerokości ekranu — dzięki temu rząd pozostaje czytelny na tablecie
+i telefonie.
+
+**Pytanie:** Moja biała ikona jest ledwo widoczna w edytorze.
+
+Odpowiedź: W kafelku obrazu znajduje się ona na jasnym tle. Wybierz w sekcji
+**Projekt** opcję wyświetlania **Pole ikony** — wtedy lista i pole obrazu
+wyświetlą ikonę na powierzchni tego pola.
+
+**Pytanie:** W sekcji kolorów widnieje komunikat „Kontrast… trudny do odczytania”.
+
+Odpowiedź: Czcionka i tło znajdują się zbyt blisko siebie; tekst ciągły wymaga
+stosunku co najmniej 4,5 : 1. Ustaw **czcionkę** na
+**Automatycznie** lub wybierz znacznie jaśniejszy lub ciemniejszy kolor.
 
 **Pytanie:** Zamiast okna widzę tylko pole tekstowe.
 
-Odpowiedź: Okno pojawia się w miejscu tego pola, gdy tylko
+Odpowiedź: Okno pojawia się w miejscu pola, gdy tylko
 otworzy się okno dialogowe konfiguracji. Jeśli raz się to nie uda,
 pole tekstowe pozostaje jako rozwiązanie awaryjne; zawiera ono surową wersję konfiguracji.
 Ponowne otwarcie okna dialogowego zazwyczaj przywraca okno.
 
-**Pytanie:** Utworzyłem ten widget jeszcze przed przebudową. Czy coś
+**Pytanie:** Utworzyłem ten widget jeszcze przed modyfikacją. Czy coś
 się zgubi?
 
 Odpowiedź: Nie. Widżet nadal wyświetla dotychczasowe kafelki i swoją

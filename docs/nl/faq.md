@@ -1,6 +1,6 @@
 # Veelgestelde vragen
 
-**Vraag:** De widget geeft helemaal niets weer. Waar komt dat door?
+**Vraag:** De widget geeft helemaal niets weer. Waaraan ligt dat?
 
 Antwoord: Meestal is er nog geen tegel aangemaakt — open de
 instellingen en klik op **Tegels bewerken**. Als u de
@@ -23,7 +23,7 @@ verschijnt alleen pas op de pagina als er een titel is.
 **Vraag:** Hoe plaats je een afbeelding op een tegel?
 
 Antwoord: Via **Kiezen uit mediabibliotheek** in het gedeelte **Afbeelding**. De mediabibliotheek
-wordt rechts als een balk geopend; daar kun je de afbeelding direct uploaden
+wordt rechts als balk geopend; daar kun je de afbeelding direct uploaden
 of door deze naar het afbeeldingsveld te slepen. Een afbeelding van een externe website
 werkt ook — voer daarvoor onder **Adres invoegen** het
 https-adres in, zolang het openbaar toegankelijk is.
@@ -51,20 +51,34 @@ pijl zou een actie beloven die er niet is.
 
 **Vraag:** De afbeeldingen zijn op verschillende manieren bijgesneden.
 
-Antwoord: Alle afbeeldingen worden aangepast naar 16:9 en vullen het beeldgebied
+Antwoord: In de afbeeldingstegel worden alle afbeeldingen aangepast naar 16:9 en vullen ze het afbeeldingsgebied
 volledig op. Bij sterk afwijkende beeldverhoudingen zal de
 bijsnijding verschillend uitvallen. Lever de afbeeldingen indien mogelijk al in de
-verhouding 16:9 aan.
+verhouding 16:9 aanleveren.
 
 **Vraag:** Kan ik de tegels dwingen om in een bepaald aantal kolommen te worden weergegeven?
 
-Antwoord: Nee. De tegels hebben een vaste breedte en worden afgebroken zodra de
-er niet meer genoeg ruimte is — net zoals bij de eigen portfolio-widget van Staffbase.
+Antwoord: Niet precies, maar wel via de **grootte**: **Compact** plaatst veel kleine
+tegels naast elkaar, **Normaal** ongeveer vier, **Groot** twee. Hoeveel het er precies
+zijn, hangt af van de breedte van het scherm — zo blijft de rij op tablets
+en telefoons leesbaar.
+
+**Vraag:** Mijn witte icoontje is in de editor nauwelijks te zien.
+
+Antwoord: In de afbeeldingstegel staat het op een lichte achtergrond. Kies onder
+**Ontwerp** de weergave **Pictogramvak** — dan tonen de lijst en het afbeeldingsveld
+het pictogram op het oppervlak van het vak.
+
+**Vraag:** Onder de kleuren staat „Contrast … moeilijk leesbaar“.
+
+Antwoord: Het lettertype en de achtergrond liggen te dicht bij elkaar; lopende tekst heeft een
+verhouding van minimaal 4,5 : 1 nodig. Stel het **lettertype** in op
+**Automatisch** of kies een duidelijk lichtere of donkerdere kleur.
 
 **Vraag:** In plaats van het venster zie ik alleen een tekstveld.
 
 Antwoord: Het venster verschijnt op de plaats van het veld zodra het
-configuratievenster geopend is. Als dat eenmaal niet lukt, blijft het
+configuratievenster is geopend. Als dat eenmaal niet lukt, blijft het
 tekstveld als terugvaloptie staan; het bevat de ruwe versie van de configuratie.
 Als je het dialoogvenster opnieuw opent, verschijnt het venster meestal weer.
 
@@ -73,4 +87,4 @@ verloren?
 
 Antwoord: Nee. De widget blijft zijn bestaande tegels en zijn
 pijl weergeven. Het venster neemt deze waarden over bij het openen; pas wanneer u iets
-wijzigt en **Toepassen** selecteert, wordt de nieuwe versie opgeslagen.
+wijzigt en **Toepassen** kiest, wordt de nieuwe versie opgeslagen.

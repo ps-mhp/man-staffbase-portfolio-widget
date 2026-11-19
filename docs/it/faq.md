@@ -43,7 +43,7 @@ Risposta: Trascina il riquadro nella lista a sinistra, afferrandolo dal manico, 
 **freccia giù**, quindi premere nuovamente la barra spaziatrice. Sopra i campi, utilizzare
 **Sposta riquadro in alto** e **Sposta riquadro in basso** per spostarlo di una posizione alla volta.
 
-**Domanda:** Perché una delle mie tessere non ha una freccia, anche se l’opzione “Mostra freccia”
+**Domanda:** Perché una delle mie tessere non ha una freccia, anche se l’opzione «Mostra freccia»
 è attivata?
 
 Risposta: Alla tessera manca il link. Senza una destinazione non è cliccabile e una
@@ -51,26 +51,40 @@ freccia prometterebbe un’azione che non esiste.
 
 **Domanda:** Le immagini sono ritagliate in modo diverso in altezza.
 
-Risposta: Tutte le immagini vengono adattate al formato 16:9 e riempiono
+Risposta: Nel riquadro delle immagini, tutte le immagini vengono adattate al formato 16:9 e riempiono
 completamente l’area dell’immagine. In caso di proporzioni molto diverse, il
 ritaglio risulta diverso. Se possibile, fornite le immagini già nel
 formato 16:9.
 
 **Domanda:** Posso impostare un numero specifico di colonne per i riquadri?
 
-Risposta: No. I riquadri hanno una larghezza fissa e vanno a capo non appena lo
-non c’è più spazio a sufficienza — esattamente come nel widget Portfolio di Staffbase.
+Risposta: Non esattamente, ma tramite le **dimensioni**: **Compatto** dispone molti piccoli
+riquadri uno accanto all’altro, **Normale** circa quattro, **Grande** due. Il numero esatto
+dipende dalla larghezza dello schermo — in questo modo la riga rimane leggibile su tablet
+e telefono.
+
+**Domanda:** La mia icona bianca è quasi invisibile nell’editor.
+
+Risposta: Nella miniatura è su sfondo chiaro. Selezioni sotto
+**Aspetto** la visualizzazione **Riquadro icona** — in questo modo l’elenco e il riquadro immagine
+mostreranno l’icona all’interno del riquadro.
+
+**Domanda:** Tra i colori c’è scritto «Contrasto … difficilmente leggibile».
+
+Risposta: Il carattere e lo sfondo sono troppo vicini; il testo continuo richiede un
+rapporto di almeno 4,5 : 1. Impostate il **carattere** su
+**Automatico** oppure scegliete un colore nettamente più chiaro o più scuro.
 
 **Domanda:** Al posto della finestra vedo solo un campo di testo.
 
-Risposta: La finestra si posiziona al posto del campo non appena
-viene aperta la finestra di dialogo di configurazione. Se ciò non dovesse avvenire, il
-campo di testo rimane visibile come soluzione di ripiego; contiene la versione grezza della configurazione.
-Di norma, riaprendo la finestra di dialogo la finestra riappare.
+Risposta: La finestra si posiziona al posto del campo non appena la
+finestra di dialogo di configurazione è aperta. Se ciò non dovesse riuscire, il
+campo di testo rimane come soluzione di ripiego; contiene la versione grezza della configurazione.
+Di norma, riaprendo la finestra di dialogo la finestra torna visibile.
 
 **Domanda:** Ho creato il widget prima della modifica. Si perderà qualcosa
 ?
 
-Risposta: No. Il widget continua a mostrare i riquadri e la
-freccia precedenti. All’apertura, la finestra riprende questi valori; solo quando si
-apporta una modifica e si seleziona **Applica**, la nuova versione viene salvata.
+Risposta: No. Il widget continua a mostrare i riquadri precedenti e la sua
+freccia. All’apertura, la finestra riprende questi valori; solo quando si
+apporta una modifica e si seleziona **Applica**, viene salvata la nuova versione.

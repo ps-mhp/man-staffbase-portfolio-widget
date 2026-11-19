@@ -51,15 +51,29 @@ Pfeil würde eine Aktion versprechen, die es nicht gibt.
 
 **Frage:** Die Bilder sind unterschiedlich hoch beschnitten.
 
-Antwort: Alle Bilder werden auf 16:9 gebracht und füllen den Bildbereich
+Antwort: In der Bildkachel werden alle Bilder auf 16:9 gebracht und füllen den Bildbereich
 vollständig aus. Bei stark abweichenden Seitenverhältnissen fällt der
 Beschnitt unterschiedlich aus. Liefern Sie die Motive möglichst schon im
 Verhältnis 16:9.
 
 **Frage:** Kann ich die Kacheln auf eine bestimmte Spaltenzahl zwingen?
 
-Antwort: Nein. Die Kacheln haben eine feste Breite und brechen um, sobald der
-Platz nicht mehr reicht — genauso wie beim Staffbase-eigenen Portfolio-Widget.
+Antwort: Nicht genau, aber über die **Größe**: **Kompakt** stellt viele kleine
+Kacheln nebeneinander, **Normal** etwa vier, **Groß** zwei. Wie viele es genau
+sind, hängt von der Breite des Bildschirms ab — so bleibt die Reihe auf Tablet
+und Telefon lesbar.
+
+**Frage:** Mein weißes Icon ist im Editor kaum zu sehen.
+
+Antwort: In der Bildkachel steht es auf hellem Grund. Wählen Sie unter
+**Gestaltung** die Darstellung **Icon-Kasten** — dann zeigen Liste und Bildfeld
+das Icon auf der Fläche des Kastens.
+
+**Frage:** Unter den Farben steht „Kontrast … schwer lesbar“.
+
+Antwort: Schrift und Fläche liegen zu nah beieinander; Fließtext braucht ein
+Verhältnis von mindestens 4,5 : 1. Stellen Sie die **Schrift** auf
+**Automatisch** oder wählen Sie eine deutlich hellere bzw. dunklere Farbe.
 
 **Frage:** Statt des Fensters sehe ich nur ein Textfeld.
 

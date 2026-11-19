@@ -11,13 +11,21 @@ zusätzlich ein Kategorie-Etikett über dem Titel zeigen.
 
 ## Was Leser:innen sehen
 
-Eine Reihe gleich breiter Kacheln, die bei schmalen Bildschirmen umbricht. Jede
-Kachel hat oben ein Bild, darunter — je nach Pflege — ein kleines
-Kategorie-Etikett, den Titel und eine kurze Beschreibung. Rechts oben steht ein
-Pfeil, solange die Kachel ein Ziel hat.
+Ein Raster gleich breiter Kacheln, das sich der Breite des Bildschirms
+anpasst. Zwei Darstellungen stehen zur Wahl:
+
+- **Bildkachel** — oben ein Bild, darunter, je nach Pflege, ein kleines
+  Kategorie-Etikett, der Titel und eine kurze Beschreibung.
+- **Icon-Kasten** — ein Symbol und der Titel mittig auf einer Farbfläche,
+  voreingestellt MAN-Rot mit weißer Schrift.
+
+Beide gibt es in drei Größen: **Kompakt** (viele kleine Kacheln je Reihe),
+**Normal** und **Groß** (Bild links, Text rechts wie eine Nachrichtenliste).
+Fläche und Schrift lassen sich in den Farben der MAN-CI oder frei wählen.
+Rechts oben steht ein Pfeil, solange die Kachel ein Ziel hat.
 
 Beim Überfahren mit der Maus wird die Umrandung kräftiger und Titel und Pfeil
-werden rot. Die ganze Kachel ist der Verweis, nicht nur der Titel.
+werden rot; auf einer Farbfläche wird stattdessen die Fläche etwas dunkler. Die ganze Kachel ist der Verweis, nicht nur der Titel.
 
 ## Was Sie im CMS-Editor sehen
 
@@ -26,6 +34,6 @@ dort allerdings nicht benutzbar — zum Prüfen der Ziele die Vorschau öffnen.
 
 Die Kacheln werden im Vollbild-Fenster **Kacheln bearbeiten** gepflegt: links
 die Liste der Kacheln, in der Mitte die Felder der gewählten, rechts die
-Gestaltung (der Pfeil). Die Reihenfolge lässt sich in der Liste ziehen, und eine
+Gestaltung (Darstellung, Größe, Farben, Pfeil). Die Reihenfolge lässt sich in der Liste ziehen, und eine
 Vorschau zeigt die Reihe in Desktop-, Tablet- und Mobilbreite. Gespeichert wird
 alles in einem Attribut; Widgets aus früheren Fassungen werden weiter gelesen.

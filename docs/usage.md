@@ -12,9 +12,9 @@
 5. Wählen Sie unter **Bild** die Schaltfläche **Aus Mediathek wählen**. Die
    Mediathek öffnet sich rechts als Leiste; sie lässt auch das Hochladen zu.
 6. Wiederholen Sie die Schritte 3 bis 5 für jede weitere Kachel.
-7. Lassen Sie rechts unter **Gestaltung** den Schalter **Pfeil anzeigen**
-   angeschaltet, wenn oben rechts auf jeder verlinkten Kachel ein Pfeil stehen
-   soll.
+7. Wählen Sie rechts unter **Gestaltung** die **Darstellung** und die
+   **Größe** und lassen Sie **Pfeil anzeigen** angeschaltet, wenn oben rechts
+   auf jeder verlinkten Kachel ein Pfeil stehen soll.
 8. Klicken Sie oben auf **Übernehmen** und speichern Sie die Seite.
 9. Prüfen Sie das Ergebnis in der Vorschau.
 
@@ -33,6 +33,40 @@ Weitere steht im Abschnitt **Mehr**, der sich auf- und zuklappen lässt:
 - **In neuem Tab öffnen** — öffnet das Ziel in einem neuen Browser-Tab.
 
 Pflicht ist nur der Titel. Alles andere darf fehlen.
+
+## Icon-Kästen anlegen
+
+So entstehen farbige Kästen mit Symbol und Namen, etwa für Anwendungen oder
+Anlaufstellen:
+
+1. Wählen Sie rechts unter **Gestaltung** bei **Darstellung** den
+   **Icon-Kasten**. Die Kästen stehen auf MAN-Rot mit weißer Schrift.
+2. Wählen Sie bei **Größe** **Kompakt**, wenn viele Kästen in eine Reihe
+   sollen.
+3. Legen Sie je Kachel unter **Icon** ein Symbol aus der Mediathek ab — am
+   besten ein SVG oder PNG mit transparentem Hintergrund in Weiß. Es wird
+   eingepasst, nicht beschnitten.
+4. Wählen Sie bei Bedarf eine andere **Fläche** und **Schrift**. Bleibt die
+   Schrift auf **Automatisch**, wählt das Widget die besser lesbare von Dunkel
+   und Weiß. Ein Hinweis warnt, wenn eine selbst gewählte Kombination schwer
+   lesbar ist.
+
+## Größe und Farben wählen
+
+Unter **Gestaltung** gilt alles für die ganze Reihe:
+
+- **Größe** — **Kompakt** zeigt schmale Kacheln, mehr je Reihe (auf dem
+  Telefon zwei nebeneinander). **Normal** ist die gewohnte Breite. **Groß**
+  stellt Bild und Text nebeneinander wie in einer Nachrichtenliste; auf dem
+  Telefon steht das Bild wieder oben.
+- **Fläche** — **Standard** (Weiß bei der Bildkachel, MAN-Rot beim
+  Icon-Kasten), eine der Farben der MAN-CI oder unter **Eigene Farbe** ein
+  Hex-Wert wie `#E40045` (mit Enter bestätigen).
+- **Schrift** — **Automatisch**, eine Farbe der MAN-CI oder ein eigener
+  Hex-Wert. Sie gilt für Titel, Etikett, Beschreibung und Pfeil.
+
+Die Spaltenzahl passt sich der verfügbaren Breite an; in der Vorschau
+(Desktop, Tablet, Mobil) sehen Sie, wie viele Kacheln nebeneinander stehen.
 
 ## Reihenfolge ändern
 
@@ -66,7 +100,9 @@ Unter **Bild** stehen drei Wege:
 
 Oben im Fenster schaltet der Umschalter zwischen **Editor**, **Desktop**,
 **Tablet** und **Mobil**. Die Vorschau zeigt die Kachelreihe so, wie die Seite
-sie ausgibt — mit dem Pfeil, wie er rechts eingestellt ist.
+sie ausgibt — in der gewählten Darstellung, Größe und den Farben, mit dem
+Pfeil, wie er rechts eingestellt ist. Auch die Spaltenzahl stimmt: Tablet und
+Mobil zeigen so viele Kacheln nebeneinander wie das Gerät.
 
 ## Nachträglich ändern
 

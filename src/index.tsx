@@ -59,8 +59,8 @@ const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
       this._root ??= ReactDOM.createRoot(container);
       // Je Schlüssel: `portfolio-config`, sonst die Altattribute, sonst die
       // Vorgabe — ältere Blöcke ohne das neue Attribut rendern wie bisher.
-      const { tiles, showChevron } = resolvePortfolio(attrs);
-      this._root.render(<Portfolio tiles={tiles} showChevron={showChevron} />);
+      const { tiles, showChevron, design } = resolvePortfolio(attrs);
+      this._root.render(<Portfolio tiles={tiles} showChevron={showChevron} design={design} />);
     }
 
     public unmountBlock(_container: HTMLElement): void {

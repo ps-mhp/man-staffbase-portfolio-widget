@@ -14,6 +14,7 @@
 import React from "react";
 
 import { useHotStyle } from "@shared/hot-style";
+import { DEFAULT_DESIGN, PortfolioDesign, tileColors } from "./portfolio-design";
 import { PortfolioTile } from "./portfolio-tiles";
 import portfolioCss from "./styles/portfolio.scss";
 
@@ -21,6 +22,35 @@ export interface PortfolioProps {
   tiles: PortfolioTile[];
   /** Der Chevron steht am Widget, nicht an der Kachel: eine Reihe mit mal Pfeil und mal keinem liest sich als Fehler. */
   showChevron: boolean;
+  /** Darstellung, Größe und Farben der ganzen Reihe; ohne sie die Bildkachel in Normalgröße. */
+  design?: PortfolioDesign;
+}
+
+/** Die eigenen Eigenschaften, die das Stylesheet liest; React setzt sie per `setProperty`. */
+type DesignStyle = React.CSSProperties & {
+  "--man-portfolio-bg"?: string;
+  "--man-portfolio-ink"?: string;
+};
+
+/**
+ * Klassen und Farben der Reihe. Die Farben laufen über eigene Variablen statt
+ * über `background`/`color` je Kachel: eine fremde `!important`-Regel der
+ * Wirtsseite trifft Eigenschaften, keine Custom Properties.
+ */
+function designAttributes(design: PortfolioDesign): { className: string; style: DesignStyle } {
+  const { background, ink } = tileColors(design);
+  const classes = [
+    "man-portfolio",
+    `man-portfolio--${design.variant}`,
+    `man-portfolio--${design.size}`,
+    ...(background === undefined ? [] : ["man-portfolio--filled"]),
+    ...(ink === undefined ? [] : ["man-portfolio--inked"]),
+  ];
+  const style: DesignStyle = {
+    ...(background === undefined ? {} : { "--man-portfolio-bg": background }),
+    ...(ink === undefined ? {} : { "--man-portfolio-ink": ink }),
+  };
+  return { className: classes.join(" "), style };
 }
 
 /**
@@ -44,6 +74,7 @@ const Chevron = (): React.ReactElement => (
 );
 
 function Tile({ tile, showChevron }: { tile: PortfolioTile; showChevron: boolean }): React.ReactElement {
+  const chevron = tile.link !== undefined && showChevron;
   const body = (
     <>
       {tile.image !== undefined && (
@@ -51,13 +82,14 @@ function Tile({ tile, showChevron }: { tile: PortfolioTile; showChevron: boolean
           <img className="man-portfolio__image" src={tile.image} alt={tile.imageAlt ?? ""} loading="lazy" />
         </div>
       )}
-      <div className="man-portfolio__body">
+      {/* Rechts Platz für den Pfeil nur, wo einer steht — kompakte Kacheln sind schmal. */}
+      <div className={chevron ? "man-portfolio__body man-portfolio__body--chevron" : "man-portfolio__body"}>
         {tile.badge !== undefined && <span className="man-portfolio__badge">{tile.badge}</span>}
         <h3 className="man-portfolio__title">{tile.title}</h3>
         {tile.description !== undefined && (
           <p className="man-portfolio__description">{tile.description}</p>
         )}
-        {tile.link !== undefined && showChevron && <Chevron />}
+        {chevron && <Chevron />}
       </div>
     </>
   );
@@ -83,13 +115,14 @@ function Tile({ tile, showChevron }: { tile: PortfolioTile; showChevron: boolean
  * Die Kachelreihe. Ohne Kacheln gibt sie nichts aus — eine leere Umrandung
  * auf der Seite waere schlimmer als gar nichts.
  */
-export function Portfolio({ tiles, showChevron }: PortfolioProps): React.ReactElement | null {
+export function Portfolio({ tiles, showChevron, design = DEFAULT_DESIGN }: PortfolioProps): React.ReactElement | null {
   const liveCss = useHotStyle(portfolioCss, "portfolio-widget", "styles/portfolio.scss");
 
   if (tiles.length === 0) return null;
 
+  const { className, style } = designAttributes(design);
   return (
-    <div className="man-portfolio">
+    <div className={className} style={style}>
       <style>{liveCss}</style>
       <ul className="man-portfolio__list">
         {tiles.map((tile) => (

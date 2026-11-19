@@ -15,6 +15,7 @@ import { encodePayload } from "@shared/payload";
 
 import {
   chevronShown,
+  designOf,
   editorConfigFrom,
   readChevronFlag,
   readPortfolioConfig,
@@ -83,7 +84,7 @@ describe("resolvePortfolio: alte Blöcke ohne portfolio-config", () => {
   });
 
   it("nimmt ohne alles die Vorgaben: keine Kacheln, Pfeil an", () => {
-    expect(resolvePortfolio({})).toEqual({ tiles: [], showChevron: true });
+    expect(resolvePortfolio({})).toEqual({ tiles: [], showChevron: true, design: { variant: "image", size: "normal" } });
   });
 
   it("ignoriert ein leeres oder kaputtes portfolio-config", () => {
@@ -160,5 +161,42 @@ describe("editorConfigFrom: Öffnen und Übernehmen ändert nichts", () => {
   it("behält frische titellose Kacheln", () => {
     const raw = config({ tiles: [{ title: "" }] });
     expect(editorConfigFrom(raw, {}).tiles).toHaveLength(1);
+  });
+});
+
+describe("Gestaltung in portfolio-config", () => {
+  it("liest Darstellung, Größe und Farben und vereinheitlicht die Farben", () => {
+    const read = readPortfolioConfig(config({ variant: "icon", size: "compact", background: "#e40045", textColor: "fff" }));
+    expect(read).toEqual({ variant: "icon", size: "compact", background: "#E40045", textColor: "#FFFFFF" });
+  });
+
+  it("lässt Unbekanntes und kaputte Farben weg", () => {
+    expect(readPortfolioConfig(config({ variant: "kachel", size: "XL", background: "rot", textColor: 3 }))).toEqual({});
+  });
+
+  it("läuft hin und zurück und schreibt nur, was gesetzt ist", () => {
+    const body = { tiles: [], variant: "icon" as const, size: "large" as const, background: "#303C49" };
+    expect(readPortfolioConfig(serializePortfolioConfig(body))).toEqual(body);
+    expect(readPortfolioConfig(serializePortfolioConfig({ tiles: [] }))).toEqual({ tiles: [] });
+  });
+
+  it("gibt die Gestaltung an Seite und Fenster weiter", () => {
+    const raw = config({ tiles: [{ title: "A" }], variant: "icon", size: "large" });
+    expect(resolvePortfolio({ "portfolio-config": raw }).design).toEqual({ variant: "icon", size: "large" });
+    expect(editorConfigFrom(raw, {})).toMatchObject({ variant: "icon", size: "large" });
+  });
+
+  it("füllt Fehlendes mit der Vorgabe: Bildkachel in Normalgröße", () => {
+    expect(designOf(null)).toEqual({ variant: "image", size: "normal" });
+    expect(designOf({ size: "compact", textColor: "#FFFFFF" })).toEqual({
+      variant: "image",
+      size: "compact",
+      textColor: "#FFFFFF",
+    });
+  });
+
+  it("sieht für einen älteren Block aus wie bisher", () => {
+    const resolved = resolvePortfolio({ tiles: LEGACY_TILES });
+    expect(resolved.design).toEqual({ variant: "image", size: "normal" });
   });
 });

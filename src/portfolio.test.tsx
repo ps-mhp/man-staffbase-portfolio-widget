@@ -111,6 +111,39 @@ describe("Portfolio", () => {
     expect(container.querySelector(".man-portfolio__media")).toBeNull();
   });
 
+  it("traegt ohne Gestaltung die Bildkachel in Normalgroesse und keine Farben", () => {
+    const { container } = render(<Portfolio tiles={[tile()]} showChevron />);
+    const root = container.querySelector(".man-portfolio") as HTMLElement;
+    expect(root.className).toBe("man-portfolio man-portfolio--image man-portfolio--normal");
+    expect(root.style.getPropertyValue("--man-portfolio-bg")).toBe("");
+    expect(root.style.getPropertyValue("--man-portfolio-ink")).toBe("");
+  });
+
+  it("gibt dem Icon-Kasten Klassen und die Farben der Vorgabe", () => {
+    const { container } = render(
+      <Portfolio tiles={[tile({ image: "/icon.svg" })]} showChevron design={{ variant: "icon", size: "compact" }} />,
+    );
+    const root = container.querySelector(".man-portfolio") as HTMLElement;
+    expect(root).toHaveClass("man-portfolio--icon", "man-portfolio--compact", "man-portfolio--filled", "man-portfolio--inked");
+    expect(root.style.getPropertyValue("--man-portfolio-bg")).toBe("#E40045");
+    expect(root.style.getPropertyValue("--man-portfolio-ink")).toBe("#FFFFFF");
+    expect(container.querySelector(".man-portfolio__image")?.getAttribute("src")).toBe("/icon.svg");
+  });
+
+  it("setzt gewaehlte Farben und die Groesse", () => {
+    const { container } = render(
+      <Portfolio
+        tiles={[tile()]}
+        showChevron
+        design={{ variant: "image", size: "large", background: "#303C49", textColor: "#FDE2E8" }}
+      />,
+    );
+    const root = container.querySelector(".man-portfolio") as HTMLElement;
+    expect(root).toHaveClass("man-portfolio--large", "man-portfolio--filled", "man-portfolio--inked");
+    expect(root.style.getPropertyValue("--man-portfolio-bg")).toBe("#303C49");
+    expect(root.style.getPropertyValue("--man-portfolio-ink")).toBe("#FDE2E8");
+  });
+
   it("bringt sein Stylesheet selbst mit", () => {
     const { container } = render(<Portfolio tiles={[tile()]} showChevron />);
     const style = container.querySelector("style");

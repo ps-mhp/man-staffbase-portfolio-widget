@@ -20,6 +20,11 @@
  * hierher: `{"tiles":[…],"showChevron":true}`, Base64-kodiert wie die übrigen
  * JSON-Attribute (`@shared/payload`). Das Format der Kacheln ist unverändert.
  *
+ * Seit 0.2.0 steht dort auch die Gestaltung der Reihe (`variant`, `size`,
+ * `background`, `textColor`, siehe `portfolio-design.ts`). Sie hat kein
+ * Altattribut: fehlt ein Schlüssel, gilt die Vorgabe — so sieht ein älterer
+ * Block aus wie bisher.
+ *
  * Ältere Inhalte tragen nur die einzelnen Felder. Gemischt wird je Schlüssel:
  * neuer Wert, sonst Altattribut, sonst Vorgabe. Ein Schlüssel, der im neuen
  * Attribut fehlt, gilt weiter aus dem alten — so ändert „Öffnen und Übernehmen“
@@ -33,6 +38,15 @@
 import { decodePayload, encodePayload } from "@shared/payload";
 
 import {
+  DEFAULT_DESIGN,
+  PortfolioDesign,
+  PortfolioSize,
+  PortfolioVariant,
+  readColor,
+  readSize,
+  readVariant,
+} from "./portfolio-design";
+import {
   PortfolioTile,
   ParsePortfolioTilesOptions,
   parsePortfolioTiles,
@@ -44,7 +58,17 @@ export interface PortfolioConfig {
   tiles?: PortfolioTile[];
   /** Fehlt der Schlüssel, entscheidet das Altattribut `show-chevron`. */
   showChevron?: boolean;
+  /** Fehlt der Schlüssel, gilt `DEFAULT_DESIGN` — für alle vier. */
+  variant?: PortfolioVariant;
+  size?: PortfolioSize;
+  /** `#RRGGBB`. */
+  background?: string;
+  /** `#RRGGBB`. */
+  textColor?: string;
 }
+
+/** Die Schlüssel der Gestaltung, in der Reihenfolge, in der sie geschrieben werden. */
+const DESIGN_KEYS = ["variant", "size", "background", "textColor"] as const;
 
 /** Die Felder älterer Fassungen, so wie sie am Element oder im Dialog ankommen. */
 export interface LegacyPortfolioAttributes {
@@ -56,6 +80,7 @@ export interface LegacyPortfolioAttributes {
 export interface ResolvedPortfolio {
   tiles: PortfolioTile[];
   showChevron: boolean;
+  design: PortfolioDesign;
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -95,14 +120,38 @@ export function readPortfolioConfig(raw: unknown, options?: ParsePortfolioTilesO
   if (Array.isArray(value.tiles)) config.tiles = parsePortfolioTiles(value.tiles, options);
   const chevron = readChevronFlag(value.showChevron);
   if (chevron !== undefined) config.showChevron = chevron;
-  return config;
+  return { ...config, ...readDesignKeys(value) };
 }
 
-/** Schreibt `portfolio-config`; ein nicht gesetzter Pfeil bleibt weg. */
+/** Nur was gültig ist: eine unbekannte Darstellung oder eine kaputte Farbe fällt weg. */
+function readDesignKeys(value: Record<string, unknown>): Partial<PortfolioDesign> {
+  const read = {
+    variant: readVariant(value.variant),
+    size: readSize(value.size),
+    background: readColor(value.background),
+    textColor: readColor(value.textColor),
+  };
+  return Object.fromEntries(Object.entries(read).filter(([, entry]) => entry !== undefined));
+}
+
+/** Die Gestaltung, die gilt: was gesetzt ist, sonst die Vorgabe. */
+export function designOf(config: PortfolioConfig | null | undefined): PortfolioDesign {
+  return {
+    variant: config?.variant ?? DEFAULT_DESIGN.variant,
+    size: config?.size ?? DEFAULT_DESIGN.size,
+    ...(config?.background === undefined ? {} : { background: config.background }),
+    ...(config?.textColor === undefined ? {} : { textColor: config.textColor }),
+  };
+}
+
+/** Schreibt `portfolio-config`; was nicht gesetzt ist — Pfeil, Gestaltung —, bleibt weg. */
 export function serializePortfolioConfig(config: PortfolioConfig): string {
   const body: Record<string, unknown> = {};
   if (config.tiles !== undefined) body.tiles = portfolioTileEntries(config.tiles);
   if (config.showChevron !== undefined) body.showChevron = config.showChevron;
+  DESIGN_KEYS.forEach((key) => {
+    if (config[key] !== undefined) body[key] = config[key];
+  });
   return encodePayload(JSON.stringify(body));
 }
 
@@ -119,6 +168,7 @@ export function resolvePortfolio(attrs: LegacyPortfolioAttributes & { "portfolio
   return {
     tiles: config?.tiles ?? parsePortfolioTiles(attrs.tiles),
     showChevron: config?.showChevron ?? chevronOf(attrs["show-chevron"]),
+    design: designOf(config),
   };
 }
 
@@ -132,6 +182,7 @@ export function editorConfigFrom(raw: string, legacy: LegacyPortfolioAttributes)
   const config = readPortfolioConfig(raw, { keepUntitled: true });
   const chevron = config?.showChevron ?? readChevronFlag(legacy["show-chevron"]);
   return {
+    ...config,
     tiles: config?.tiles ?? parsePortfolioTiles(legacy.tiles, { keepUntitled: true }),
     ...(chevron === undefined ? {} : { showChevron: chevron }),
   };

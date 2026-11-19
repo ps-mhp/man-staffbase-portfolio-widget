@@ -35,6 +35,19 @@
   color: man("text");
   @include man-type("body");
 
+  // Die Groesse der Kacheln als Satz eigener Variablen: Mindestbreite einer
+  // Spalte, Abstand, Polster, Schriftstufen, Icon. Die Groessen-Klassen
+  // unten setzen nur diese Werte um; die Regeln der Teile lesen sie. So
+  // bleibt die Haertung gegen `man-theme` an einer Stelle, und keine
+  // Groesse braucht einen eigenen, verschachtelten Selektor mit `!important`.
+  --man-portfolio-column: 280px;
+  --man-portfolio-gap: #{man("space-4")};
+  --man-portfolio-pad: #{man("space-4")};
+  --man-portfolio-title-size: 20px;
+  --man-portfolio-text-size: 14px;
+  --man-portfolio-icon: 56px;
+  --man-portfolio-box: 176px;
+
   *,
   *::before,
   *::after {
@@ -42,18 +55,47 @@
   }
 }
 
+/* Kompakt: schmale Spalten, also mehr Kacheln je Reihe — auf dem Telefon
+   noch zwei nebeneinander. */
+.man-portfolio--compact {
+  --man-portfolio-column: 160px;
+  --man-portfolio-gap: #{man("space-3")};
+  --man-portfolio-pad: #{man("space-3")};
+  --man-portfolio-title-size: 16px;
+  --man-portfolio-icon: 40px;
+  --man-portfolio-box: 128px;
+}
+
+/* Gross: breite Spalten, Bild links und Text rechts wie eine
+   Nachrichtenliste. Zwei je Reihe auf dem Schreibtisch, eine auf dem Tablet. */
+.man-portfolio--large {
+  --man-portfolio-column: 440px;
+  --man-portfolio-gap: #{man("space-5")};
+  --man-portfolio-pad: #{man("space-5")};
+  --man-portfolio-title-size: 24px;
+  --man-portfolio-text-size: 16px;
+  --man-portfolio-icon: 64px;
+}
+
 /* `man-theme` gestaltet Listen im Inhaltsbereich selbst: eine eigene Regel mit
  * Gewicht raeumt `list-style-type` weg, zieht aber ueber `padding-left` wieder
  * einen Einzug ein und haengt per `::before` ein rotes Markenquadrat vor jeden
  * Eintrag. Bei `box-sizing: border-box` schrumpft dadurch die Kachel, und der
  * `gap`-Rhythmus der Reihe geht verloren. `margin`, `padding` und `list-style`
- * muessen deshalb gehaertet werden — `display`, `flex-wrap` und `gap` bleiben
- * aussen vor, weil daran nichts mit Gewicht ruettelt und sie unveraendert
- * durchgereicht werden sollen. */
+ * muessen deshalb gehaertet werden — `display`, das Raster und `gap` bleiben
+ * aussen vor, weil daran nichts mit Gewicht ruettelt.
+ *
+ * Ein Raster mit `auto-fill`: jede Spalte mindestens so breit wie die Groesse
+ * verlangt, der Rest der Reihe wird gleichmaessig verteilt. Wie viele Spalten
+ * passen, haengt allein an der Breite der Reihe, nicht am Fenster — darum
+ * stimmt auch die Geraeteansicht im Editor, die kein eigenes Fenster hat.
+ * `min(100%, …)` haelt eine Spalte auf schmalen Schirmen im Rahmen.
+ * `auto-fill` statt `auto-fit`: zwei Kacheln in einer breiten Reihe bleiben
+ * so breit wie in einer vollen, statt sich ueber die ganze Breite zu ziehen. */
 .man-portfolio__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: man("space-4");
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--man-portfolio-column)), 1fr));
+  gap: var(--man-portfolio-gap);
 
   @include man-outshine-host {
     margin: 0 !important;
@@ -62,18 +104,15 @@
   }
 }
 
-/* Feste Breite mit Umbruch statt einer Spaltenzahl — wie das native Widget.
-   `max-width: 100%` haelt die Kachel auf schmalen Schirmen im Rahmen.
-   `flex`, `max-width` und `min-width` bleiben ausserhalb der Haertung: keine
-   Regel der Wirtsseite hat an diesen Eigenschaften Gewicht, sie betreffen
-   allein das Flex-Layout dieses Widgets. Gehaertet werden nur `margin`,
-   `padding` und `list-style` sowie `::before`, denn genau dort setzt
-   `man-theme` mit `!important` an und zeichnet pro Eintrag ein rotes
-   Markenquadrat, das sonst vor jeder Kachel steht. */
+/* Jeder Eintrag ist ein Container: die grosse Kachel stellt sich nach ihrer
+   eigenen Breite von uebereinander auf nebeneinander um, nicht nach der des
+   Fensters. Gehaertet werden nur `margin`, `padding` und `list-style` sowie
+   `::before`, denn genau dort setzt `man-theme` mit `!important` an und
+   zeichnet pro Eintrag ein rotes Markenquadrat, das sonst vor jeder Kachel
+   steht. */
 .man-portfolio__item {
-  flex: 0 0 280px;
-  max-width: 100%;
   min-width: 0;
+  container-type: inline-size;
 
   @include man-outshine-host {
     margin: 0 !important;
@@ -87,6 +126,7 @@
 }
 
 .man-portfolio__tile {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -100,6 +140,7 @@
   // den Hover-Fall unten ohne weiteres Spezifitaets-Wettruesten.
   --man-portfolio-title-color: #{man("text")};
   --man-portfolio-chevron-color: #{man("slate")};
+  --man-portfolio-muted-color: #{man("text-muted")};
 
   @include man-outshine-host {
     color: inherit !important;
@@ -109,7 +150,9 @@
     // Wirtsseite setzt die Kurzform `transition: color …` und wuerde den
     // eigenen Wert dabei vollstaendig ersetzen — die Kante spraenge beim
     // Ueberfahren hart statt weich.
-    transition: border-color man("duration") man("ease") !important;
+    transition:
+      border-color man("duration") man("ease"),
+      background-color man("duration") man("ease") !important;
 
     &:hover,
     &:focus,
@@ -121,6 +164,23 @@
       @include man-focus-ring($important: true);
     }
   }
+}
+
+/* Gewaehlte Farben. Sie kommen als `--man-portfolio-bg` und
+   `--man-portfolio-ink` am Wurzelelement (siehe `portfolio.tsx`). Die Kante
+   ist ein Hauch dunkler als die Flaeche: auf Weiss die gewohnte Haarlinie,
+   auf Rot kaum zu sehen. Ohne `color-mix` bleibt die Haarlinie. */
+.man-portfolio--filled .man-portfolio__tile {
+  border-color: color-mix(in srgb, var(--man-portfolio-bg) 85%, #000);
+  background: var(--man-portfolio-bg);
+}
+
+/* Eine gewaehlte Schrift gilt fuer Titel, Etikett, Beschreibung und Pfeil
+   gleichermassen — gedaempftes Grau auf einer Farbflaeche waere unleserlich. */
+.man-portfolio--inked .man-portfolio__tile {
+  --man-portfolio-title-color: var(--man-portfolio-ink);
+  --man-portfolio-chevron-color: var(--man-portfolio-ink);
+  --man-portfolio-muted-color: var(--man-portfolio-ink);
 }
 
 /* 16:9 mit `cover`: eine Reihe ungleich beschnittener Motive steht trotzdem buendig. */
@@ -136,26 +196,35 @@
   object-fit: cover;
 }
 
-/* Rechts mehr Polsterung: dort sitzt der Chevron. */
 .man-portfolio__body {
   position: relative;
   flex: 1 1 auto;
-  padding: man("space-4") man("space-7") man("space-4") man("space-4");
+  min-width: 0;
+  padding: var(--man-portfolio-pad);
+}
+
+/* Rechts mehr Polsterung, wo der Chevron sitzt. */
+.man-portfolio__body--chevron {
+  padding-right: calc(var(--man-portfolio-pad) + 32px);
 }
 
 .man-portfolio__badge {
   display: block;
   margin-bottom: man("space-1");
-  color: man("text-muted");
+  color: var(--man-portfolio-muted-color);
   @include man-type("eyebrow");
 }
 
 .man-portfolio__title {
   transition: color man("duration") man("ease");
+  overflow-wrap: break-word;
+  hyphens: auto;
 
   @include man-outshine-host {
     @include man-type("h4", $important: true);
 
+    // Die Stufe folgt der Groesse; `man-type` oben setzt die der Normalgroesse.
+    font-size: var(--man-portfolio-title-size) !important;
     margin: 0 !important;
     color: var(--man-portfolio-title-color) !important;
   }
@@ -165,28 +234,141 @@
   @include man-outshine-host {
     @include man-type("body-s", $important: true);
 
+    font-size: var(--man-portfolio-text-size) !important;
     margin: man("space-2") 0 0 !important;
-    color: man("text-muted") !important;
+    color: var(--man-portfolio-muted-color) !important;
   }
+}
+
+/* Kompakt ist schmal: lange Beschreibungen enden nach drei Zeilen, damit eine
+   Kachel die Reihe nicht in die Hoehe zieht. */
+.man-portfolio--compact .man-portfolio__description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 /* Der Chevron ist gestrichen, nicht gefuellt; `color` steuert ihn ueber
    `stroke="currentColor"` im SVG. */
 .man-portfolio__chevron {
   position: absolute;
-  top: man("space-4");
-  right: man("space-4");
+  top: var(--man-portfolio-pad);
+  right: var(--man-portfolio-pad);
   color: var(--man-portfolio-chevron-color);
   transition: color man("duration") man("ease");
 }
 
+/* Gross mit Bild: nebeneinander, sobald die Kachel breit genug ist — sonst
+   (Telefon, schmale Spalte) wie die normale Kachel uebereinander. Das Bild
+   ist mindestens 16:9 der eigenen Breite hoch (Prozent-Polster zaehlt von
+   der Breite) und waechst mit, wenn der Text hoeher ist; `cover` fuellt es. */
+@container (min-width: 420px) {
+  .man-portfolio--large.man-portfolio--image .man-portfolio__tile {
+    flex-direction: row;
+  }
+
+  .man-portfolio--large.man-portfolio--image .man-portfolio__media {
+    position: relative;
+    flex: 0 0 40%;
+    aspect-ratio: auto;
+
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 56.25%;
+    }
+  }
+
+  .man-portfolio--large.man-portfolio--image .man-portfolio__image {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+/* Icon-Kasten: Icon und Text mittig auf der Flaeche. Das Icon wird
+   eingepasst, nicht beschnitten — ein Symbol ohne Rand ist kein Symbol mehr.
+   Der Pfeil sitzt klein in der Ecke des Kastens statt neben dem Titel. */
+.man-portfolio--icon .man-portfolio__tile {
+  align-items: center;
+  justify-content: center;
+  gap: man("space-2");
+  min-height: var(--man-portfolio-box);
+  padding: var(--man-portfolio-pad);
+  text-align: center;
+}
+
+.man-portfolio--icon .man-portfolio__media {
+  flex: none;
+  width: 100%;
+  height: var(--man-portfolio-icon);
+  aspect-ratio: auto;
+  overflow: visible;
+}
+
+.man-portfolio--icon .man-portfolio__image {
+  object-fit: contain;
+}
+
+.man-portfolio--icon .man-portfolio__body {
+  position: static;
+  flex: 0 1 auto;
+  width: 100%;
+  padding: 0;
+}
+
+/* Mittig, aber nicht unter den Pfeil in der Ecke: links wie rechts frei. */
+.man-portfolio--icon .man-portfolio__body--chevron {
+  padding-inline: 20px;
+}
+
+.man-portfolio--icon .man-portfolio__chevron {
+  top: man("space-2");
+  right: man("space-2");
+  width: 16px;
+  height: 16px;
+}
+
+/* Gross als Icon-Kasten: Icon links, Text rechts, linksbuendig. Bleibt auch
+   schmal nebeneinander — das Icon braucht kaum Platz. */
+.man-portfolio--icon.man-portfolio--large .man-portfolio__tile {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: man("space-5");
+  min-height: 0;
+  text-align: left;
+}
+
+.man-portfolio--icon.man-portfolio--large .man-portfolio__media {
+  width: var(--man-portfolio-icon);
+}
+
+.man-portfolio--icon.man-portfolio--large .man-portfolio__body {
+  flex: 1 1 auto;
+  width: auto;
+  padding: 0 man("space-5") 0 0;
+}
+
 /* Nur fuer Zeigegeraete mit echtem Hover. Das man-theme haengt diese Regeln
    an `html.mouse`; diese Klasse setzt das Theme, und das Widget soll ohne es
-   auskommen. */
+   auskommen. Gewaehlte Farben behalten ihre Schrift — Rot auf einer
+   gewaehlten Flaeche waere Zufall —; eine Farbflaeche dunkelt stattdessen
+   leicht ab. */
 @media (hover: hover) {
   .man-portfolio__tile:hover {
     border-color: man("border-strong");
     --man-portfolio-title-color: #{man("red")};
     --man-portfolio-chevron-color: #{man("red")};
+  }
+
+  .man-portfolio--inked .man-portfolio__tile:hover {
+    --man-portfolio-title-color: var(--man-portfolio-ink);
+    --man-portfolio-chevron-color: var(--man-portfolio-ink);
+  }
+
+  .man-portfolio--filled .man-portfolio__tile:hover {
+    border-color: color-mix(in srgb, var(--man-portfolio-bg) 70%, #000);
+    background: color-mix(in srgb, var(--man-portfolio-bg) 88%, #000);
   }
 }

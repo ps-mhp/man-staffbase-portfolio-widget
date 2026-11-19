@@ -119,4 +119,48 @@ describe("Stylesheet", () => {
     const hover = portfolioStyles.match(/\.man-portfolio__tile:hover\s*\{[^}]*\}/)?.[0] ?? "";
     expect(hover).toMatch(/--man-portfolio-title-color:\s*var\(--man-red, #e40045\)/);
   });
+
+  it("stellt die Kacheln in ein Raster, dessen Spalten an der Breite der Reihe haengen", () => {
+    const rule = portfolioStyles.match(/\.man-portfolio__list\s*\{[^}]*\}/)?.[0] ?? "";
+    expect(rule).toMatch(/display:\s*grid/);
+    expect(rule).toMatch(/grid-template-columns:\s*repeat\(auto-fill,\s*minmax\(min\(100%,\s*var\(--man-portfolio-column\)\),\s*1fr\)\)/);
+    expect(rule).toMatch(/gap:\s*var\(--man-portfolio-gap\)/);
+  });
+
+  it.each([
+    ["man-portfolio", "280px"],
+    ["man-portfolio--compact", "160px"],
+    ["man-portfolio--large", "440px"],
+  ])("setzt in %s die Mindestbreite der Spalte auf %s", (className, width) => {
+    const rule = portfolioStyles.match(new RegExp(`\\.${className}\\s*\\{[^}]*\\}`))?.[0] ?? "";
+    expect(rule).toContain(`--man-portfolio-column: ${width}`);
+  });
+
+  it("stellt die grosse Bildkachel nach ihrer eigenen Breite um, nicht nach dem Fenster", () => {
+    expect(portfolioStyles).toMatch(/\.man-portfolio__item\s*\{[^}]*container-type:\s*inline-size/);
+    expect(portfolioStyles).toMatch(
+      /@container \(min-width: 420px\)\s*\{\s*\.man-portfolio--large\.man-portfolio--image \.man-portfolio__tile\s*\{[^}]*flex-direction:\s*row/,
+    );
+  });
+
+  it("passt das Icon ein, statt es zu beschneiden", () => {
+    expect(portfolioStyles).toMatch(/\.man-portfolio--icon \.man-portfolio__image\s*\{[^}]*object-fit:\s*contain/);
+  });
+
+  it("nimmt gewaehlte Farben ueber eigene Variablen", () => {
+    expect(portfolioStyles).toMatch(/\.man-portfolio--filled \.man-portfolio__tile\s*\{[^}]*background:\s*var\(--man-portfolio-bg\)/);
+    expect(portfolioStyles).toMatch(
+      /\.man-portfolio--inked \.man-portfolio__tile\s*\{[^}]*--man-portfolio-title-color:\s*var\(--man-portfolio-ink\)/,
+    );
+  });
+
+  it("faerbt den Titel einer gewaehlten Schrift beim Ueberfahren nicht rot", () => {
+    const hover = portfolioStyles.match(/\.man-portfolio--inked \.man-portfolio__tile:hover\s*\{[^}]*\}/)?.[0] ?? "";
+    expect(hover).toMatch(/--man-portfolio-title-color:\s*var\(--man-portfolio-ink\)/);
+  });
+
+  it("haelt die Titelgroesse ueber eine Variable gegen die Wirtsseite", () => {
+    const rule = portfolioStyles.match(outshineRule(portfolioStyles, "man-portfolio__title"))?.[0] ?? "";
+    expect(rule).toMatch(/font-size:\s*var\(--man-portfolio-title-size\)\s*!important/);
+  });
 });

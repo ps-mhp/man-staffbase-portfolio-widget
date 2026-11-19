@@ -31,14 +31,17 @@ export function TileEditorHelp(): ReactElement {
         die Kachel nicht auf der Seite, bleibt hier aber erhalten.
       </li>
       <li>
-        Das <strong>Bild</strong> kommt aus der Mediathek (auch per Ziehen aus der Leiste) oder von einer Adresse. Es wird
-        auf 16:9 beschnitten.
+        Das <strong>Bild</strong> kommt aus der Mediathek (auch per Ziehen aus der Leiste) oder von einer Adresse. In der
+        Bildkachel wird es auf 16:9 beschnitten, im Icon-Kasten eingepasst.
       </li>
       <li>
         Unter <strong>Mehr</strong> stehen Etikett, Beschreibung, Alternativtext und „In neuem Tab öffnen“.
       </li>
       <li>
-        Rechts schaltet <strong>Pfeil anzeigen</strong> den Pfeil auf allen verlinkten Kacheln gemeinsam.
+        Rechts unter <strong>Gestaltung</strong> steht, was für die ganze Reihe gilt: die <strong>Darstellung</strong>{" "}
+        (Bildkachel oder Icon-Kasten), die <strong>Größe</strong> (Kompakt, Normal, Groß), <strong>Fläche</strong> und{" "}
+        <strong>Schrift</strong> sowie <strong>Pfeil anzeigen</strong>. „Automatisch“ wählt die Schrift, die sich auf der
+        Fläche am besten liest; ein Hinweis warnt, wenn eine gewählte Farbe schwer lesbar ist.
       </li>
       <li>In Desktop, Tablet und Mobil zeigt die Vorschau die Reihe so, wie die Seite sie ausgibt.</li>
     </ul>

@@ -31,6 +31,7 @@ import { ItemActions } from "@man/config-ui/sidebar/item-actions";
 import { MediaClient } from "@shared/media/media-client";
 import { PickedMedia } from "@shared/media/media-picker";
 
+import { PortfolioVariant } from "./portfolio-design";
 import { PortfolioTile } from "./portfolio-tiles";
 import { TileImageField } from "./tile-image-field";
 import { Tiles } from "./use-tiles";
@@ -41,7 +42,21 @@ export interface TileFormProps {
   client: MediaClient;
   onPick: () => void;
   onDropPick: (tileId: string, picked: PickedMedia) => void;
+  /** Bestimmt, ob das Bild beschnitten (Bildkachel) oder eingepasst wird (Icon-Kasten). */
+  variant: PortfolioVariant;
+  /** Fläche des Icon-Kastens, auf der die Vorschau des Icons steht. */
+  iconBackground?: string;
 }
+
+/** Wie der Abschnitt „Bild“ in der jeweiligen Darstellung heißt und was er verspricht. */
+const IMAGE_SECTION: Record<PortfolioVariant, { title: string; aside: string; hint: string }> = {
+  image: { title: "Bild", aside: "16:9", hint: "Die Bilder werden auf 16:9 beschnitten." },
+  icon: {
+    title: "Icon",
+    aside: "eingepasst",
+    hint: "Ein Symbol oder Logo, am besten SVG oder PNG mit transparentem Hintergrund. Es wird eingepasst, nicht beschnitten.",
+  },
+};
 
 /** Leer heißt „nicht gesetzt“: das Feld fällt dann aus dem Attribut. */
 const orUndefined = (text: string): string | undefined => (text === "" ? undefined : text);
@@ -86,8 +101,9 @@ function MoreSection({ tile, onPatch }: { tile: PortfolioTile; onPatch: (c: Part
   );
 }
 
-export function TileForm({ tiles, total, client, onPick, onDropPick }: TileFormProps): ReactElement {
+export function TileForm({ tiles, total, client, onPick, onDropPick, variant, iconBackground }: TileFormProps): ReactElement {
   const { tile, index } = tiles;
+  const section = IMAGE_SECTION[variant];
   if (tile === undefined) {
     return <p className="px-10 py-6 text-sm text-muted-foreground">Wähle links eine Kachel oder lege eine neue an.</p>;
   }
@@ -110,9 +126,11 @@ export function TileForm({ tiles, total, client, onPick, onDropPick }: TileFormP
         </div>
         {/* Je Kachel eine eigene Instanz: das Adressfeld hält eine noch ungültige Eingabe fest. */}
         <ContentSection key={`content-${tile.id}`} tile={tile} onPatch={tiles.patch} />
-        <FormSection key={`image-${tile.id}`} title="Bild" aside="16:9">
+        <FormSection key={`image-${tile.id}`} title={section.title} aside={section.aside}>
           <TileImageField
             image={tile.image}
+            hint={section.hint}
+            thumbBackground={variant === "icon" ? iconBackground : undefined}
             client={client}
             onPick={onPick}
             onUrlChange={(url) => tiles.patch({ image: orUndefined(url) })}

@@ -15,9 +15,9 @@
  * Der Redaktionsdialog der Kacheln im Vollbild-Rahmen von `@man/config-ui`.
  *
  * Links die Kacheln in Reihenfolge der Reihe, in der Mitte die Felder der
- * gewählten, rechts „Gestaltung“ mit dem Pfeil, der für alle Kacheln gilt. In
- * den Geräteansichten steht statt der Felder die echte Leseansicht
- * (`TilePreview`).
+ * gewählten, rechts „Gestaltung“ mit Darstellung, Größe, Farben und Pfeil —
+ * alles für die ganze Reihe (`design-inspector.tsx`). In den Geräteansichten
+ * steht statt der Felder die echte Leseansicht (`TilePreview`).
  *
  * Er schreibt nichts selbst zurück und zeichnet keine Knöpfe zum Übernehmen
  * oder Abbrechen: Kopf, Status, Rückgängig und Rückfrage kommen aus dem
@@ -32,14 +32,14 @@
 
 import * as React from "react";
 import { ReactElement, useMemo } from "react";
-import { SwitchRow } from "@man/config-ui/form/switch-row";
-import { InspectorPanel } from "@man/config-ui/inspector/inspector-panel";
 import { ConfigWorkspace } from "@man/config-ui/layout/config-workspace";
 import { MediaClient, createMediaClient } from "@shared/media/media-client";
 import { PickedMedia } from "@shared/media/media-picker";
 import { useMediaPanel } from "@shared/media/use-media-panel";
 
-import { PortfolioConfig, chevronShown } from "./portfolio-config";
+import { DesignInspector } from "./design-inspector";
+import { PortfolioConfig, designOf } from "./portfolio-config";
+import { tileColors } from "./portfolio-design";
 import { PortfolioTile } from "./portfolio-tiles";
 import { TileForm } from "./tile-form";
 import { TilePreview } from "./tile-preview";
@@ -82,6 +82,10 @@ export function TileEditor({ value, onChange, mediaClient }: TileEditorProps): R
   const tiles = useTiles(value.tiles, (next) => onChange({ ...value, tiles: next }));
   const media = useMediaPanel(client);
   const { tile, index, patchTile } = tiles;
+  const design = designOf(value);
+  // Im Icon-Kasten zeigen Vorschaubilder die Fläche: ein weißes Icon auf
+  // hellem Grund wäre sonst unsichtbar.
+  const iconBackground = design.variant === "icon" ? tileColors(design).background : undefined;
 
   /** Das gewählte Bild in die Kachel, die gefragt hat — auch wenn inzwischen eine andere gewählt ist. */
   const place = (tileId: string, picked: PickedMedia): void => {
@@ -94,7 +98,7 @@ export function TileEditor({ value, onChange, mediaClient }: TileEditorProps): R
     if (tile === undefined) return;
     const tileId = tile.id;
     media.openMedia({
-      title: `Bild für Kachel ${index + 1}`,
+      title: `${design.variant === "icon" ? "Icon" : "Bild"} für Kachel ${index + 1}`,
       accept: "images",
       onSelect: (picked) => place(tileId, picked),
     });
@@ -111,22 +115,21 @@ export function TileEditor({ value, onChange, mediaClient }: TileEditorProps): R
             onSelect={tiles.select}
             onAdd={tiles.add}
             onReorder={tiles.reorder}
+            iconBackground={iconBackground}
           />
         }
-        inspector={
-          <InspectorPanel title="Gestaltung">
-            <SwitchRow
-              label="Pfeil anzeigen"
-              hint="Gilt für alle Kacheln."
-              checked={chevronShown(value)}
-              onCheckedChange={(showChevron) => onChange({ ...value, showChevron })}
-              data-testid="tile-chevron"
-            />
-          </InspectorPanel>
-        }
+        inspector={<DesignInspector value={value} onChange={(next) => onChange({ ...next, tiles: next.tiles ?? value.tiles })} />}
         preview={<TilePreview config={value} />}
       >
-        <TileForm tiles={tiles} total={value.tiles.length} client={client} onPick={openMedia} onDropPick={place} />
+        <TileForm
+          tiles={tiles}
+          total={value.tiles.length}
+          client={client}
+          onPick={openMedia}
+          onDropPick={place}
+          variant={design.variant}
+          iconBackground={iconBackground}
+        />
       </ConfigWorkspace>
       {media.overlay}
     </div>

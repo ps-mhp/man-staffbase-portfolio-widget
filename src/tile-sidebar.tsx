@@ -34,6 +34,8 @@ export interface TileSidebarProps {
   onSelect: (id: string) => void;
   onAdd: () => void;
   onReorder: (ids: string[]) => void;
+  /** Fläche des Icon-Kastens: Vorschaubilder stehen darauf und werden eingepasst. */
+  iconBackground?: string;
 }
 
 const EMPTY_STATE = (
@@ -48,28 +50,31 @@ export function tileDescription(tile: PortfolioTile): string | undefined {
   return parts.length === 0 ? undefined : parts.join(" · ");
 }
 
-function TileThumb({ tile }: { tile: PortfolioTile }): ReactElement {
+function TileThumb({ tile, iconBackground }: { tile: PortfolioTile; iconBackground: string | undefined }): ReactElement {
   if (tile.image === undefined || tile.image === "") {
     return <ImageIcon className="size-4 text-muted-foreground" aria-hidden />;
+  }
+  if (iconBackground !== undefined) {
+    return <img src={tile.image} alt="" style={{ background: iconBackground, objectFit: "contain", padding: 6 }} />;
   }
   return <img src={tile.image} alt="" />;
 }
 
-function listItems(tiles: readonly PortfolioTile[]): ListItem[] {
+function listItems(tiles: readonly PortfolioTile[], iconBackground: string | undefined): ListItem[] {
   return tiles.map((tile) => ({
     id: tile.id,
     label: tile.title.trim() === "" ? "Ohne Titel" : tile.title,
     description: tileDescription(tile),
-    thumbnail: <TileThumb tile={tile} />,
+    thumbnail: <TileThumb tile={tile} iconBackground={iconBackground} />,
   }));
 }
 
-export function TileSidebar({ tiles, selectedId, onSelect, onAdd, onReorder }: TileSidebarProps): ReactElement {
+export function TileSidebar({ tiles, selectedId, onSelect, onAdd, onReorder, iconBackground }: TileSidebarProps): ReactElement {
   return (
     <SidebarPanel title="Kacheln" count={tiles.length} addLabel="Neue Kachel" onAdd={onAdd}>
       <ItemList
         aria-label="Kacheln"
-        items={listItems(tiles)}
+        items={listItems(tiles, iconBackground)}
         selectedId={selectedId}
         onSelect={onSelect}
         onReorder={onReorder}

@@ -19,7 +19,7 @@
  * den Status, bevor der Editor da ist. Darum nichts aus `@man/config-ui`.
  */
 
-import { PortfolioConfig, chevronShown } from "./portfolio-config";
+import { PortfolioConfig, chevronShown, designOf } from "./portfolio-config";
 import { PortfolioTile, newTileId } from "./portfolio-tiles";
 
 /** Verschiebt den Eintrag an `from` auf die Stelle `to`; am Rand bleibt die Liste, wie sie ist. */
@@ -81,14 +81,22 @@ export function changedTileCount(draft: readonly PortfolioTile[], saved: readonl
   return count + saved.filter((tile) => !kept.has(tile.id)).length;
 }
 
+/** Ob Darstellung, Größe oder Farben abweichen — gemessen an dem, was gilt, nicht an gesetzten Schlüsseln. */
+function designChanged(draft: PortfolioConfig, saved: PortfolioConfig): boolean {
+  const [a, b] = [designOf(draft), designOf(saved)];
+  return a.variant !== b.variant || a.size !== b.size || a.background !== b.background || a.textColor !== b.textColor;
+}
+
 /**
  * Was am Status steht, solange etwas offen ist: „1 Kachel geändert“,
- * „3 Kacheln geändert, Pfeil geändert“; `undefined`, wenn nichts abweicht.
+ * „3 Kacheln geändert, Gestaltung geändert, Pfeil geändert“; `undefined`,
+ * wenn nichts abweicht.
  */
 export function tileChangesStatus(draft: PortfolioConfig, saved: PortfolioConfig): string | undefined {
   const count = changedTileCount(draft.tiles ?? [], saved.tiles ?? []);
   const parts: string[] = [];
   if (count > 0) parts.push(count === 1 ? "1 Kachel geändert" : `${count} Kacheln geändert`);
+  if (designChanged(draft, saved)) parts.push("Gestaltung geändert");
   if (chevronShown(draft) !== chevronShown(saved)) parts.push("Pfeil geändert");
   return parts.length === 0 ? undefined : parts.join(", ");
 }

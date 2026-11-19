@@ -75,3 +75,15 @@ describe("tileChangesStatus", () => {
     expect(chevronShown({})).toBe(true);
   });
 });
+
+describe("tileChangesStatus: Gestaltung", () => {
+  it("meldet eine geänderte Darstellung, Größe oder Farbe", () => {
+    expect(tileChangesStatus({ tiles: [], variant: "icon" }, { tiles: [] })).toBe("Gestaltung geändert");
+    expect(tileChangesStatus({ tiles: [], size: "large" }, { tiles: [] })).toBe("Gestaltung geändert");
+    expect(tileChangesStatus({ tiles: [], background: "#FFFFFF" }, { tiles: [] })).toBe("Gestaltung geändert");
+  });
+
+  it("zählt eine ausdrücklich gesetzte Vorgabe nicht als Änderung", () => {
+    expect(tileChangesStatus({ tiles: [], variant: "image", size: "normal" }, { tiles: [] })).toBeUndefined();
+  });
+});

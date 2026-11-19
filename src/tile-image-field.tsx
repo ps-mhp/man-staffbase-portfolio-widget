@@ -13,7 +13,8 @@
 
 /**
  * Das Bild einer Kachel als Medienzeile wie im Screen: Vorschau (16:9),
- * daneben Dateiname und „Aus Mediathek wählen“ / „Adresse einfügen“.
+ * daneben Dateiname und „Aus Mediathek wählen“ / „Adresse einfügen“. Im
+ * Icon-Kasten steht die Vorschau eingepasst auf dessen Fläche.
  *
  * Das ganze Feld ist eine Ablagezone für Kacheln aus der Mediathek-Leiste;
  * der Knopf bleibt der Weg für Tastatur und Screenreader. „Adresse einfügen“
@@ -39,6 +40,10 @@ export interface TileImageFieldProps {
   client: MediaClient;
   /** Ablegen aus der Mediathek-Leiste. */
   onDrop: (picked: PickedMedia) => void;
+  /** Der Satz unter dem Feld: was mit dem Bild geschieht. */
+  hint: string;
+  /** Gesetzt im Icon-Kasten: die Vorschau steht eingepasst auf dieser Fläche. */
+  thumbBackground?: string;
 }
 
 /** Der letzte Teil der Adresse — was man als Dateinamen wiedererkennt. */
@@ -98,7 +103,16 @@ function AddressInput({ id, current, onCommit }: { id: string; current: string; 
   );
 }
 
-export function TileImageField({ image, onPick, onUrlChange, onClear, client, onDrop }: TileImageFieldProps): ReactElement {
+export function TileImageField({
+  image,
+  onPick,
+  onUrlChange,
+  onClear,
+  client,
+  onDrop,
+  hint,
+  thumbBackground,
+}: TileImageFieldProps): ReactElement {
   const base = useId();
   const [urlOpen, setUrlOpen] = useState(false);
   const drop = useMediaDrop({ client, accept: "images", onPick: onDrop });
@@ -109,7 +123,12 @@ export function TileImageField({ image, onPick, onUrlChange, onClear, client, on
       <div className="flex flex-wrap items-center gap-4">
         {hasImage ? (
           <img
-            className="h-[90px] w-40 shrink-0 rounded-md border bg-stage object-cover"
+            className={
+              thumbBackground === undefined
+                ? "h-[90px] w-40 shrink-0 rounded-md border bg-stage object-cover"
+                : "h-[90px] w-40 shrink-0 rounded-md border object-contain p-4"
+            }
+            style={thumbBackground === undefined ? undefined : { background: thumbBackground }}
             src={image}
             alt=""
             data-testid="tile-image-thumb"
@@ -174,7 +193,7 @@ export function TileImageField({ image, onPick, onUrlChange, onClear, client, on
           {drop.error}
         </p>
       )}
-      <p className={HINT}>Die Bilder werden auf 16:9 beschnitten.</p>
+      <p className={HINT}>{hint}</p>
     </DropZone>
   );
 }

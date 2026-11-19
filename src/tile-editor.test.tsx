@@ -20,6 +20,7 @@
 
 import * as React from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MediaClient } from "@shared/media/media-client";
 
 import { PortfolioTile } from "./portfolio-tiles";
@@ -208,8 +209,59 @@ describe("TileEditor: Gestaltung", () => {
     expect(latest().tiles).toHaveLength(3);
   });
 
-  it("zeigt den Hinweis „Gilt für alle Kacheln.“", () => {
+  it("sagt, dass die Gestaltung für die ganze Reihe gilt", () => {
     setup(three());
-    expect(screen.getByText("Gilt für alle Kacheln.")).toBeInTheDocument();
+    expect(screen.getByText("Gilt für alle Kacheln der Reihe.")).toBeInTheDocument();
+  });
+
+  it("wechselt zum Icon-Kasten und nennt das Bild dann Icon", () => {
+    const { latest } = setup(three());
+    expect(screen.getByTestId("portfolio-variant-image")).toHaveAttribute("aria-pressed", "true");
+    fireEvent.click(screen.getByTestId("portfolio-variant-icon"));
+    expect(latest().variant).toBe("icon");
+    expect(latest().tiles).toHaveLength(3);
+    expect(screen.getByTestId("portfolio-variant-icon")).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("heading", { name: "Icon" })).toBeInTheDocument();
+    expect(screen.getByText(/wird eingepasst, nicht beschnitten/)).toBeInTheDocument();
+  });
+
+  it("wählt die Größe über die Pills", async () => {
+    const { latest } = setup(three());
+    expect(screen.getByRole("radio", { name: "Normal" })).toHaveAttribute("aria-checked", "true");
+    await userEvent.click(screen.getByRole("radio", { name: "Groß" }));
+    expect(latest().size).toBe("large");
+    expect(screen.getByText(/Bild links und Text rechts/)).toBeInTheDocument();
+  });
+
+  it("setzt die Fläche aus der Palette und nimmt sie mit „Standard“ wieder heraus", () => {
+    const { latest } = setup(three());
+    const background = within(screen.getByTestId("portfolio-background"));
+    fireEvent.click(background.getByRole("radio", { name: "Anthrazit (#303C49)" }));
+    expect(latest().background).toBe("#303C49");
+    fireEvent.click(background.getByRole("radio", { name: "Standard" }));
+    expect(latest()).not.toHaveProperty("background");
+  });
+
+  it("übernimmt eine eigene Schriftfarbe erst, wenn sie lesbar ist", () => {
+    const { latest, onChange } = setup(three());
+    const input = screen.getByTestId("portfolio-text-color-hex");
+    fireEvent.change(input, { target: { value: "#12" } });
+    fireEvent.blur(input);
+    expect(screen.getByRole("alert")).toHaveTextContent(/#RRGGBB/);
+    expect(onChange).not.toHaveBeenCalled();
+    fireEvent.change(input, { target: { value: "1e2832" } });
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(latest().textColor).toBe("#1E2832");    expect(screen.getByTestId("portfolio-text-color-hex")).toBe(input);
+    fireEvent.change(input, { target: { value: "" } });
+    fireEvent.blur(input);
+    expect(latest()).not.toHaveProperty("textColor");
+  });
+
+  it("warnt, wenn die Schrift auf der Fläche schwer lesbar ist", () => {
+    setup({ tiles: [tile("a")], background: "#FFFFFF" });
+    expect(screen.queryByTestId("portfolio-contrast")).toBeNull();
+    const text = within(screen.getByTestId("portfolio-text-color"));
+    fireEvent.click(text.getByRole("radio", { name: "Hellgrau (#F0F0F0)" }));
+    expect(screen.getByTestId("portfolio-contrast")).toHaveTextContent(/Kontrast 1,1 : 1/);
   });
 });

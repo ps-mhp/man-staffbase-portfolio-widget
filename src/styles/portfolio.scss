@@ -56,13 +56,14 @@
 }
 
 /* Kompakt: schmale Spalten, also mehr Kacheln je Reihe — auf dem Telefon
-   noch zwei nebeneinander. */
+   noch zwei nebeneinander. Das Icon im Icon-Kasten bleibt so gross wie bei
+   Normal: kleiner war es auf der schmalen Kachel kaum zu erkennen. */
 .man-portfolio--compact {
   --man-portfolio-column: 160px;
   --man-portfolio-gap: #{man("space-3")};
   --man-portfolio-pad: #{man("space-3")};
   --man-portfolio-title-size: 16px;
-  --man-portfolio-icon: 40px;
+  --man-portfolio-icon: 56px;
   --man-portfolio-box: 128px;
 }
 

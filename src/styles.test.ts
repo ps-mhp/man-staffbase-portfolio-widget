@@ -136,6 +136,13 @@ describe("Stylesheet", () => {
     expect(rule).toContain(`--man-portfolio-column: ${width}`);
   });
 
+  it("zeigt das Icon im kompakten Icon-Kasten so gross wie bei Normal", () => {
+    const icon = (className: string): string | undefined =>
+      portfolioStyles.match(new RegExp(`\\.${className}\\s*\\{[^}]*--man-portfolio-icon:\\s*([^;]+);`))?.[1];
+    expect(icon("man-portfolio")).toBe("56px");
+    expect(icon("man-portfolio--compact")).toBe(icon("man-portfolio"));
+  });
+
   it("stellt die grosse Bildkachel nach ihrer eigenen Breite um, nicht nach dem Fenster", () => {
     expect(portfolioStyles).toMatch(/\.man-portfolio__item\s*\{[^}]*container-type:\s*inline-size/);
     expect(portfolioStyles).toMatch(

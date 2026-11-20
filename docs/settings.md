@@ -23,7 +23,7 @@ Reihe gleich hoch.
 
 | Größe | Mindestbreite | Bei voller Seitenbreite | Tablet | Telefon | Besonderheit |
 | --- | --- | --- | --- | --- | --- |
-| **Kompakt** | 160 px | etwa 7 | 4 | 2 | Kleinere Schrift; Beschreibungen enden nach drei Zeilen. |
+| **Kompakt** | 160 px | etwa 7 | 4 | 2 | Kleinere Schrift; Beschreibungen enden nach drei Zeilen. Das Icon im Icon-Kasten ist so groß wie bei Normal. |
 | **Normal** | 280 px | 4 | 2 | 1 | Die Form der früheren Fassungen. |
 | **Groß** | 440 px | 2 | 1 | 1 | Bild links, Text rechts wie eine Nachrichtenliste. Ist die Kachel schmaler als 420 px (Telefon), steht das Bild wieder oben. Der Icon-Kasten bleibt nebeneinander. |
 

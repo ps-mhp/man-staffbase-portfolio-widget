@@ -4,7 +4,7 @@
 | --- | --- |
 | **Riquadri** | I riquadri della riga. Si gestiscono nella finestra **Modifica riquadri**, che si apre nella finestra di dialogo di configurazione. L'impostazione predefinita è nessuna tessera. |
 | **Visualizzazione** | **Tessera immagine** (immagine in alto, ritagliata in formato 16:9, testo sotto) o **Riquadro icona** (icona o immagine adattata, testo centrato su uno sfondo colorato). Per impostazione predefinita è selezionata la piastrella immagine. Nella finestra a destra sotto **Aspetto**. |
-| **Dimensione** | **Compatta**, **Normale** o **Grande** — per ogni tipo di visualizzazione. L’impostazione predefinita è Normale. Vedi sotto. |
+| **Dimensione** | **Compatta**, **Normale** o **Grande** — per ogni tipo di visualizzazione. Impostazione predefinita: Normale. Vedi sotto. |
 | **Area** | Sfondo delle tessere: **Standard**, un colore della MAN-CI o un valore esadecimale personalizzato (`#RRGGBB`). L’impostazione predefinita è il bianco per la tessera immagine e il rosso MAN per il riquadro icona. |
 | **Carattere** | Colore di titolo, etichetta, descrizione e freccia: **Automatico**, un colore della MAN-CI o un valore esadecimale personalizzato. L’impostazione Automatico sceglie, in base allo sfondo selezionato, il colore più leggibile tra scuro e bianco; altrimenti utilizza i consueti colori MAN. |
 | **Mostra freccia** | Mostra una freccia in alto a destra su ogni riquadro collegato. Attivata per impostazione predefinita. Nella finestra in basso a destra sotto **Aspetto**. |
@@ -17,41 +17,41 @@ non c’è nulla su cui cliccare.
 ## Dimensioni
 
 La dimensione definisce la larghezza minima di una colonna. Il numero di colonne
-che possono essere affiancate dipende dalla larghezza che il widget occupa sulla
+che possono essere disposte una accanto all’altra dipende dalla larghezza che il widget occupa sulla
 pagina; tutte le colonne di una riga hanno la stessa larghezza, tutte le tessere di una
 riga hanno la stessa altezza.
 
 | Dimensione | Larghezza minima | A tutta larghezza della pagina | Tablet | Telefono | Particolarità |
 | --- | --- | --- | --- | --- | --- |
-| **Compatta** | 160 px | circa 7 | 4 | 2 | Caratteri più piccoli; le descrizioni terminano dopo tre righe. |
+| **Compatta** | 160 px | circa 7 | 4 | 2 | Caratteri più piccoli; le descrizioni terminano dopo tre righe. L’icona nella casella delle icone ha le stesse dimensioni della versione **Normale**. |
 | **Normale** | 280 px | 4 | 2 | 1 | La forma delle versioni precedenti. |
-| **Grande** | 440 px | 2 | 1 | 1 | Immagine a sinistra, testo a destra come in un elenco di notizie. Se la tessera è più stretta di 420 px (telefono), l’immagine torna in alto. La casella delle icone rimane affiancata. |
+| **Grande** | 440 px | 2 | 1 | 1 | Immagine a sinistra, testo a destra come in un elenco di notizie. Se il riquadro è più stretto di 420 px (telefono), l’immagine torna in alto. Il riquadro delle icone rimane affiancato. |
 
 ## Colori
 
-Un avviso sotto i colori segnala se il testo sull’area è di difficile
-lettura (contrasto inferiore a 4,5 : 1). La combinazione non è vietata.
-Passando il mouse sopra, un'area colorata diventa leggermente più scura; un carattere selezionato
+Un’avvisaglia sotto i colori segnala quando il testo sull’area è difficile
+da leggere (contrasto inferiore a 4,5 : 1). La combinazione non è vietata.
+Passando con il mouse, un’area colorata diventa leggermente più scura; un carattere selezionato
 mantiene il proprio colore, invece di diventare rosso.
 
 ## La finestra «Modifica riquadri»
 
-La finestra occupa l'intero schermo. In alto si trovano **Applica**,
-**Annulla**, **Annulla**, **Ripeti**, la guida e il pulsante per
+La finestra occupa l’intero schermo. In alto si trovano **Applica**,
+**Annulla**, **Indietro**, **Ripeti**, la guida e il pulsante per
 l’anteprima (Editor, Desktop, Tablet, Mobile). Sotto ci sono tre colonne:
 
-| Area | Significato |
+| Sezione | Significato |
 | --- | --- |
-| **Riquadri** (a sinistra) | Tutti i riquadri in ordine, con anteprima, titolo e link. Trascinandoli dal manico o utilizzando la tastiera è possibile riorganizzarli; **Nuovo riquadro** ne aggiunge uno alla fine. |
-| **Riquadro x di y** (al centro) | I campi del riquadro selezionato: **Contenuto** (titolo, link), **Immagine** (libreria multimediale, indirizzo, rimuovi) e **Altro** (etichetta, descrizione, testo alternativo, nuova scheda). Sopra di esse, le azioni “Sposta”, “Duplica” e “Elimina” agiscono sul riquadro. |
-| **Configurazione** (a destra) | **Aspetto**, **Dimensioni**, **Area**, **Carattere** e **Mostra freccia**; tutto si applica all’intera riga. |
+| **Riquadri** (a sinistra) | Tutti i riquadri in ordine, con anteprima, titolo e link. Trascinandoli dal maniglia o utilizzando la tastiera è possibile riorganizzarli; **Nuovo riquadro** ne aggiunge uno alla fine. |
+| **Riquadro x di y** (al centro) | I campi del riquadro selezionato: **Contenuto** (titolo, link), **Immagine** (libreria multimediale, indirizzo, rimuovi) e **Altro** (etichetta, descrizione, testo alternativo, nuova scheda). Sopra di essi, le azioni *Sposta*, *Duplica* ed *Elimina* agiscono sul riquadro. |
+| **Configurazione** (a destra) | **Visualizzazione**, **Dimensioni**, **Area**, **Carattere** e **Mostra freccia**; tutto vale per l’intera riga. |
 
 **Applica** inserisce i riquadri e la configurazione nel widget, **Annulla** li scarta
 — in caso di modifiche non salvate viene chiesto conferma in anticipo. Lo stato in alto indica
 cosa è stato modificato, ad esempio «1 riquadro modificato, configurazione modificata».
 
 Un riquadro senza titolo riporta nel campo **Titolo** l’avviso «Senza titolo,
-il riquadro non viene visualizzato» e nell’elenco viene denominato «Senza titolo». Rimane lì
+il riquadro non viene visualizzato» e nell’elenco è denominato «Senza titolo». Rimane lì
 e non va perso al momento del salvataggio; sulla pagina appare solo
 non appena ha un titolo.
 

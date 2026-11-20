@@ -23,9 +23,9 @@ rzędzie tę samą wysokość.
 
 | Rozmiar | Minimalna szerokość | Przy pełnej szerokości strony | Tablet | Telefon | Cechy szczególne |
 | --- | --- | --- | --- | --- | --- |
-| **Kompaktowy** | 160 px | około 7 | 4 | 2 | Mniejsza czcionka; opisy kończą się po trzech wierszach. |
-| **Normalny** | 280 px | 4 | 2 | 1 | Kształt z poprzednich wersji. |
-| **Duży** | 440 px | 2 | 1 | 1 | Zdjęcie po lewej, tekst po prawej, jak lista wiadomości. Jeśli kafelka jest węższa niż 420 px (telefon), zdjęcie ponownie znajduje się u góry. Pole z ikonami pozostaje obok siebie. |
+| **Kompaktowy** | 160 px | około 7 | 4 | 2 | Mniejsza czcionka; opisy kończą się po trzech wierszach. Ikona w polu ikony ma taki sam rozmiar jak w trybie normalnym. |
+| **Normalny** | 280 px | 4 | 2 | 1 | Kształt znany z poprzednich wersji. |
+| **Duży** | 440 px | 2 | 1 | 1 | Obrazek po lewej, tekst po prawej, jak lista wiadomości. Jeśli kafelka jest węższa niż 420 px (telefon), obrazek ponownie znajduje się u góry. Pole ikon pozostaje obok siebie. |
 
 ## Kolory
 
@@ -42,8 +42,8 @@ podglądu (edytor, pulpit, tablet, urządzenie mobilne). Poniżej znajdują się
 
 | Obszar | Znaczenie |
 | --- | --- |
-| **Kafelki** (po lewej) | Wszystkie kafelki w kolejności, z miniaturą, tytułem i linkiem. Przeciągając za uchwyt lub za pomocą klawiatury można zmienić ich kolejność; opcja **Nowy kafelek** dodaje go na końcu. |
-| **Kafelek x z y** (pośrodku) | Pola wybranego kafelka: **Treść** (tytuł, link), **Obraz** (biblioteka multimediów, adres, usuń) oraz **Więcej** (etykieta, opis, tekst alternatywny, nowa karta). Nad nimi znajdują się przyciski do przenoszenia, powielania i usuwania kafelka. |
+| **Kafelki** (po lewej) | Wszystkie kafelki w kolejności, z miniaturą, tytułem i linkiem. Przeciągając uchwyt lub używając klawiatury, można zmienić ich kolejność; opcja **Nowy kafelek** dodaje go na końcu. |
+| **Kafelek x z y** (środek) | Pola wybranej kafelki: **Treść** (tytuł, link), **Obraz** (biblioteka multimediów, adres, usuń) oraz **Więcej** (etykieta, opis, tekst alternatywny, nowa karta). Powyżej znajdują się opcje przesuwania, powielania i usuwania kafelków. |
 | **Układ** (po prawej) | **Wygląd**, **Rozmiar**, **Powierzchnia**, **Czcionka** i **Pokaż strzałkę**; wszystko dotyczy całego rzędu. |
 
 **Zastosuj** zapisuje kafelki i układ w widżecie, **Anuluj** odrzuca

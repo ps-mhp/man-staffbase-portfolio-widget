@@ -3,7 +3,7 @@
 | Ajuste | Descripción |
 | --- | --- |
 | **Mosaicos** | Los mosaicos de la fila. Se gestionan en la ventana **Editar mosaicos**, que se abre en el cuadro de diálogo de configuración. Por defecto, no hay ningún mosaico. |
-| **Presentación** | **Mosaico de imagen** (imagen arriba, recortada a 16:9, texto debajo) o **Cuadro de icono** (icono o imagen ajustada, texto centrado sobre un fondo de color). Por defecto, el mosaico de imagen. En la ventana de la derecha, en **Diseño**. |
+| **Presentación** | **Mosaico de imagen** (imagen en la parte superior, recortada a 16:9, con texto debajo) o **Cuadro de icono** (icono o imagen ajustada, con texto centrado sobre un fondo de color). Por defecto, el mosaico de imagen. En la ventana de la derecha, en **Diseño**. |
 | **Tamaño** | **Compacto**, **Normal** o **Grande** — para cada tipo de presentación. Por defecto, Normal. Véase más abajo. |
 | **Área** | Fondo de los mosaicos: **Estándar**, un color de la identidad corporativa de MAN o un valor hexadecimal propio (`#RRGGBB`). El valor predeterminado es blanco para el mosaico de imagen y rojo MAN para el recuadro de icono. |
 | **Fuente** | Color del título, la etiqueta, la descripción y la flecha: **Automático**, un color de la identidad corporativa de MAN o un valor hexadecimal propio. La opción «Automático» elige, sobre el fondo seleccionado, el color más legible entre oscuro y blanco; en caso contrario, se utilizan los colores habituales de MAN. |
@@ -16,21 +16,21 @@ no hay nada en lo que hacer clic.
 
 ## Tamaños
 
-El tamaño establece la anchura mínima de una columna. El número de columnas
-que caben una al lado de otra depende de la anchura que ocupe el widget en la
-página; todas las columnas de una fila tienen la misma anchura, y todos los mosaicos de una
+El tamaño establece el ancho mínimo de una columna. El número de columnas
+que caben una al lado de otra depende del ancho que ocupe el widget en la
+página; todas las columnas de una fila tienen el mismo ancho, y todos los mosaicos de una
 fila tienen la misma altura.
 
 | Tamaño | Ancho mínimo | A ancho completo de página | Tableta | Teléfono | Característica especial |
 | --- | --- | --- | --- | --- | --- |
-| **Compacto** | 160 px | aprox. 7 | 4 | 2 | Letra más pequeña; las descripciones se cortan tras tres líneas. |
-| **Normal** | 280 px | 4 | 2 | 1 | El formato de las versiones anteriores. |
+| **Compacto** | 160 px | aprox. 7 | 4 | 2 | Letra más pequeña; las descripciones se cortan tras tres líneas. El icono del recuadro de iconos tiene el mismo tamaño que en «Normal». |
+| **Normal** | 280 px | 4 | 2 | 1 | La forma de las versiones anteriores. |
 | **Grande** | 440 px | 2 | 1 | 1 | Imagen a la izquierda, texto a la derecha, como una lista de noticias. Si el mosaico tiene menos de 420 px de ancho (teléfono), la imagen vuelve a aparecer arriba. El recuadro de iconos permanece en paralelo. |
 
 ## Colores
 
 Una nota debajo de los colores avisa si la tipografía en la superficie es difícil
-de leer (contraste inferior a 4,5 : 1). La combinación no está prohibida.
+de leer (contraste inferior a 4,5 : 1). No obstante, la combinación no está prohibida.
 Al pasar el ratón por encima, un área de color se oscurece ligeramente; una fuente seleccionada
 mantiene su color, en lugar de volverse roja.
 
@@ -42,17 +42,17 @@ cambiar la vista previa (editor, escritorio, tableta, móvil). Debajo hay tres c
 
 | Área | Significado |
 | --- | --- |
-| **Mosaicos** (izquierda) | Todos los mosaicos en orden, con imagen de vista previa, título y enlace. Arrastrando el controlador o utilizando el teclado se pueden reorganizar; **Nuevo mosaico** añade uno al final. |
-| **Mosaico x de y** (centro) | Los campos del mosaico seleccionado: **Contenido** (título, enlace), **Imagen** (biblioteca multimedia, dirección, eliminar) y **Más** (etiqueta, descripción, texto alternativo, nueva pestaña). Por encima, las acciones «Mover», «Duplicar» y «Eliminar» permiten modificar el mosaico. |
+| **Mosaicos** (izquierda) | Todos los mosaicos en orden, con imagen de vista previa, título y enlace. Se pueden reorganizar arrastrando el controlador o mediante el teclado; **Nuevo mosaico** añade uno al final. |
+| **Mosaico x de y** (centro) | Los campos del mosaico seleccionado: **Contenido** (título, enlace), **Imagen** (biblioteca multimedia, dirección, eliminar) y **Más** (etiqueta, descripción, texto alternativo, nueva pestaña). Las acciones situadas encima permiten mover, duplicar y eliminar el mosaico. |
 | **Diseño** (derecha) | **Apariencia**, **Tamaño**, **Área**, **Fuente** y **Mostrar flecha**; todo se aplica a toda la fila. |
 
 **Aplicar** guarda los mosaicos y el diseño en el widget; **Cancelar** los descarta
-— si hay cambios sin guardar, se pregunta antes. El estado de la parte superior indica
+— si hay cambios sin guardar, se te preguntará previamente. El estado de la parte superior indica
 lo que ha cambiado, por ejemplo, «1 mosaico modificado, diseño modificado».
 
 Un mosaico sin título muestra en el campo **Título** la indicación «Sin título,
 el mosaico no aparece» y se denomina «Sin título» en la lista. Permanece allí
-y no se pierde al guardar; solo aparece en la página
+y no se pierde al guardar; en la página solo aparece
 en cuanto tiene un título.
 
 ## Campos de un mosaico
@@ -61,7 +61,7 @@ Los mosaicos, la flecha y el diseño se guardan conjuntamente en el atributo `po
 (`{"tiles":[…],"showChevron":true,"variant":"icon","size":"compact","background":"#E40045","textColor":"#FFFFFF"}`,
 codificado). `variant` es `image` o `icon`, `size` es `compact`, `normal`
 o `large`, y los colores se indican como `#RRGGBB`; lo que falte o no sea válido
-se considera el valor por defecto. Los widgets más antiguos siguen incluyendo los mosaicos como una lista JSON en el
+se considera por defecto. Los widgets más antiguos siguen incluyendo los mosaicos como una lista JSON en el
 campo `tiles` y la flecha en `show-chevron`; ambos se siguen leyendo,
 siempre que `portfolio-config` no establezca el valor correspondiente, y tienen el mismo aspecto
 que hasta ahora (mosaico de imagen, normal). El formato de los mosaicos es el mismo en ambos casos:

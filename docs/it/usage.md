@@ -28,8 +28,8 @@ il resto si trova nella sezione **Altro**, che può essere espansa o compressa:
 - **Testo alternativo dell’immagine** — ciò che uno screen reader legge
   al posto dell’immagine. Lasciare vuoto se l’immagine è solo decorativa. Quando si seleziona un’immagine,
   l’editor riprende un testo alternativo dalla libreria multimediale, purché il
-  campo non sia stato modificato — ma non un semplice nome di file come «lkw.png»;
-  un testo digitato manualmente rimane invece visibile.
+  campo non sia stato modificato — ma non un semplice nome di file come «lkw.png»
+; un testo digitato manualmente rimane invariato.
 - **Apri in una nuova scheda** — apre la pagina di destinazione in una nuova scheda del browser.
 
 L’unico campo obbligatorio è il titolo. Tutto il resto può essere omesso.
@@ -53,9 +53,9 @@ punti di contatto:
 
 ## Scegliere dimensioni e colori
 
-Alla voce **Design**, le impostazioni si applicano all’intera riga:
+Alla voce **Design**, le impostazioni valgono per l’intera riga:
 
-- **Dimensioni** — **Compatto** mostra riquadri stretti, con un numero maggiore per riga (sul
+- **Dimensioni** — **Compatto** mostra riquadri stretti, più per riga (sul
   telefono due affiancati). **Normale** è la larghezza standard. **Grande**
   posiziona immagine e testo uno accanto all’altro come in un elenco di notizie; sul
   telefono l’immagine torna in alto.
@@ -87,8 +87,8 @@ Accanto a queste opzioni si trovano **Duplica riquadro** e **Elimina riquadro**.
 
 Sotto **Immagine** sono disponibili tre opzioni:
 
-- **Seleziona dalla libreria** apre la libreria e sostituisce l'immagine. È possibile trascinare un'immagine
-  dalla barra direttamente sul campo immagine.
+- **Seleziona dalla libreria** apre la libreria e sostituisce l'immagine. È possibile
+  trascinare un'immagine dalla barra direttamente sul campo immagine.
 - **Inserisci indirizzo** utilizza l’indirizzo di un’immagine (https://… o un percorso
   che inizia con /) al posto di un’immagine dalla libreria.
 - **Rimuovi** elimina solo l’immagine. Il riquadro rimane e viene visualizzato senza
@@ -99,7 +99,7 @@ Sotto **Immagine** sono disponibili tre opzioni:
 ## Anteprima
 
 Nella parte superiore della finestra, il pulsante di selezione permette di passare tra **Editor**, **Desktop**,
-**Tablet** e **Mobile**. L’anteprima mostra la riga di riquadri così come la pagina
+**Tablet** e **Mobile**. L’anteprima mostra la fila di riquadri così come la pagina
 la visualizza — con la visualizzazione, le dimensioni e i colori selezionati, con la
 freccia impostata come a destra. Anche il numero di colonne è corretto: tablet e
 dispositivi mobili mostrano tanti riquadri affiancati quanti ne supporta il dispositivo.

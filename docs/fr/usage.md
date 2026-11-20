@@ -23,7 +23,7 @@
 Le titre, le lien et l’image se trouvent dans les sections **Contenu** et **Image**. Tout
 le reste se trouve dans la section **Plus**, qui peut être déployée ou repliée :
 
-- **Étiquette** — un mot-clé de catégorie au-dessus du titre, par exemple « Véhicules ».
+- **Libellé** — un mot-clé de catégorie au-dessus du titre, par exemple « Véhicules ».
 - **Description** — un court texte sous le titre.
 - **Texte alternatif de l’image** — ce qu’un lecteur d’écran
   lit à la place de l’image. Laissez ce champ vide si l’image est purement décorative. Lorsque vous sélectionnez une image,
@@ -60,7 +60,7 @@ Sous **Mise en page**, les paramètres s’appliquent à toute la ligne :
   affiche l’image et le texte côte à côte, comme dans une liste d’actualités ; sur le
   téléphone, l’image apparaît à nouveau en haut.
 - **Arrière-plan** — **Standard** (blanc pour la vignette d’image, rouge MAN pour la
-  zone d’icône), l’une des couleurs de la MAN-CI ou, sous **Couleur personnalisée**, une
+  zone d’icônes), l’une des couleurs de la charte MAN-CI ou, sous **Couleur personnalisée**, une
   valeur hexadécimale telle que `#E40045` (confirmer avec Entrée).
 - **Police** — **Automatique**, une couleur de la charte MAN-CI ou une
   valeur hexadécimale personnalisée. Elle s’applique au titre, à l’étiquette, à la description et à la flèche.
@@ -70,7 +70,7 @@ Le nombre de colonnes s'adapte à la largeur disponible ; dans l'aperçu
 
 ## Modifier l’ordre
 
-L’ordre des vignettes sur la page correspond à l’ordre dans la liste
+L’ordre des vignettes sur la page correspond à l’ordre de la liste
 à gauche.
 
 - **Avec la souris :** saisissez la vignette par la poignée située à gauche dans la liste et
@@ -78,10 +78,10 @@ L’ordre des vignettes sur la page correspond à l’ordre dans la liste
 - **Avec le clavier :** sélectionnez la vignette dans la liste, appuyez sur la
   barre d'espace, déplacez-la à l'aide des touches **flèche vers le haut** et **flèche vers
   le bas**, puis déposez-la à l'aide de la barre d'espace.
-- **À l'aide des actions situées au-dessus des champs :** **Déplacer la vignette vers le haut** et **Déplacer la vignette vers
-  le bas** déplacent la vignette sélectionnée d'une position vers le haut ou vers le bas.
+- **À l'aide des actions situées au-dessus des champs :** **« Déplacer la vignette vers le haut »** et **« Déplacer la vignette vers
+  le bas »** déplacent la vignette sélectionnée d'une position vers le haut ou vers le bas.
 
-À côté se trouvent **Dupliquer la vignette** et **Supprimer la vignette**.
+À côté se trouvent **« Dupliquer la vignette »** et **« Supprimer la vignette »**.
 
 ## Changer ou supprimer une image
 

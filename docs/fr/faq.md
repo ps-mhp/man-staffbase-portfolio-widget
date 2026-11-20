@@ -5,7 +5,7 @@
 Réponse : En règle générale, aucune vignette n'a encore été créée — ouvrez les
 paramètres et cliquez sur **Modifier les vignettes**. Si, à titre exceptionnel, vous avez
 géré les vignettes dans le champ de texte JSON, il se peut que le contenu ne soit pas
-un JSON valide. Dans ce cas, le message suivant s'affiche dans la console de développement du navigateur :
+au format JSON valide. Dans ce cas, le message suivant s'affiche dans la console de développement du navigateur :
 « portfolio-widget : le champ « vignettes » ne contient pas de tableau JSON valide. »
 Causes les plus fréquentes : une virgule après la dernière vignette, une
 croche de fermeture manquante ou des guillemets typographiques («  ») au lieu de guillemets droits

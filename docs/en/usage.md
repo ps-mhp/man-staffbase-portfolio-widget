@@ -4,7 +4,7 @@
 
 1. Place the **Portfolio** widget in the desired location on the page.
 2. Open the widget’s settings. The **Edit Tiles** window
-   opens in full-screen mode; if it doesn’t open automatically, click
+   opens in full screen; if it doesn’t open automatically, click
    **Edit Tiles**.
 3. Click **New Tile** on the left. The new, empty tile appears at the end
    of the list and is automatically selected.
@@ -12,8 +12,8 @@
 5. Under **Image**, select the **Choose from Media Library** button. The
    media library opens as a sidebar on the right; it also allows you to upload files.
 6. Repeat steps 3 through 5 for each additional tile.
-7. Under **Design** on the right, select the **Display** and
-   **Size**, and leave **Show Arrow** checked if you want an arrow to appear in the upper-right corner
+7. Under **Design** on the right, select the **Display** and the
+   **Size**, and leave **Show Arrow** turned on if you want an arrow to appear in the upper-right corner
    of each linked tile.
 8. Click **Apply** at the top and save the page.
 9. Check the result in the preview.
@@ -101,7 +101,7 @@ Under **Image**, there are three options:
 At the top of the window, the toggle switches between **Editor**, **Desktop**,
 **Tablet**, and **Mobile**. The preview shows the row of tiles exactly as the page
 displays them—in the selected layout, size, and colors, with the
-arrow positioned as shown on the right. The number of columns is also correct: Tablet and
+arrow positioned as it is on the right. The number of columns is also correct: Tablet and
 Mobile display as many tiles side by side as the device allows.
 
 ## Making Changes Later

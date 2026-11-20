@@ -23,13 +23,13 @@ rij even hoog.
 
 | Grootte | Minimale breedte | Bij volledige paginabreedte | Tablet | Telefoon | Bijzonderheid |
 | --- | --- | --- | --- | --- | --- |
-| **Compact** | 160 px | ongeveer 7 | 4 | 2 | Kleinere lettergrootte; beschrijvingen eindigen na drie regels. |
+| **Compact** | 160 px | ongeveer 7 | 4 | 2 | Kleinere lettergrootte; beschrijvingen eindigen na drie regels. Het pictogram in het pictogramvak is even groot als bij ‘Normaal’. |
 | **Normaal** | 280 px | 4 | 2 | 1 | De vorm van de eerdere versies. |
-| **Groot** | 440 px | 2 | 1 | 1 | Afbeelding links, tekst rechts, zoals een nieuwslijst. Is de tegel smaller dan 420 px (telefoon), dan staat de afbeelding weer bovenaan. De pictogramvakken blijven naast elkaar staan. |
+| **Groot** | 440 px | 2 | 1 | 1 | Afbeelding links, tekst rechts, zoals een nieuwslijst. Als de tegel smaller is dan 420 px (telefoon), staat de afbeelding weer bovenaan. Het pictogramvak blijft naast elkaar staan. |
 
 ## Kleuren
 
-Een melding onder de kleuren geeft aan wanneer het lettertype op het vlak slecht
+Een opmerking onder de kleuren geeft aan wanneer het lettertype op het vlak slecht
 leesbaar is (contrast lager dan 4,5 : 1). De combinatie is niet verboden.
 Als je er met de muis overheen gaat, wordt een kleurvlak iets donkerder; een geselecteerd
 lettertype behoudt zijn kleur in plaats van rood te worden.
@@ -43,8 +43,8 @@ het voorbeeld (Editor, Desktop, Tablet, Mobiel). Daaronder drie kolommen:
 | Kolom | Betekenis |
 | --- | --- |
 | **Tegels** (links) | Alle tegels in volgorde, met voorbeeldafbeelding, titel en link. Door aan het handvat te slepen of met het toetsenbord kun je ze opnieuw rangschikken; **Nieuwe tegel** voegt er een toe aan het einde. |
-| **Tegel x van y** (midden) | De velden van de geselecteerde tegel: **Inhoud** (titel, link), **Afbeelding** (mediabibliotheek, adres, verwijderen) en **Meer** (label, beschrijving, alternatieve tekst, nieuw tabblad). Daarboven bevinden zich de acties om de tegel te verplaatsen, te dupliceren en te verwijderen. |
-| **Opmaak** (rechts) | **Weergave**, **Grootte**, **Oppervlakte**, **Lettertype** en **Pijl weergeven**; alles geldt voor de hele rij. |
+| **Tegel x van y** (midden) | De velden van de geselecteerde tegel: **Inhoud** (titel, link), **Afbeelding** (mediabibliotheek, adres, verwijderen) en **Meer** (label, beschrijving, alternatieve tekst, nieuw tabblad). Daarboven kunt u de tegel verplaatsen, dupliceren en verwijderen. |
+| **Opmaak** (rechts) | **Weergave**, **Grootte**, **Oppervlakte**, **Lettertype** en **Pijl weergeven**; dit geldt voor de hele rij. |
 
 **Toepassen** past de tegels en opmaak toe in de widget, **Annuleren** verwijdert
 ze — bij niet-opgeslagen wijzigingen wordt eerst gevraagd of je wilt doorgaan. De status bovenaan geeft aan
@@ -69,7 +69,7 @@ hetzelfde:
 
 | Veld | Venster | Verplicht | Betekenis |
 | --- | --- | --- | --- |
-| `title` | Titel | ja | De kop van de tegel. Ontbreekt deze, dan wordt de tegel overgeslagen. |
+| `title` | Titel | ja | De kop van de tegel. Als deze ontbreekt, wordt de tegel overgeslagen. |
 | `description` | Beschrijving (onder „Meer”) | nee | Een korte tekst onder de titel. |
 | `badge` | Label (onder „Meer”) | nee | Een klein categorielabel boven de titel. |
 | `image` | Afbeelding | nee | Adres van de afbeelding. Ontbreekt deze, dan heeft de tegel geen afbeeldingsgebied. |

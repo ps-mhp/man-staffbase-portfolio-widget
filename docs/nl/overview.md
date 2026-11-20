@@ -1,7 +1,7 @@
 # Portfolio
 
 De Portfolio-widget zet een reeks tegels naast elkaar. Elke tegel
-bevat een afbeelding en een titel, en leidt bij het aanklikken naar een pagina — binnen
+bevat een afbeelding en een titel en leidt bij het aanklikken naar een pagina — binnen
 de app of daarbuiten. Deze widget is geschikt voor alle situaties waarin meerdere gelijkwaardige
 bestemmingen naast elkaar moeten staan: productcategorieën, afdelingen, contactpunten.
 

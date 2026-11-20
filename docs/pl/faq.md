@@ -32,7 +32,7 @@ adres https, o ile jest on publicznie dostępny.
 kafelkę.
 
 Odpowiedź: Opcja **Usuń** w sekcji **Obraz** usuwa tylko obraz,
-a opcja **Usuń kafelek** nad polami usuwa cały kafelek. Dopóki nie kliknąłeś jeszcze przycisku
+a opcja **Usuń kafelek** nad polami usuwa cały kafelek. Dopóki nie kliknąłeś jeszcze
 **Zastosuj**, opcja **Cofnij** cofa tę pomyłkę, a
 **Anuluj** odrzuca wszystkie zmiany.
 

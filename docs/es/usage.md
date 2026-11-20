@@ -21,7 +21,7 @@
 ## Rellenar completamente un mosaico
 
 El título, el enlace y la imagen se encuentran en las secciones **Contenido** e **Imagen**. Todo
-lo demás se encuentra en la sección **Más**, que se puede desplegar y contraer:
+lo demás se encuentra en la sección **Más**, que se puede expandir y contraer:
 
 - **Etiqueta**: una breve palabra de categoría encima del título, como «Vehículos».
 - **Descripción**: un texto breve debajo del título.
@@ -46,9 +46,9 @@ puntos de contacto:
 3. En cada mosaico, en **Icono**, seleccione un símbolo de la biblioteca multimedia —
    preferiblemente un SVG o PNG con fondo transparente en blanco. Se
    ajustará, sin recortarse.
-4. Si es necesario, seleccione otro **tamaño** y **tipo de letra**. Si se deja el
-   tipo de letra en **Automático**, el widget elegirá el más legible entre oscuro
-   y blanco. Aparecerá un aviso si la combinación elegida resulta difícil
+4. Si es necesario, selecciona otro **tamaño** y **tipo de letra**. Si el
+   tipo de letra se deja en **Automático**, el widget elegirá el más legible entre oscuro
+   y blanco. Aparecerá un aviso si la combinación elegida es difícil
    de leer.
 
 ## Seleccionar tamaño y colores

@@ -20,7 +20,7 @@ Una griglia di riquadri di uguale larghezza che si adatta alla larghezza dello s
   impostato di default in rosso MAN con testo bianco.
 
 Entrambe sono disponibili in tre dimensioni: **Compatta** (molte piccole tessere per riga),
-**Normale** e **Grande** (immagine a sinistra, testo a destra come in un elenco di notizie).
+**Normale** e **Grande** (immagine a sinistra, testo a destra come un elenco di notizie).
 Lo sfondo e il carattere possono essere scelti tra i colori della MAN-CI o liberamente.
 In alto a destra è presente una freccia, purché la tessera abbia una destinazione.
 

@@ -44,13 +44,13 @@ Também é possível sem rato: selecione o mosaico, prima a barra de espaço, de
 a **seta para baixo**, prima a barra de espaço. Acima dos campos, desloque
 **Mosaico para cima** e **Mosaico para baixo** uma posição de cada vez.
 
-**Pergunta:** Por que razão um dos meus mosaicos não tem uma seta, apesar de a opção «Mostrar seta»
+**Pergunta:** Porque é que um dos meus mosaicos não tem seta, apesar de a opção «Mostrar seta»
 estar ativada?
 
 Resposta: Falta o link ao mosaico. Sem destino, não é possível clicar nele, e uma
 seta sugeriria uma ação que não existe.
 
-**Pergunta:** As imagens estão recortadas em alturas diferentes.
+**Pergunta:** As imagens estão recortadas com alturas diferentes.
 
 Resposta: No mosaico de imagens, todas as imagens são ajustadas para 16:9 e preenchem a área da imagem
 na totalidade. Em caso de proporções muito diferentes, o
@@ -78,7 +78,7 @@ proporção de, pelo menos, 4,5 : 1. Defina a **fonte** para
 
 **Pergunta:** Em vez da janela, só vejo um campo de texto.
 
-Resposta: A janela posiciona-se no local do campo assim que a
+Resposta: A janela posiciona-se no lugar do campo assim que a
 caixa de diálogo de configuração estiver aberta. Se, por algum motivo, isso não for possível, o
 campo de texto permanece como alternativa; contém a versão preliminar da configuração.
 Normalmente, ao reabrir a caixa de diálogo, a janela volta a aparecer.

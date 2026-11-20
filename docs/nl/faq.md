@@ -1,6 +1,6 @@
 # Veelgestelde vragen
 
-**Vraag:** De widget geeft helemaal niets weer. Waaraan ligt dat?
+**Vraag:** De widget geeft helemaal niets weer. Waar komt dat door?
 
 Antwoord: Meestal is er nog geen tegel aangemaakt — open de
 instellingen en klik op **Tegels bewerken**. Als u de
@@ -23,7 +23,7 @@ verschijnt alleen pas op de pagina als er een titel is.
 **Vraag:** Hoe plaats je een afbeelding op een tegel?
 
 Antwoord: Via **Kiezen uit mediabibliotheek** in het gedeelte **Afbeelding**. De mediabibliotheek
-wordt rechts als balk geopend; daar kun je de afbeelding direct uploaden
+wordt rechts als een balk geopend; daar kun je de afbeelding direct uploaden
 of door deze naar het afbeeldingsveld te slepen. Een afbeelding van een externe website
 werkt ook — voer daarvoor onder **Adres invoegen** het
 https-adres in, zolang het openbaar toegankelijk is.
@@ -71,7 +71,7 @@ het pictogram op het oppervlak van het vak.
 
 **Vraag:** Onder de kleuren staat „Contrast … moeilijk leesbaar“.
 
-Antwoord: Het lettertype en de achtergrond liggen te dicht bij elkaar; lopende tekst heeft een
+Antwoord: Het lettertype en het vlak liggen te dicht bij elkaar; lopende tekst heeft een
 verhouding van minimaal 4,5 : 1 nodig. Stel het **lettertype** in op
 **Automatisch** of kies een duidelijk lichtere of donkerdere kleur.
 

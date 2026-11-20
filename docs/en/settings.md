@@ -6,7 +6,7 @@
 | **Display** | **Image Tile** (image at the top, cropped to 16:9, text below) or **Icon Box** (icon or image fitted, text centered on a colored background). The image tile is selected by default. In the window on the right under **Design**. |
 | **Size** | **Compact**, **Normal**, or **Large** — for each layout. Normal is selected by default. See below. |
 | **Background** | Tile background: **Default**, a MAN-CI color, or a custom hex value (`#RRGGBB`). The default is white for the image tile and MAN red for the icon box. |
-| **Font** | Color of title, label, description, and arrow: **Automatic**, a MAN-CI color, or a custom hex value. “Automatic” selects the more readable of dark or white on a selected background; otherwise, it uses the standard MAN colors. |
+| **Font** | Color of title, label, description, and arrow: **Automatic**, a MAN-CI color, or a custom hex value. “Automatic” selects the more readable of dark or white on the chosen background; otherwise, it uses the standard MAN colors. |
 | **Show Arrow** | Displays an arrow in the upper-right corner of each linked tile. Enabled by default. Located in the window on the right under **Design**. |
 
 The display, size, colors, and arrow apply to all tiles collectively, not
@@ -23,9 +23,9 @@ row are the same height.
 
 | Size | Minimum Width | At Full Page Width | Tablet | Phone | Special Feature |
 | --- | --- | --- | --- | --- | --- |
-| **Compact** | 160 px | about 7 | 4 | 2 | Smaller font; descriptions end after three lines. |
+| **Compact** | 160 px | about 7 | 4 | 2 | Smaller font; descriptions end after three lines. The icon in the icon box is the same size as in Normal. |
 | **Normal** | 280 px | 4 | 2 | 1 | The layout of earlier versions. |
-| **Large** | 440 px | 2 | 1 | 1 | Image on the left, text on the right, like a news feed. If the tile is narrower than 420 px (phone), the image returns to the top. The icon box remains side-by-side. |
+| **Large** | 440 px | 2 | 1 | 1 | Image on the left, text on the right, like a news feed. If the tile is narrower than 420 px (phone), the image appears at the top again. The icon box remains side-by-side. |
 
 ## Colors
 
@@ -43,7 +43,7 @@ the preview (Editor, Desktop, Tablet, Mobile). Below that are three columns:
 | Section | Description |
 | --- | --- |
 | **Tiles** (left) | All tiles in order, with preview image, title, and link. Drag the handle or use the keyboard to rearrange them; **New Tile** adds one to the end. |
-| **Tile x of y** (center) | The fields for the selected tile: **Content** (Title, Link), **Image** (Media Library, Address, Remove), and **More** (Label, Description, Alternative Text, New Tab). The actions above—Move, Duplicate, and Delete—apply to the tile. |
+| **Tile x of y** (center) | The fields for the selected tile: **Content** (title, link), **Image** (media library, URL, remove), and **More** (label, description, alt text, new tab). Above that, the actions *Move*, *Duplicate*, and *Delete* affect the tile. |
 | **Layout** (right) | **Display**, **Size**, **Area**, **Font**, and **Show Arrow**; all apply to the entire row. |
 
 **Apply** saves the tiles and layout to the widget; **Cancel** discards

@@ -23,7 +23,7 @@
 O título, o link e a imagem encontram-se nas secções **Conteúdo** e **Imagem**. Tudo
 o resto encontra-se na secção **Mais**, que pode ser expandida ou recolhida:
 
-- **Etiqueta** — uma palavra curta que identifica a categoria, acima do título, por exemplo, «Veículos».
+- **Etiqueta** — uma palavra curta que indica a categoria, acima do título, por exemplo, «Veículos».
 - **Descrição** — um texto curto abaixo do título.
 - **Texto alternativo da imagem** — o que um leitor de ecrã
   lê em vez da imagem. Deixe em branco se a imagem for apenas decorativa. Ao selecionar uma imagem,
@@ -41,8 +41,8 @@ pontos de contacto:
 
 1. À direita, em **Design**, na secção **Apresentação**, selecione a
    **Caixa de ícones**. As caixas apresentam-se em vermelho MAN com texto branco.
-2. Em **Tamanho**, selecione **Compacto**, caso pretenda colocar muitas caixas numa única
-   linha.
+2. Em **Tamanho**, selecione **Compacto**, caso pretenda colocar muitas caixas numa linha
+  .
 3. Em cada mosaico, em **Ícone**, insira um símbolo da biblioteca multimédia — de
    preferência um ficheiro SVG ou PNG com fundo transparente em branco. Este será
    ajustado, não recortado.
@@ -122,7 +122,7 @@ fica diferente após clicar em **Aplicar**, caso tenha alterado alguma coisa.
 
 ## Se algo não funcionar
 
-1. Se faltar um mosaico na página, provavelmente falta-lhe o título. O editor
+1. Se faltar um mosaico na página, é provável que lhe falte o título. O editor
    indica: «Sem título, o mosaico não aparece» — o mosaico permanece
    lá, mas simplesmente não é apresentado.
 2. Se um mosaico ficar sem imagem, verifique o endereço: este deve abrir

@@ -26,7 +26,7 @@ pozostałe elementy znajdują się w sekcji **Więcej**, którą można rozwiną
 - **Etykieta** — krótkie słowo określające kategorię nad tytułem, na przykład „Pojazdy”.
 - **Opis** — krótki tekst pod tytułem.
 - **Tekst alternatywny obrazu** — to, co czytnik ekranu odczytuje zamiast obrazu.
-  Pozostaw puste, jeśli obraz pełni jedynie funkcję dekoracyjną. Przy wyborze obrazu
+  Pozostaw puste, jeśli obraz pełni jedynie funkcję dekoracyjną. Podczas wybierania obrazu
   edytor pobiera tekst alternatywny z biblioteki multimediów, o ile
   pole pozostaje niezmienione — nie przejmuje jednak samej nazwy pliku, takiej jak „lkw.png”;
   tekst wpisany ręcznie pozostaje bez zmian.
@@ -44,7 +44,7 @@ punktów kontaktowych:
 2. W sekcji **Rozmiar** wybierz opcję **Kompaktowy**, jeśli chcesz umieścić wiele pól w jednym rzędzie
   .
 3. Dla każdego pola w sekcji **Ikona** umieść symbol z biblioteki multimediów — najlepiej
-   plik SVG lub PNG z przezroczystym białym tłem. Zostanie on
+   plik SVG lub PNG z przezroczystym tłem w kolorze białym. Zostanie on
    dopasowany, a nie przycięty.
 4. W razie potrzeby wybierz inną **powierzchnię** i **czcionkę**. Jeśli
    czcionka pozostanie ustawiona na **Automatycznie**, widżet wybierze bardziej czytelny wariant spośród ciemnego
@@ -101,10 +101,10 @@ Natomiast opcja **Usuń kafelkę** nad polami usuwa całą kafelkę.
 W górnej części okna przełącznik pozwala wybierać między trybami **Edytor**, **Pulpit**,
 **Tablet** i **Urządzenie mobilne**. Podgląd pokazuje rząd kafelek tak, jak strona
 je wyświetla — w wybranym układzie, rozmiarze i kolorach, ze
-strzałką ustawioną tak, jak po prawej stronie. Zgodna jest również liczba kolumn: w trybie tabletu i
+strzałką ustawioną tak, jak po prawej stronie. Liczba kolumn również jest zgodna: w trybie tabletu i
 urządzeń mobilnych wyświetla się tyle kafelków obok siebie, ile pozwala urządzenie.
 
-## Zmiana po utworzeniu
+## Późniejsza zmiana
 
 1. Kliknij widżet i otwórz jego ustawienia.
 2. Kliknij **Edytuj kafelki**, jeśli okno nie otworzy się
@@ -129,4 +129,4 @@ inaczej dopiero po kliknięciu **Zastosuj**, jeśli coś zmieniłeś.
    można go otworzyć bezpośrednio w przeglądarce. Obrazy z biblioteki multimediów zawsze spełniają ten warunek.
 3. Jeśli zamiast okna pojawia się tylko pole tekstowe, jest to surowa wersja
    konfiguracji (zakodowana). Otwórz ponownie okno dialogowe; okno to
-   zazwyczaj zastępuje pole tekstowe.
+   zazwyczaj zastąpi pole tekstowe.

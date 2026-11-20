@@ -74,7 +74,7 @@ De volgorde van de tegels op de pagina is dezelfde als de volgorde in de lijst
 aan de linkerkant.
 
 - **Met de muis:** Pak de tegel vast bij het handvat links in de lijst en
-  versleep deze naar boven of naar beneden.
+  versleep deze naar boven of beneden.
 - **Met het toetsenbord:** selecteer de tegel in de lijst, druk op de
   spatiebalk, verplaats deze met **pijl omhoog** en **pijl omlaag**
   en plaats deze met de spatiebalk.
@@ -88,7 +88,7 @@ Daarnaast staan **Tegel dupliceren** en **Tegel verwijderen**.
 Onder **Afbeelding** zijn er drie mogelijkheden:
 
 - **Kiezen uit mediabibliotheek** opent de mediabibliotheek en vervangt de afbeelding. Een afbeelding
-  uit de balk kan ook direct naar het afbeeldingsveld worden gesleept.
+  uit de balk kan ook rechtstreeks naar het afbeeldingsveld worden gesleept.
 - **Adres invoegen** gebruikt het adres van een afbeelding (https://… of een pad
   dat begint met /) in plaats van een afbeelding uit de mediabibliotheek.
 - **Verwijderen** verwijdert alleen de afbeelding. De tegel blijft bestaan en wordt weergegeven zonder

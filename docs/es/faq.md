@@ -23,7 +23,7 @@ solo aparecerá en la página una vez que le hayas asignado un título.
 
 **Pregunta:** ¿Cómo se añade una imagen a un mosaico?
 
-Respuesta: A través de **Seleccionar de la biblioteca multimedia** en la sección **Imagen**. La biblioteca multimedia
+Respuesta: A través de **Seleccionar de la biblioteca** en la sección **Imagen**. La biblioteca
 se abre a la derecha como una barra; desde allí se puede subir la imagen directamente
 o arrastrarla hasta el campo de la imagen. También funciona una imagen de otra página web:
 para ello, introduce su

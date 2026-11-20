@@ -38,15 +38,15 @@ Risposta: **Rimuovi** nella sezione **Immagine** elimina solo l’immagine,
 
 **Domanda:** Come faccio a modificare l’ordine?
 
-Risposta: Trascina il riquadro nella lista a sinistra, afferrandolo dal manico, nella nuova posizione.
+Risposta: Trascina il riquadro nella lista a sinistra, afferrando la maniglia, nella nuova posizione.
 È possibile farlo anche senza mouse: selezionare il riquadro, premere la barra spaziatrice, spostarlo con **freccia su** e
 **freccia giù**, quindi premere nuovamente la barra spaziatrice. Sopra i campi, utilizzare
 **Sposta riquadro in alto** e **Sposta riquadro in basso** per spostarlo di una posizione alla volta.
 
-**Domanda:** Perché una delle mie tessere non ha una freccia, anche se l’opzione «Mostra freccia»
+**Domanda:** Perché una delle mie tessere non ha una freccia, anche se l’opzione “Mostra freccia”
 è attivata?
 
-Risposta: Alla tessera manca il link. Senza una destinazione non è cliccabile e una
+Risposta: Alla tessera manca il link. Senza una destinazione non è cliccabile, e una
 freccia prometterebbe un’azione che non esiste.
 
 **Domanda:** Le immagini sono ritagliate in modo diverso in altezza.

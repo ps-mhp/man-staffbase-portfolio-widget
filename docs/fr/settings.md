@@ -23,31 +23,31 @@ rangée ont la même hauteur.
 
 | Taille | Largeur minimale | Sur toute la largeur de la page | Tablette | Téléphone | Particularité |
 | --- | --- | --- | --- | --- | --- |
-| **Compact** | 160 px | environ 7 | 4 | 2 | Police plus petite ; les descriptions s’arrêtent après trois lignes. |
+| **Compact** | 160 px | environ 7 | 4 | 2 | Police plus petite ; les descriptions s’arrêtent après trois lignes. L’icône dans la zone d’icône est de la même taille qu’en mode Normal. |
 | **Normal** | 280 px | 4 | 2 | 1 | La forme des versions précédentes. |
-| **Grand** | 440 px | 2 | 1 | 1 | Image à gauche, texte à droite, comme une liste d’actualités. Si la vignette mesure moins de 420 px (téléphone), l’image revient en haut. Les icônes restent côte à côte. |
+| **Grand** | 440 px | 2 | 1 | 1 | Image à gauche, texte à droite, comme une liste d’actualités. Si la vignette mesure moins de 420 px (téléphone), l’image revient en haut. La zone des icônes reste côte à côte. |
 
 ## Couleurs
 
-Une remarque sous les couleurs signale lorsque le texte sur la surface est difficile
+Une remarque sous les couleurs indique si la police sur la surface est difficile
 à lire (contraste inférieur à 4,5 : 1). La combinaison n’est toutefois pas interdite.
-Au survol de la souris, une zone de couleur s'assombrit légèrement ; une police sélectionnée
+Au survol de la souris, une zone colorée s’assombrit légèrement ; une police sélectionnée
 conserve sa couleur au lieu de devenir rouge.
 
 ## La fenêtre « Modifier les vignettes »
 
-La fenêtre occupe tout l'écran. En haut se trouvent **Appliquer**,
+La fenêtre occupe tout l’écran. En haut se trouvent **Appliquer**,
 **Annuler**, **Annuler**, **Rétablir**, l’aide et le bouton de basculement pour
 l’aperçu (éditeur, bureau, tablette, mobile). En dessous, trois colonnes :
 
 | Zone | Signification |
 | --- | --- |
-| **Vignettes** (à gauche) | Toutes les vignettes classées par ordre, avec aperçu, titre et lien. Vous pouvez les réorganiser en faisant glisser la poignée ou à l’aide du clavier ; **Nouvelle vignette** en ajoute une à la fin. |
-| **Vignette x sur y** (au centre) | Les champs de la vignette sélectionnée : **Contenu** (titre, lien), **Image** (bibliothèque, adresse, supprimer) et **Plus** (étiquette, description, texte alternatif, nouvel onglet). Au-dessus, les actions « Déplacer », « Dupliquer » et « Supprimer » permettent de modifier la vignette. |
-| **Mise en page** (à droite) | **Affichage**, **Taille**, **Surface**, **Police** et **Afficher la flèche** ; tout s’applique à toute la rangée. |
+| **Vignettes** (à gauche) | Toutes les vignettes classées par ordre, avec une vignette d’aperçu, un titre et un lien. Vous pouvez les réorganiser en faisant glisser la poignée ou à l’aide du clavier ; **Nouvelle vignette** en ajoute une à la fin. |
+| **Vignette x sur y** (au centre) | Les champs de la vignette sélectionnée : **Contenu** (titre, lien), **Image** (bibliothèque, adresse, supprimer) et **Plus** (étiquette, description, texte alternatif, nouvel onglet). Au-dessus, les actions « Déplacer », « Dupliquer » et « Supprimer » permettent de modifier la tuile. |
+| **Mise en page** (à droite) | **Affichage**, **Taille**, **Surface**, **Police** et **Afficher la flèche** ; tout s’applique à l’ensemble de la rangée. |
 
 **Appliquer** enregistre les vignettes et la mise en page dans le widget, **Annuler** les rejette
-— une confirmation est demandée au préalable en cas de modifications non enregistrées. Le statut en haut indique
+— en cas de modifications non enregistrées, le système demande confirmation au préalable. Le statut en haut indique
 ce qui a été modifié, par exemple « 1 vignette modifiée, mise en page modifiée ».
 
 Une vignette sans titre comporte dans le champ **Titre** la mention « Sans titre,
@@ -71,7 +71,7 @@ comme auparavant (tuile d’image, normale). Le format des tuiles est le même d
 | `title` | Titre | oui | Le titre de la vignette. S’il manque, la vignette est ignorée. |
 | `description` | Description (sous « Plus ») | non | Un court texte sous le titre. |
 | `badge` | Badge (sous « Plus ») | non | Un petit badge de catégorie au-dessus du titre. |
-| `image` | Image | non | Adresse de l’image. Si elle est manquante, la vignette n’affiche pas d’image. |
+| `image` | Image | non | Adresse de l’image. Si elle est absente, la vignette ne comporte pas de zone d’image. |
 | `imageAlt` | Texte alternatif (sous « Plus ») | non | Texte alternatif pour les lecteurs d’écran. Laisser vide si l’image est purement décorative. |
 | `link` | Lien | non | Destination de la vignette. Sans destination, la vignette n’est pas cliquable et n’affiche pas de flèche. |
 | `newTab` | Ouvrir dans un nouvel onglet (sous « Plus ») | non | `true` ouvre la destination dans un nouvel onglet. Valeur par défaut : `false`. |
@@ -79,7 +79,7 @@ comme auparavant (tuile d’image, normale). Le format des tuiles est le même d
 
 Dans la vignette, les images sont recadrées au format 16:9 et
 remplissent entièrement la zone d’affichage. Fournissez des visuels pour lesquels un
-recadrage sur les bords ne pose pas de problème. Dans la zone des icônes, en revanche, l’image est
+recadrage sur les bords ne pose pas de problème. Dans la zone d’icône, en revanche, l’image est
 ajustée et n’est jamais recadrée — les symboles et logos au format SVG
 ou PNG avec un fond transparent, de la même couleur que la police (donc blancs sur la
 zone rouge par défaut), sont adaptés à cet emplacement.
